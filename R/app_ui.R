@@ -6,13 +6,31 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    # Leave this function for adding external resources
     golem_add_external_resources(),
-    # Your application UI logic
     fluidPage(
-      h1("CAP")
+        sidebarPanel(
+          width = 3,
+          fluidRow(
+            h1("GP Patient Survey", class = "h-title"),
+            mod_sidebar_ui("sidebar")
+          )
+        ),
+
+        mainPanel(
+          width = 9,
+          fluidRow(
+            column(
+              width = 6,
+              mod_plot_ui("plot_1")
+            ),
+            column(
+              width = 6,
+              mod_table_ui("table_1")
+            ),
+          )
+        )
+      )
     )
-  )
 }
 
 #' Add external Resources to the Application
