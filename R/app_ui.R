@@ -1,4 +1,4 @@
-#' The application User-Interface
+#' The Application User-Interface
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
@@ -12,7 +12,8 @@ app_ui <- function(request) {
         width = 3,
         fluidRow(
           h1("PCN Local Capacity and Access Improvement Payment Dashboard",
-             class = "h-title"),
+            class = "h-title"
+          ),
           mod_sidebar_ui("sidebar")
         )
       ),
@@ -26,10 +27,10 @@ app_ui <- function(request) {
   )
 }
 
-#' Add external Resources to the Application
+#' Add External Resources to the Application
 #'
-#' This function is internally used to add external
-#' resources inside the Shiny application.
+#' This function is internally used to add external resources inside the Shiny
+#' application.
 #'
 #' @import shiny
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
@@ -46,8 +47,7 @@ golem_add_external_resources <- function() {
       path = app_sys("app/www"),
       app_title = "CAP"
     ),
-    shinyjs::useShinyjs()
     # Add here other external resources
-    # for example, you can add shinyalert::useShinyalert()
+    shinyjs::useShinyjs()
   )
 }
