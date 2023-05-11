@@ -13,3 +13,4 @@ $run_dev.*
 ^R\data
 ^doc$
 ^Meta$
+^\.github$
