@@ -1,11 +1,12 @@
 ## code to prepare `gppt` dataset goes here
 
 gppt_raw <- readr::read_csv(
-  "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//GPPT_Data.csv",
+  glue::glue("O://T&C//BI Consultancy//A - Projects//",
+             "UoM - SCW - PC CAP//Raw Data//GPPT_Data.csv"),
   col_names = FALSE
 )
 
-gppt <-dplyr::rename(
+gppt <- dplyr::rename(
   gppt_raw,
   practice_code = X1,
   practice_name = X2,
