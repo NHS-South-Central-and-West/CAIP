@@ -4,53 +4,98 @@
 #'
 #' @param id Module's ID
 #'
-#' @import shiny
-#'
 #' @noRd
 mod_sidebar_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    column(8,
+    column(12,
       align = "left",
       tags$p(
         "National, PCN, and practice level aggregated",
         "responses to the GP Patient Survey."
       ),
-      selectizeInput(
+      selectInput(
         inputId = ns("level"),
         label = "Level",
-        choices = c("National", "PCN", "Practice")
+        choices = c("National", "ICB", "PCN", "Practice"),
+        selected = "National"
       ),
-      selectInput(
-        ns("practice_code"),
-        "GP Practice",
-        choices = list(
-          "Islip Surgery" = "K84003",
-          "Woodstock Surgery" = "K84042",
-          "Banbury Cross Health Centre" = "K84028"
-        ), multiple = FALSE
-      ),
-      selectInput(
-        ns("question"),
-        "Question",
-        choices = list(
-          glue::glue(
-            "How easy is it to use your GP practice's website to look ",
-            "for information or access services?" = "Q04"
-          ),
-          glue::glue(
-            "Were you satisfied with the appointment (or appointments) ",
-            "you were offered?" = "Q16",
-          ),
-          glue::glue(
-            "Generally, how easy is it to get through to someone at ",
-            "your GP practice on the phone?" = "Q01"
+      shinyjs::hidden(
+        selectInput(
+          inputId = ns("region"),
+          label = "Region",
+          choices = c("All",
+                      "North East and Yorkshire",
+                      "Midlands",
+                      "South West"),
+          selected = "All"
           )
-        ), multiple = FALSE
+        ),
+      shinyjs::hidden(
+        selectInput(
+          inputId = ns("icb"),
+          label = "ICB",
+          choices = c("All",
+                      "Humber and North Yorkshire",
+                      "Birmingham and Solihull",
+                      "Leicester, Leicestershire and Rutland"),
+          selected = "All"
+        )
+      ),
+      shinyjs::hidden(
+        selectInput(
+          inputId = ns("pcn"),
+          label = "PCN",
+          choices = c("All",
+                      "Upper Don Valley",
+                      "Sunderland East",
+                      "Solihull Rural",
+                      "St John's Wood & Maida Vale"),
+          selected = "All"
+          )
+        ),
+        shinyjs::hidden(
+          selectInput(
+            inputId = ns("practice"),
+            label = "GP Practice",
+            choices = list("All",
+                           "Islip Surgery" = "K84003",
+                           "Woodstock Surgery" = "K84042",
+                           "Banbury Cross Health Centre" = "K84028"),
+            selected = "All",
+            multiple = FALSE
+          )
+        ),
+        tags$p("If you would like to compare an organisation (Region, ICB, PCN,
+             GP Practice) with similar organisations of the same aggregate
+             level, click the switch below:"),
+      ),
+    column(
+      width = 12,
+      align = "center",
+      shinyWidgets::switchInput(inputId = ns("comparison"),
+                                label = "Compare",
+                                size = "normal",
+                                width = "50%",
+                                value = FALSE)
+      ),
+    column(
+      width = 12,
+      align = "left",
+      tags$p("This report contains data for the GP Patient Survey collected from
+           patients aged 16+ registered with a GP practice in England."),
+      tags$p("Data are weighted by age and gender to reflect the population of
+           eligible patients within each practice and ICS."),
+      tags$hr(),
+      tags$footer(
+        tags$a(href = "https://gp-patient.co.uk/weighted-data",
+               target = "_blank", icon("link"), "See the GP Patient Survey website for further information about weighting."),
+        br(),
+        br()
+        )
       )
     )
-  )
 }
 
 #' sidebar Server Function
@@ -65,25 +110,20 @@ mod_sidebar_server <- function(id, r) {
     function(input, output, session) {
       ns <- session$ns
 
-      observeEvent(input$level, {})
 
-      observeEvent(input$practice_code, {})
-
-      observeEvent(input$question, {})
-
-      return(
-        list(
-          level = reactive({
-            input$level
-          }),
-          practice_code = reactive({
-            input$practice_code
-          }),
-          question = reactive({
-            input$question
-          })
-        )
-      )
+      observeEvent(input$level, {
+        if ( input$level != "National" ) {
+          shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::show("icb", anim = TRUE, animType = "slide", time = 1.2)
+          shinyjs::show("pcn", anim = TRUE, animType = "slide", time = 1.2)
+          shinyjs::show("practice", anim = TRUE, animType = "slide", time = 1.2)
+        } else {
+          shinyjs::hide("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::hide("icb", anim = TRUE, animType = "slide", time = 1.2)
+          shinyjs::hide("pcn", anim = TRUE, animType = "slide", time = 1.2)
+          shinyjs::hide("practice", anim = TRUE, animType = "slide", time = 1.2)
+        }
+      })
     }
   )
 }
