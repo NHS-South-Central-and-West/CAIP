@@ -1,6 +1,7 @@
-#' sidebar UI Function
+#' Sidebar UI Function
 #'
-#' @description Module for the sidebar. The main data processing is handled by it.
+#' @description Module for the app sidebar. The main data processing is handled
+#' by it.
 #'
 #' @param id Module's ID
 #'
@@ -25,21 +26,25 @@ mod_sidebar_ui <- function(id) {
         selectInput(
           inputId = ns("region"),
           label = "Region",
-          choices = c("All",
-                      "North East and Yorkshire",
-                      "Midlands",
-                      "South West"),
+          choices = c(
+            "All",
+            "North East and Yorkshire",
+            "Midlands",
+            "South West"
+          ),
           selected = "All"
-          )
-        ),
+        )
+      ),
       shinyjs::hidden(
         selectInput(
           inputId = ns("icb"),
           label = "ICB",
-          choices = c("All",
-                      "Humber and North Yorkshire",
-                      "Birmingham and Solihull",
-                      "Leicester, Leicestershire and Rutland"),
+          choices = c(
+            "All",
+            "Humber and North Yorkshire",
+            "Birmingham and Solihull",
+            "Leicester, Leicestershire and Rutland"
+          ),
           selected = "All"
         )
       ),
@@ -47,58 +52,93 @@ mod_sidebar_ui <- function(id) {
         selectInput(
           inputId = ns("pcn"),
           label = "PCN",
-          choices = c("All",
-                      "Upper Don Valley",
-                      "Sunderland East",
-                      "Solihull Rural",
-                      "St John's Wood & Maida Vale"),
+          choices = c(
+            "All",
+            "Upper Don Valley",
+            "Sunderland East",
+            "Solihull Rural",
+            "St John's Wood & Maida Vale"
+          ),
           selected = "All"
-          )
-        ),
-        shinyjs::hidden(
-          selectInput(
-            inputId = ns("practice"),
-            label = "GP Practice",
-            choices = list("All",
-                           "Islip Surgery" = "K84003",
-                           "Woodstock Surgery" = "K84042",
-                           "Banbury Cross Health Centre" = "K84028"),
-            selected = "All",
-            multiple = FALSE
-          )
-        ),
-        tags$p("If you would like to compare an organisation (Region, ICB, PCN,
+        )
+      ),
+      shinyjs::hidden(
+        selectInput(
+          inputId = ns("practice"),
+          label = "GP Practice",
+          choices = list("All",
+            "Islip Surgery" = "K84003",
+            "Woodstock Surgery" = "K84042",
+            "Banbury Cross Health Centre" = "K84028"
+          ),
+          selected = "All",
+          multiple = FALSE
+        )
+      ),
+      tags$p("If you would like to compare an organisation (Region, ICB, PCN,
              GP Practice) with similar organisations of the same aggregate
              level, click the switch below:"),
-      ),
+    ),
     column(
       width = 12,
       align = "center",
-      shinyWidgets::switchInput(inputId = ns("comparison"),
-                                label = "Compare",
-                                size = "normal",
-                                width = "50%",
-                                value = FALSE)
-      ),
+      shinyWidgets::switchInput(
+        inputId = ns("comparison"),
+        label = "Compare",
+        size = "normal",
+        width = "50%",
+        value = FALSE
+      )
+    ),
     column(
       width = 12,
       align = "left",
+      tags$h4("Technical Details"),
       tags$p("This report contains data for the GP Patient Survey collected from
            patients aged 16+ registered with a GP practice in England."),
       tags$p("Data are weighted by age and gender to reflect the population of
            eligible patients within each practice and ICS."),
-      tags$hr(),
-      tags$footer(
-        tags$a(href = "https://gp-patient.co.uk/weighted-data",
-               target = "_blank", icon("link"), "See the GP Patient Survey website for further information about weighting."),
-        br(),
-        br()
+      tags$p(
+        tags$a(
+          href = "https://gp-patient.co.uk/weighted-data",
+          target = "_blank", icon("link"),
+          "See the GP Patient Survey website for
+          further information about weighting."
         )
-      )
+      ),
+      tags$p("Friends and Family Test results are provided
+             for practices which have submitted them."),
+      tags$p(
+        tags$a(
+          href = "https://www.england.nhs.uk/fft/friends-and-family-test-data/",
+          target = "_blank", icon("link"),
+          "See the Friends and Family Test website for further information."
+        )
+      ),
+      tags$hr(),
+      tags$h4("More Information"),
+      tags$a(
+        href = "https://gp-patient.co.uk/faq",
+        target = "_blank", icon("link"),
+        "See the GP Patient Survey website FAQ
+             for more information about the survey."
+      ),
+      tags$hr()
+    ),
+    column(
+      width = 6,
+      align = "center",
+      downloadButton(outputId = ns("download_data"), label = "Download Data")
+    ),
+    column(
+      width = 6,
+      align = "center",
+      downloadButton(outputId = ns("download_plot"), label = "Download Plot")
     )
+  )
 }
 
-#' sidebar Server Function
+#' Sidebar Server Function
 #'
 #' @param id Module's ID
 #' @param input,output,session Internal parameters for {shiny}.
@@ -112,7 +152,7 @@ mod_sidebar_server <- function(id, r) {
 
 
       observeEvent(input$level, {
-        if ( input$level != "National" ) {
+        if (input$level != "National") {
           shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
           shinyjs::show("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::show("pcn", anim = TRUE, animType = "slide", time = 1.2)

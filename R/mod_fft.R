@@ -1,24 +1,38 @@
-#' fft UI Function
+#' Friends & Family Test UI Function
 #'
-#' @description A shiny Module.
+#' @description A Shiny Module.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
 #'
 mod_fft_ui <- function(id) {
-
   ns <- NS(id)
 
   tagList(
     fluidRow(
-      column(9, plotOutput(ns("fft_plot"), width = "100%")),
-      column(9, DT::DTOutput(ns("fft_table"), width = "100%"))
+      column(
+        width = 9,
+        offset = 1,
+        align = "center",
+        dateRangeInput(
+          inputId = ns("fft_years"),
+          label = "Date Range",
+          format = "yyyy", startview = "year",
+          width = "120%"
+        )
+      ),
+      column(
+        width = 9,
+        align = "center",
+        plotOutput(ns("fft_plot"), width = "120%"),
+        DT::DTOutput(ns("fft_table"), width = "120%")
+      )
     )
   )
 }
 
-#' fft Server Functions
+#' Friends & Family Test Server Functions
 #'
 #' @noRd
 mod_fft_server <- function(id) {
@@ -32,7 +46,5 @@ mod_fft_server <- function(id) {
     output$fft_table <- DT::renderDT({
       shinipsum::random_DT(nrow = 100, ncol = 5)
     })
-
-  }
-  )
+  })
 }
