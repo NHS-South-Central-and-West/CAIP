@@ -8,11 +8,14 @@ app_server <- function( input, output, session ) {
   # List the first level callModules here
   r = reactiveValues(
     level = NULL,
-    practice_code = NULL,
+    region = NULL,
+    icb = NULL,
+    pcn = NULL,
+    practice = NULL,
     question = NULL
   )
   mod_sidebar_server("sidebar", r)
-  mod_plot_server("plot_1")
-  mod_table_server("table_1")
+  mod_gppt_server("gppt_1")
+  mod_fft_server("fft_1")
 
 }
