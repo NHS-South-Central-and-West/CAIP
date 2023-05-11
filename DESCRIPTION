@@ -12,7 +12,9 @@ Imports:
     DT,
     golem (>= 0.4.0),
     shinipsum,
-    shiny (>= 1.7.1)
+    shiny (>= 1.7.1),
+    shinyjs,
+    shinyWidgets
 Suggests: 
     knitr,
     rmarkdown,
