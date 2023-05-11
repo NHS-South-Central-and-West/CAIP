@@ -20,9 +20,9 @@ attachment::att_amend_desc()
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "sidebar", with_test = TRUE) # Name of the module
-golem::add_module(name = "plot", with_test = TRUE) # Name of the module
-golem::add_module(name = "table", with_test = TRUE) # Name of the module
+golem::add_module(name = "sidebar", with_test = TRUE)
+golem::add_module(name = "gppt", with_test = TRUE)
+golem::add_module(name = "fft", with_test = TRUE)
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
