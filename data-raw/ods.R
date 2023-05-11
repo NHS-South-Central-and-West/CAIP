@@ -5,7 +5,7 @@ ods_raw <- readr::read_csv(
   col_names = FALSE
 )
 
-ods <-dplyr::rename(
+ods <- dplyr::rename(
   ods_raw,
   practice_code = X1,
   practice_name = X2,
