@@ -1,4 +1,4 @@
-#' The application User-Interface
+#' The Application User-Interface
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
@@ -8,35 +8,29 @@ app_ui <- function(request) {
   tagList(
     golem_add_external_resources(),
     fluidPage(
-        sidebarPanel(
-          width = 3,
-          fluidRow(
-            h1("GP Patient Survey", class = "h-title"),
-            mod_sidebar_ui("sidebar")
-          )
-        ),
-
-        mainPanel(
-          width = 9,
-          fluidRow(
-            column(
-              width = 6,
-              mod_plot_ui("plot_1")
-            ),
-            column(
-              width = 6,
-              mod_table_ui("table_1")
-            ),
-          )
+      sidebarPanel(
+        width = 3,
+        fluidRow(
+          h1("PCN Local Capacity and Access Improvement Payment Dashboard",
+            class = "h-title"
+          ),
+          mod_sidebar_ui("sidebar")
+        )
+      ),
+      mainPanel(
+        tabsetPanel(
+          tabPanel("GP Patient Survey", mod_gppt_ui("gppt_1")),
+          tabPanel("Friends & Family Test", mod_fft_ui("fft_1"))
         )
       )
     )
+  )
 }
 
-#' Add external Resources to the Application
+#' Add External Resources to the Application
 #'
-#' This function is internally used to add external
-#' resources inside the Shiny application.
+#' This function is internally used to add external resources inside the Shiny
+#' application.
 #'
 #' @import shiny
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
@@ -52,8 +46,8 @@ golem_add_external_resources <- function() {
     bundle_resources(
       path = app_sys("app/www"),
       app_title = "CAP"
-    )
+    ),
     # Add here other external resources
-    # for example, you can add shinyalert::useShinyalert()
+    shinyjs::useShinyjs()
   )
 }

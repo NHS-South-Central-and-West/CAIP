@@ -1,19 +1,23 @@
 Package: CAP
 Title: CAP
 Version: 0.0.0.9000
-Authors@R: 
-    person("Paul", "Johnson", , "paul.johnson50@nhs.net", role = c("cre", "aut"))
+Authors@R: c(
+    person("Paul", "Johnson", , "paul.johnson50@nhs.net",
+           role = c("cre", "aut")),
+    person("Ruth", "Johnson", , "ruth.johnson@nhs.net", role = c("aut"))
+    )
 Description: PCN Local Capacity and Access Improvement Payment Dashboard.
 License: MIT + file LICENSE
 URL: https://github.com/NHS-South-Central-and-West/CAP
 BugReports: https://github.com/NHS-South-Central-and-West/CAP/issues
 Imports: 
     config (>= 0.3.1),
-    dplyr,
+    DT,
     golem (>= 0.4.0),
-    readr,
-    readxl,
-    shiny (>= 1.7.1)
+    shinipsum,
+    shiny (>= 1.7.1),
+    shinyjs,
+    shinyWidgets
 Suggests: 
     knitr,
     rmarkdown,
@@ -23,6 +27,7 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
+LazyDataCompression: xz
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 2.10)
