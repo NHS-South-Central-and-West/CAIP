@@ -46,6 +46,7 @@ mod_gppt_ui <- function(id) {
 #' @noRd
 mod_gppt_server <- function(id) {
   moduleServer(id, function(input, output, session) {
+
     ns <- session$ns
 
     output$gppt_plot <- renderPlot({

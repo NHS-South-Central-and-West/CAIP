@@ -7,6 +7,7 @@
 #'
 #' @noRd
 mod_sidebar_ui <- function(id) {
+
   ns <- NS(id)
 
   tagList(
@@ -148,6 +149,7 @@ mod_sidebar_server <- function(id, r) {
   moduleServer(
     id = id,
     function(input, output, session) {
+
       ns <- session$ns
 
 
