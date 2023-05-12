@@ -28,9 +28,9 @@ mod_sidebar_ui <- function(id) {
           label = "Region",
           choices = c(
             "All",
-            "North East and Yorkshire",
-            "Midlands",
-            "South West"
+            "Y63 - North East and Yorkshire",
+            "Y60 - Midlands",
+            "Y58 - South West"
           ),
           selected = "All"
         )
@@ -41,9 +41,9 @@ mod_sidebar_ui <- function(id) {
           label = "ICB",
           choices = c(
             "All",
-            "Humber and North Yorkshire",
-            "Birmingham and Solihull",
-            "Leicester, Leicestershire and Rutland"
+            "QOQ - Humber and North Yorkshire",
+            "QHL - Birmingham and Solihull",
+            "QK1 - Leicester, Leicestershire and Rutland"
           ),
           selected = "All"
         )
@@ -54,10 +54,10 @@ mod_sidebar_ui <- function(id) {
           label = "PCN",
           choices = c(
             "All",
-            "Upper Don Valley",
-            "Sunderland East",
-            "Solihull Rural",
-            "St John's Wood & Maida Vale"
+            "U49944 - Upper Don Valley",
+            "U52297 - Sunderland East",
+            "U41928 - Solihull Rural",
+            "U81960 - St John's Wood & Maida Vale"
           ),
           selected = "All"
         )
@@ -67,9 +67,9 @@ mod_sidebar_ui <- function(id) {
           inputId = ns("practice"),
           label = "GP Practice",
           choices = list("All",
-            "Islip Surgery" = "K84003",
-            "Woodstock Surgery" = "K84042",
-            "Banbury Cross Health Centre" = "K84028"
+            "K84003 - Islip Surgery",
+            "K84042 - Woodstock Surgery",
+            "K84028 - Banbury Cross Health Centre"
           ),
           selected = "All",
           multiple = FALSE
