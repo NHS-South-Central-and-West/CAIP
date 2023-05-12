@@ -37,7 +37,6 @@ mod_fft_ui <- function(id) {
 #' @noRd
 mod_fft_server <- function(id) {
   moduleServer(id, function(input, output, session) {
-
     ns <- session$ns
 
     output$fft_plot <- renderPlot({
