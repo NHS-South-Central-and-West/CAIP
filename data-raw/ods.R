@@ -1,12 +1,10 @@
 ## code to prepare `ods` dataset goes here
 
-ods_raw <- readr::read_csv(
-  glue::glue(
-    "O://T&C//BI Consultancy//A - Projects//",
-    "UoM - SCW - PC CAP//Raw Data//ODS.csv"
-  ),
-  col_names = FALSE
-)
+ods_raw <-
+  readr::read_csv(
+    "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//ODS.csv",
+    col_names = FALSE
+  )
 
 ods <- dplyr::rename(
   ods_raw,

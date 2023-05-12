@@ -1,10 +1,7 @@
 ## code to prepare `gppt` dataset goes here
 
 gppt_raw <- readr::read_csv(
-  glue::glue(
-    "O://T&C//BI Consultancy//A - Projects//",
-    "UoM - SCW - PC CAP//Raw Data//GPPT_Data.csv"
-  ),
+  "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//GPPT_Data.csv",
   col_names = FALSE
 )
 

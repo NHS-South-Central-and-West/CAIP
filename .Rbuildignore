@@ -12,8 +12,8 @@ $run_dev.*
 ^CODE_OF_CONDUCT\.md$
 ^R\data
 ^doc$
-^Meta$
 ^\.github$
 ^app\.R$
 ^rsconnect$
 ^deploy$
+^manifest.json
