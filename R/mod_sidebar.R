@@ -66,7 +66,8 @@ mod_sidebar_ui <- function(id) {
         selectInput(
           inputId = ns("practice"),
           label = "GP Practice",
-          choices = list("All",
+          choices = list(
+            "All",
             "K84003 - Islip Surgery",
             "K84042 - Woodstock Surgery",
             "K84028 - Banbury Cross Health Centre"
