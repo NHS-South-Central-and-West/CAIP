@@ -22,56 +22,58 @@ gppt <- dplyr::rename(
   year = X13
 )
 
+####Format questions
+library(stringr)
+library(dplyr)
 
 questions <-unique(gppt[c('source_question_number', 'question_number', 'question_description')])
 
-
-library(stringr)
-library(dplyr)
 questions <- questions %>%
        mutate(
          question = case_when (
-           questions$question_number == 'Q01' ~ "Ease of getting through to someone at GP practice on the phone",
-           questions$question_number == 'Q04' ~ "Ease of using GP practice's website to look for information or access services",
-           questions$question_number == 'Q16' ~ "Satisfaction with type of appointment offered",
-           questions$question_number == 'Q21' ~ "Overall experience of making an appointment",
-           questions$question_number == 'Q32' ~ "Overall experience of GP practice"
-           )  )
-
-questions <- questions %>%
+           questions$question_number == 'Q01' ~ "Q01 - Ease of getting through to someone at GP practice on the phone",
+           questions$question_number == 'Q04' ~ "Q04 - Ease of using GP practice's website to look for information or access services",
+           questions$question_number == 'Q16' ~ "Q16 - Satisfaction with type of appointment offered",
+           questions$question_number == 'Q21' ~ "Q21 - Overall experience of making an appointment",
+           questions$question_number == 'Q32' ~ "Q32 - Overall experience of GP practice"
+           )) %>%
         mutate(
          summary_flag = case_when (
                 str_detect(question_description,"Summary") ~ TRUE,
                 TRUE~ FALSE
                 )
-         )
-
-questions <- questions %>%
-  mutate(
-    confidence_flag = case_when (
-      str_detect(question_description,"confidence") ~ TRUE,
-      TRUE~ FALSE
-    )
-  )
-
-questions <- questions %>%
+          ) %>%
+        mutate(
+          confidence_flag = case_when (
+            str_detect(question_description,"confidence") ~ TRUE,
+            TRUE~ FALSE
+               )
+          ) %>%
         mutate(
           answers = sapply(strsplit(questions$question_description," - ",fixed=TRUE),tail, 1)
         )
 
 
 
-questions_summary <-questions %>%
-  filter(questions$summary_flag == TRUE)
-
-questions_summary <-  questions_summary %>%
+questions <- questions %>%
+  filter(questions$summary_flag == TRUE) %>%
   mutate(
-    summary_context = sapply(strsplit(questions_summary$answers," (",fixed=TRUE),tail, 1)
-        )
+    answers = sapply(strsplit(questions$answers," (",fixed=TRUE),head, 1)
+        ) %>%
+  mutate(
+    summary_context = sapply(strsplit(questions$answers," (",fixed=TRUE),tail, 1)
+        ) %>%
+  mutate(
+    summary_context = str_sub(summary_context,1,-2)
+  )
 
-questions_summary <- gsub("[()]","",questions_summary$summary_context)
 
 
+####Merge to final data
+
+gppt_merge <- gppt %>%
+  left_join (questions, by ='source_question_number') %>%
+  left_join (questions_summary, by ='source_question_number')
 
 
 
