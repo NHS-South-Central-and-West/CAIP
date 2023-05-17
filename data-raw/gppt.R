@@ -51,32 +51,38 @@ questions <- questions %>%
     )
   ) %>%
   mutate(
+    total_flag = case_when(
+      str_detect(question_description, "Total") ~ TRUE,
+      TRUE ~ FALSE
+    )
+  ) %>%
+  mutate(
     answers = sapply(strsplit(questions$question_description, " - ", fixed = TRUE), tail, 1)
   )
 
 
-#### Trying to remove the string after the brackets in the answer question for the summary questions
+####Trying to remove the string after the brackets in the answer question for the summary questions
 
 
 
-questions_test <- questions_test %>%
-  str_replace(questions_test$answers, " \\s*\\([^\\)]+\\)", "")
+#questions_test <- questions_test %>%
+#  str_replace(questions_test$answers, " \\s*\\([^\\)]+\\)", "")
 
 
-questions$summary_flag == TRUE,
+#questions$summary_flag == TRUE,
 
 
-questions <- questions %>%
-  filter(questions$summary_flag == TRUE) %>%
-  mutate(
-    answers = sapply(strsplit(questions$answers, " (", fixed = TRUE), head, 1)
-  ) %>%
-  mutate(
-    summary_context = sapply(strsplit(questions$answers, " (", fixed = TRUE), tail, 1)
-  ) %>%
-  mutate(
-    summary_context = str_sub(summary_context, 1, -2)
-  )
+#questions <- questions %>%
+#  filter(questions$summary_flag == TRUE) %>%
+#  mutate(
+#    answers = sapply(strsplit(questions$answers, " (", fixed = TRUE), head, 1)
+#  ) %>%
+#  mutate(
+#    summary_context = sapply(strsplit(questions$answers, " (", fixed = TRUE), tail, 1)
+#  ) %>%
+#  mutate(
+#    summary_context = str_sub(summary_context, 1, -2)
+#  )
 
 
 
@@ -100,6 +106,7 @@ gppt_final <- gppt_merge %>%
          answers,
          summary_flag,
          confidence_flag,
+         total_flag,
          year,
          value
          )
