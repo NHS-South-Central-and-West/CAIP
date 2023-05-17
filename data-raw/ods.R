@@ -20,16 +20,16 @@ ods <- dplyr::rename(
   region_name = X8
 ) %>%
   mutate(
-    practice = str_c(practice_code, ' - ', practice_name)
-  )%>%
-  mutate(
-    pcn = str_c(pcn_code, ' - ', pcn_name)
+    practice = str_c(practice_code, " - ", practice_name)
   ) %>%
   mutate(
-   icb = str_c(icb_code, ' - ', icb_name)
+    pcn = str_c(pcn_code, " - ", pcn_name)
   ) %>%
   mutate(
-    region = str_c(region_code, ' - ', region_name)
+    icb = str_c(icb_code, " - ", icb_name)
+  ) %>%
+  mutate(
+    region = str_c(region_code, " - ", region_name)
   )
 
 
