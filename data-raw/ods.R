@@ -6,6 +6,8 @@ ods_raw <-
     col_names = FALSE
   )
 
+library(stringr)
+
 ods <- dplyr::rename(
   ods_raw,
   practice_code = X1,
@@ -16,7 +18,25 @@ ods <- dplyr::rename(
   icb_name = X6,
   region_code = X7,
   region_name = X8
-)
+) %>%
+  mutate(
+    practice = str_c(practice_code, ' - ', practice_name)
+  )%>%
+  mutate(
+    pcn = str_c(pcn_code, ' - ', pcn_name)
+  ) %>%
+  mutate(
+   icb = str_c(icb_code, ' - ', icb_name)
+  ) %>%
+  mutate(
+    region = str_c(region_code, ' - ', region_name)
+  )
+
+
+
+
+
+
 
 pcn_code <- unique(ods$pcn_code)
 pcn_name <- unique(ods$pcn_name)
@@ -26,5 +46,7 @@ icb_code <- unique(ods$icb_code)
 icb_name <- unique(ods$icb_name)
 region_code <- unique(ods$region_code)
 region_name <- unique(ods$region_name)
+
+
 
 usethis::use_data(ods, overwrite = TRUE)
