@@ -56,6 +56,16 @@ questions <- questions %>%
 
 
 
+  )
+
+
+questions_test <- questions_test %>%
+  str_replace(questions_test$answers, " \\s*\\([^\\)]+\\)", "")
+
+
+questions$summary_flag == TRUE,
+
+
 questions <- questions %>%
   filter(questions$summary_flag == TRUE) %>%
   mutate(
