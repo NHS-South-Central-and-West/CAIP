@@ -61,18 +61,18 @@ questions <- questions %>%
   )
 
 
-####Trying to remove the string after the brackets in the answer question for the summary questions
+#### Trying to remove the string after the brackets in the answer question for the summary questions
 
 
 
-#questions_test <- questions_test %>%
+# questions_test <- questions_test %>%
 #  str_replace(questions_test$answers, " \\s*\\([^\\)]+\\)", "")
 
 
-#questions$summary_flag == TRUE,
+# questions$summary_flag == TRUE,
 
 
-#questions <- questions %>%
+# questions <- questions %>%
 #  filter(questions$summary_flag == TRUE) %>%
 #  mutate(
 #    answers = sapply(strsplit(questions$answers, " (", fixed = TRUE), head, 1)
@@ -92,28 +92,30 @@ gppt_merge <- gppt %>%
   left_join(questions, by = "source_question_number")
 
 gppt_final <- gppt_merge %>%
-  select(practice_code,
-         practice_name,
-         pcn_code,
-         pcn_name,
-         icb_code,
-         icb_name,
-         region_code,
-         region_name,
-         source_question_number,
-         question_number.x,
-         question,
-         answers,
-         summary_flag,
-         confidence_flag,
-         total_flag,
-         year,
-         value
-         )
+  select(
+    practice_code,
+    practice_name,
+    pcn_code,
+    pcn_name,
+    icb_code,
+    icb_name,
+    region_code,
+    region_name,
+    source_question_number,
+    question_number.x,
+    question,
+    answers,
+    summary_flag,
+    confidence_flag,
+    total_flag,
+    year,
+    value
+  )
 
 gppt_final <- rename(
-        gppt_final,
-        question_number = question_number.x)
+  gppt_final,
+  question_number = question_number.x
+)
 
 
 
