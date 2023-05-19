@@ -1,8 +1,8 @@
 ## code to prepare `gppt` dataset goes here
 
 gppt_raw <- readr::read_csv(
-  "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//GPPT_Data.csv",
-  col_names = FALSE
+  "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//gppt.csv",
+  col_names = FALSE, skip = 1
 )
 
 gppt <- dplyr::rename(
@@ -44,12 +44,12 @@ questions <- questions %>%
       TRUE ~ FALSE
     )
   ) %>%
-  mutate(
-    confidence_flag = case_when(
-      str_detect(question_description, "confidence") ~ TRUE,
-      TRUE ~ FALSE
-    )
-  ) %>%
+#  mutate(
+#    confidence_flag = case_when(
+#      str_detect(question_description, "confidence") ~ TRUE,
+#      TRUE ~ FALSE
+#    )
+#  ) %>%
   mutate(
     total_flag = case_when(
       str_detect(question_description, "Total") ~ TRUE,
@@ -106,7 +106,7 @@ gppt_final <- gppt_merge %>%
     question,
     answers,
     summary_flag,
-    confidence_flag,
+#    confidence_flag,
     total_flag,
     year,
     value
