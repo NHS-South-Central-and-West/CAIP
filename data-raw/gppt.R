@@ -44,12 +44,12 @@ questions <- questions %>%
       TRUE ~ FALSE
     )
   ) %>%
-#  mutate(
-#    confidence_flag = case_when(
-#      str_detect(question_description, "confidence") ~ TRUE,
-#      TRUE ~ FALSE
-#    )
-#  ) %>%
+  #  mutate(
+  #    confidence_flag = case_when(
+  #      str_detect(question_description, "confidence") ~ TRUE,
+  #      TRUE ~ FALSE
+  #    )
+  #  ) %>%
   mutate(
     total_flag = case_when(
       str_detect(question_description, "Total") ~ TRUE,
@@ -60,15 +60,16 @@ questions <- questions %>%
     answers = sapply(strsplit(questions$question_description, " - ", fixed = TRUE), tail, 1)
   ) %>%
   mutate(
-    sort_order = case_when(answers == "Very easy" ~ 1, answers =="Fairly easy" ~ 2, answers == "Not very easy" ~ 3,
-                      answers == "Not at all easy" ~ 4, answers == "Haven't tried" ~ 5, answers =="Very good" ~ 1,
-                      answers == "Fairly good" ~ 2, answers == "Neither good nor poor" ~ 3,
-                      answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 5,
-                      answers == 'Yes, and I accepted an appointment' ~ 1,
-                      answers == 'No, but I still took an appointment' ~ 2,
-                      answers == 'No, and I did not take an appointment' ~ 3,
-                      answers == 'I was not offered an appointment' ~ 4)
-
+    sort_order = case_when(
+      answers == "Very easy" ~ 1, answers == "Fairly easy" ~ 2, answers == "Not very easy" ~ 3,
+      answers == "Not at all easy" ~ 4, answers == "Haven't tried" ~ 5, answers == "Very good" ~ 1,
+      answers == "Fairly good" ~ 2, answers == "Neither good nor poor" ~ 3,
+      answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 5,
+      answers == "Yes, and I accepted an appointment" ~ 1,
+      answers == "No, but I still took an appointment" ~ 2,
+      answers == "No, and I did not take an appointment" ~ 3,
+      answers == "I was not offered an appointment" ~ 4
+    )
   )
 
 
@@ -92,7 +93,7 @@ gppt_final <- gppt_merge %>%
     question,
     answers,
     summary_flag,
-#    confidence_flag,
+    #    confidence_flag,
     total_flag,
     year,
     value,
@@ -110,19 +111,22 @@ gppt_final <- rename(
 gppt_summary <- gppt_final %>%
   filter(summary_flag == FALSE, total_flag == FALSE) %>%
   mutate(
-    calc_group = case_when(answers == "Very easy" ~ 1, answers =="Fairly easy" ~ 1, answers == "Not very easy" ~ 2,
-                           answers == "Not at all easy" ~ 2, answers =="Very good" ~ 3,
-                           answers == "Fairly good" ~ 3,
-                           answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 4,
-                           answers == 'Yes, and I accepted an appointment' ~ 5,
-                           answers == 'No, but I still took an appointment' ~ 6,
-                           answers == 'No, and I did not take an appointment' ~ 6
-                           )
+    calc_group = case_when(
+      answers == "Very easy" ~ 1, answers == "Fairly easy" ~ 1, answers == "Not very easy" ~ 2,
+      answers == "Not at all easy" ~ 2, answers == "Very good" ~ 3,
+      answers == "Fairly good" ~ 3,
+      answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 4,
+      answers == "Yes, and I accepted an appointment" ~ 5,
+      answers == "No, but I still took an appointment" ~ 6,
+      answers == "No, and I did not take an appointment" ~ 6
+    )
   ) %>%
-   mutate(
-      summary_desc = case_when (calc_group == 1 ~ 'Good', calc_group == 2 ~ "Poor", calc_group == 3 ~"Good",
-                                calc_group == 4 ~"Poor", calc_group ==5 ~"Satisfied", calc_group == 6 ~"Dissatisfied")
-   )
+  mutate(
+    summary_desc = case_when(
+      calc_group == 1 ~ "Good", calc_group == 2 ~ "Poor", calc_group == 3 ~ "Good",
+      calc_group == 4 ~ "Poor", calc_group == 5 ~ "Satisfied", calc_group == 6 ~ "Dissatisfied"
+    )
+  )
 
 
 
