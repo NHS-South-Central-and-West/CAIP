@@ -58,32 +58,18 @@ questions <- questions %>%
   ) %>%
   mutate(
     answers = sapply(strsplit(questions$question_description, " - ", fixed = TRUE), tail, 1)
+  ) %>%
+  mutate(
+    sort_order = case_when(answers == "Very easy" ~ 1, answers =="Fairly easy" ~ 2, answers == "Not very easy" ~ 3,
+                      answers == "Not at all easy" ~ 4, answers == "Haven't tried" ~ 5, answers =="Very good" ~ 1,
+                      answers == "Fairly good" ~ 2, answers == "Neither good nor poor" ~ 3,
+                      answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 5,
+                      answers == 'Yes, and I accepted an appointment' ~ 1,
+                      answers == 'No, but I still took an appointment' ~ 2,
+                      answers == 'No, and I did not take an appointment' ~ 3,
+                      answers == 'I was not offered an appointment' ~ 4)
+
   )
-
-
-#### Trying to remove the string after the brackets in the answer question for the summary questions
-
-
-
-# questions_test <- questions_test %>%
-#  str_replace(questions_test$answers, " \\s*\\([^\\)]+\\)", "")
-
-
-# questions$summary_flag == TRUE,
-
-
-# questions <- questions %>%
-#  filter(questions$summary_flag == TRUE) %>%
-#  mutate(
-#    answers = sapply(strsplit(questions$answers, " (", fixed = TRUE), head, 1)
-#  ) %>%
-#  mutate(
-#    summary_context = sapply(strsplit(questions$answers, " (", fixed = TRUE), tail, 1)
-#  ) %>%
-#  mutate(
-#    summary_context = str_sub(summary_context, 1, -2)
-#  )
-
 
 
 #### Merge to final data
@@ -109,13 +95,35 @@ gppt_final <- gppt_merge %>%
 #    confidence_flag,
     total_flag,
     year,
-    value
+    value,
+    sort_order
   )
+
 
 gppt_final <- rename(
   gppt_final,
   question_number = question_number.x
 )
+
+
+#### Creation of summary dataset
+gppt_summary <- gppt_final %>%
+  filter(summary_flag == FALSE, total_flag == FALSE) %>%
+  mutate(
+    calc_group = case_when(answers == "Very easy" ~ 1, answers =="Fairly easy" ~ 1, answers == "Not very easy" ~ 2,
+                           answers == "Not at all easy" ~ 2, answers =="Very good" ~ 3,
+                           answers == "Fairly good" ~ 3,
+                           answers == "Fairly poor" ~ 4, answers == "Very poor" ~ 4,
+                           answers == 'Yes, and I accepted an appointment' ~ 5,
+                           answers == 'No, but I still took an appointment' ~ 6,
+                           answers == 'No, and I did not take an appointment' ~ 6
+                           )
+  ) %>%
+   mutate(
+      summary_desc = case_when (calc_group == 1 ~ 'Good', calc_group == 2 ~ "Poor", calc_group == 3 ~"Good",
+                                calc_group == 4 ~"Poor", calc_group ==5 ~"Satisfied", calc_group == 6 ~"Dissatisfied")
+   )
+
 
 
 
