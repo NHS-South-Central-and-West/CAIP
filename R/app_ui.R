@@ -11,8 +11,9 @@ app_ui <- function(request) {
       sidebarPanel(
         width = 3,
         fluidRow(
-          h1("PCN Local Capacity and Access Improvement Payment Dashboard",
-            class = "h-title"
+          h1("PCN Local Capacity & Access Improvement Payment (CAIP) App",
+            class = "h-title",
+            align = "center"
           ),
           mod_sidebar_ui("sidebar")
         )
@@ -20,7 +21,8 @@ app_ui <- function(request) {
       mainPanel(
         tabsetPanel(
           tabPanel("GP Patient Survey", mod_gppt_ui("gppt_1")),
-          tabPanel("Friends & Family Test", mod_fft_ui("fft_1"))
+          tabPanel("Friends & Family Test", mod_fft_ui("fft_1")),
+          tabPanel("Methodology", mod_methodology_ui("methodology_1"))
         )
       )
     )
