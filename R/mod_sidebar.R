@@ -10,16 +10,22 @@ mod_sidebar_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
+    tags$hr(),
     column(12,
       align = "left",
       tags$p(
-        "National, PCN, and practice level aggregated",
-        "responses to the GP Patient Survey."
+        "National, Regional, ICB, PCN, and GP Practice level aggregated
+        responses to the GP Patient (GPPT) and Friends & Family Test (FFT)
+        surveys."
       ),
+      tags$br(),
+      tags$p("Select the level at which you want to aggregate the GPPT and FFT
+             responses, before choosing any filters needed for the data that you
+             are interested in."),
       selectInput(
         inputId = ns("level"),
         label = "Level",
-        choices = c("National", "ICB", "PCN", "Practice"),
+        choices = c("National", "Regional", "ICB", "PCN", "Practice"),
         selected = "National"
       ),
       shinyjs::hidden(
@@ -94,37 +100,8 @@ mod_sidebar_ui <- function(id) {
     column(
       width = 12,
       align = "left",
-      tags$h4("Technical Details"),
-      tags$p("This report contains data for the GP Patient Survey collected from
-           patients aged 16+ registered with a GP practice in England."),
-      tags$p("Data are weighted by age and gender to reflect the population of
-           eligible patients within each practice and ICS."),
-      tags$p(
-        tags$a(
-          href = "https://gp-patient.co.uk/weighted-data",
-          target = "_blank", icon("link"),
-          "See the GP Patient Survey website for
-          further information about weighting."
-        )
-      ),
-      tags$p("Friends and Family Test results are provided
-             for practices which have submitted them."),
-      tags$p(
-        tags$a(
-          href = "https://www.england.nhs.uk/fft/friends-and-family-test-data/",
-          target = "_blank", icon("link"),
-          "See the Friends and Family Test website for further information."
-        )
-      ),
-      tags$hr(),
-      tags$h4("More Information"),
-      tags$a(
-        href = "https://gp-patient.co.uk/faq",
-        target = "_blank", icon("link"),
-        "See the GP Patient Survey website FAQ
-             for more information about the survey."
-      ),
-      tags$hr()
+      tags$p("To download the plot or the data in the tab you are currently
+             viewing, click the buttons below:")
     ),
     column(
       width = 6,

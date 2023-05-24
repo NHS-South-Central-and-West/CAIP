@@ -23,6 +23,7 @@ attachment::att_amend_desc()
 golem::add_module(name = "sidebar", with_test = TRUE)
 golem::add_module(name = "gppt", with_test = TRUE)
 golem::add_module(name = "fft", with_test = TRUE)
+golem::add_module(name = "methodology", with_test = TRUE)
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
