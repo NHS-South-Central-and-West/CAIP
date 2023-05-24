@@ -27,7 +27,8 @@ golem::add_module(name = "methodology", with_test = TRUE)
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
-golem::add_fct("helpers", with_test = TRUE)
+golem::add_fct("plot", with_test = TRUE)
+golem::add_fct("get_data", with_test = TRUE)
 golem::add_utils("helpers", with_test = TRUE)
 
 ## External resources
