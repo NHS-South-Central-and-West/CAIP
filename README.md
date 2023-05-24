@@ -10,4 +10,4 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/NHS-South-Central-and-West/CAP/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/NHS-South-Central-and-West/CAP/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-PCN Local Capacity and Access Improvement Payment Dashboard
+PCN Local Capacity and Access Improvement Payment App
