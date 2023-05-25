@@ -1,30 +1,39 @@
-## code to prepare `ods` dataset goes here
+## Script to Import & Wrangle Organisation Data Service (ODS) Data
 
+# import raw data from file
 ods_raw <-
   readr::read_csv(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//ODS.csv",
     col_names = FALSE
+  ) |>
+  dplyr::rename(
+    practice_code = X1,
+    practice_name = X2,
+    pcn_code = X3,
+    pcn_name = X4,
+    icb_code = X5,
+    icb_name = X6,
+    region_code = X7,
+    region_name = X8
   )
 
-ods <- dplyr::rename(
-  ods_raw,
-  practice_code = X1,
-  practice_name = X2,
-  pcn_code = X3,
-  pcn_name = X4,
-  icb_code = X5,
-  icb_name = X6,
-  region_code = X7,
-  region_name = X8
-)
-
-pcn_code <- unique(ods$pcn_code)
-pcn_name <- unique(ods$pcn_name)
-gp_code <- unique(ods$practice_code)
-gp_name <- unique(ods$practice_name)
-icb_code <- unique(ods$icb_code)
-icb_name <- unique(ods$icb_name)
-region_code <- unique(ods$region_code)
-region_name <- unique(ods$region_name)
+ods <-
+  ods_raw |>
+  # remove null columns
+  dplyr::filter(dplyr::if_any(dplyr::ends_with("name"), ~ . != "NULL")) |>
+  # concatenate organisation codes and names
+  dplyr::mutate(
+    region = stringr::str_c(region_code, " - ", region_name),
+    icb = stringr::str_c(icb_code, " - ", icb_name),
+    pcn = stringr::str_c(pcn_code, " - ", pcn_name),
+    practice = stringr::str_c(practice_code, " - ", practice_name)
+  ) |>
+  # reorder columns for simplicity
+  dplyr::select(
+    dplyr::starts_with("region"),
+    dplyr::starts_with("icb"),
+    dplyr::starts_with("pcn"),
+    dplyr::starts_with("practice")
+  )
 
 usethis::use_data(ods, overwrite = TRUE)
