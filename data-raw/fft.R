@@ -56,8 +56,8 @@ fft_pivot <- fft_raw |>
     )
   )
 
-fft_final <-  subset(fft_pivot,popn_flag == FALSE & total_flag == FALSE &
-                      perc_recomm_flag ==FALSE)  |>
+fft_final <- subset(fft_pivot, popn_flag == FALSE & total_flag == FALSE &
+  perc_recomm_flag == FALSE) |>
   select(
     practice_code,
     practice_name,

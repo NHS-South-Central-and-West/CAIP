@@ -28,7 +28,7 @@ fft_practice_stack <- ggplot(fft_practice_graph, aes(x = month, y = value, fill 
   scale_fill_diverging(discrete = TRUE) +
   scale_y_continuous(labels = scales::label_number_si()) +
   labs(
-    title = 'Friends and Family Test',
+    title = "Friends and Family Test",
     subtitle = fft_practice_graph$practice_name,
     y = "Number of Patients",
     x = "Month"
@@ -49,7 +49,7 @@ fft_practice_perc <- ggplot(fft_practice_graph, aes(x = month, y = value, fill =
   ) +
   scale_fill_diverging(discrete = TRUE) +
   labs(
-    title = 'Friends and Family Test',
+    title = "Friends and Family Test",
     subtitle = fft_practice_graph$practice_name,
     x = "Month"
   )
@@ -76,7 +76,7 @@ fft_national_stack <- ggplot(fft_national_graph, aes(x = month, y = value, fill 
   scale_fill_diverging(discrete = TRUE) +
   scale_y_continuous(labels = scales::label_number_si()) +
   labs(
-    title = 'Friends and Family Test',
+    title = "Friends and Family Test",
     subtitle = "National Results",
     y = "Number of Patients",
     x = "Month"
@@ -96,7 +96,7 @@ fft_national_perc <- ggplot(fft_national_graph, aes(x = month, y = value, fill =
   ) +
   scale_fill_diverging(discrete = TRUE) +
   labs(
-    title = 'Friends and Family Test',
+    title = "Friends and Family Test",
     subtitle = "National Results",
     x = "Month"
   )
