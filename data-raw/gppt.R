@@ -1,4 +1,4 @@
-## Script to Import & Wrangle GP Patient Survey Data
+## Script to Import & Wrangle GP Patient (GPPT) Survey Data
 
 # import raw data from file
 gppt_raw <-
