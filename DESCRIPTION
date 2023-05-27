@@ -21,7 +21,8 @@ Imports:
     shinipsum,
     shiny (>= 1.7.1),
     shinyjs,
-    shinyWidgets
+    shinyWidgets,
+    snakecase
 Suggests: 
     knitr,
     rmarkdown,
