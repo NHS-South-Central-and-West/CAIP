@@ -33,7 +33,7 @@ mod_sidebar_ui <- function(id) {
           inputId = ns("region"),
           label = "Region",
           choices = NULL
-          )
+        )
       ),
       shinyjs::hidden(
         selectizeInput(
@@ -133,41 +133,41 @@ mod_sidebar_server <- function(id, data) {
 
       updateSelectizeInput(
         session,
-       "region",
+        "region",
         choices = c(
           "ALL" = "",
           data |> dplyr::distinct(region) |> dplyr::pull()
-          ),
-        server = TRUE
-        )
-
-      updateSelectizeInput(
-        session,
-       "icb",
-        choices = c(
-          "ALL" = "",
-          data |> dplyr::distinct(icb) |> dplyr::pull()
-          ),
-        server = TRUE
-        )
-
-      updateSelectizeInput(
-        session,
-       "pcn",
-        choices = c(
-          "ALL" = "",
-          data |> dplyr::distinct(pcn) |> dplyr::pull()
-          ),
+        ),
         server = TRUE
       )
 
       updateSelectizeInput(
         session,
-       "practice",
+        "icb",
+        choices = c(
+          "ALL" = "",
+          data |> dplyr::distinct(icb) |> dplyr::pull()
+        ),
+        server = TRUE
+      )
+
+      updateSelectizeInput(
+        session,
+        "pcn",
+        choices = c(
+          "ALL" = "",
+          data |> dplyr::distinct(pcn) |> dplyr::pull()
+        ),
+        server = TRUE
+      )
+
+      updateSelectizeInput(
+        session,
+        "practice",
         choices = c(
           "ALL" = "",
           data |> dplyr::distinct(practice) |> dplyr::pull()
-          ),
+        ),
         server = TRUE
       )
 
@@ -176,7 +176,8 @@ mod_sidebar_server <- function(id, data) {
           data |>
             dplyr::filter(
               question_number == "Q32",
-              !is.na(response_scale)) |>
+              !is.na(response_scale)
+            ) |>
             dplyr::summarise(
               value = sum(value),
               .by = c(year, question, question_number, answer, response_scale)
@@ -230,8 +231,8 @@ mod_sidebar_server <- function(id, data) {
         gppt_plot <- gppt_data() |>
           ggplot2::ggplot(ggplot2::aes(
             x = factor(year), y = value,
-            fill = stats::reorder(answer, response_scale))
-          ) +
+            fill = stats::reorder(answer, response_scale)
+          )) +
           ggplot2::geom_bar(
             stat = "identity", position = "fill",
             colour = "#333333", linewidth = 1
@@ -263,14 +264,23 @@ mod_sidebar_server <- function(id, data) {
 
       return(
         list(
-          level = reactive({ input$level }),
-          region = reactive({ input$region }),
-          icb = reactive({ input$icb }),
-          pcn = reactive({ input$pcn }),
-          practice = reactive({ input$practice })
+          level = reactive({
+            input$level
+          }),
+          region = reactive({
+            input$region
+          }),
+          icb = reactive({
+            input$icb
+          }),
+          pcn = reactive({
+            input$pcn
+          }),
+          practice = reactive({
+            input$practice
+          })
         )
       )
-
     }
   )
 }
