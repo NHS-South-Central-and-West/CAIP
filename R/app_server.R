@@ -8,8 +8,11 @@ app_server <- function(input, output, session) {
   # List the first level callModules here
   r <- reactiveValues()
 
-  mod_sidebar_server("sidebar", r)
-  mod_gppt_server("gppt_1")
+  gppt <- CAP::gppt
+
+  mod_sidebar <- mod_sidebar_server("sidebar", gppt)
+
+  mod_gppt_server("gppt_1", gppt, mod_sidebar)
   mod_fft_server("fft_1")
   mod_methodology_server("methodology_1")
 }
