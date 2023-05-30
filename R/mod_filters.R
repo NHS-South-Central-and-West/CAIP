@@ -1,12 +1,12 @@
-#' Sidebar UI Function
+#' Sidebar Filters UI Function
 #'
-#' @description Module for the app sidebar. The main data processing is handled
-#' by it.
+#' @description Module for the app sidebar's filters. The main data processing
+#' is handled by it.
 #'
 #' @param id Module's ID
 #'
 #' @noRd
-mod_sidebar_ui <- function(id) {
+mod_filters_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -70,33 +70,17 @@ mod_sidebar_ui <- function(id) {
         width = "50%",
         value = FALSE
       )
-    ),
-    column(
-      width = 12,
-      align = "left",
-      tags$p("To download the plot or the data in the tab you are currently
-             viewing, click the buttons below:")
-    ),
-    column(
-      width = 6,
-      align = "center",
-      downloadButton(outputId = ns("download_data"), label = "Download Data")
-    ),
-    column(
-      width = 6,
-      align = "center",
-      downloadButton(outputId = ns("download_plot"), label = "Download Plot")
     )
   )
 }
 
-#' Sidebar Server Function
+#' Sidebar Filters Server Function
 #'
 #' @param id Module's ID
 #' @param input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
-mod_sidebar_server <- function(id, data) {
+mod_filters_server <- function(id, data) {
   moduleServer(
     id = id,
     function(input, output, session) {
@@ -169,97 +153,6 @@ mod_sidebar_server <- function(id, data) {
           data |> dplyr::distinct(practice) |> dplyr::pull()
         ),
         server = TRUE
-      )
-
-      gppt_data <- reactive({
-        if (input$level == "National") {
-          data |>
-            dplyr::filter(
-              question_number == "Q32",
-              !is.na(response_scale)
-            ) |>
-            dplyr::summarise(
-              value = sum(value),
-              .by = c(year, question, question_number, answer, response_scale)
-            )
-        } else {
-          data |>
-            dplyr::filter(
-              question_number == "Q32",
-              conditional(input$region != "", region == input$region),
-              conditional(input$icb != "", icb == input$icb),
-              conditional(input$pcn != "", pcn == input$pcn),
-              conditional(input$practice != "", practice == input$practice),
-              !is.na(response_scale)
-            ) |>
-            dplyr::select(
-              region, icb, pcn, practice,
-              question_number, question, answer, value,
-              year, response_scale
-            )
-        }
-      })
-
-      output$download_data <- downloadHandler(
-        filename = function() {
-          # Use the selected dataset as the suggested file name
-          paste0(input$level, "_gppt_data.csv")
-        },
-        content = function(file) {
-          # Write the dataset to the `file` that will be downloaded
-          readr::write_csv(gppt_data(), file)
-        }
-      )
-
-      # plot_title <- reactive({ input$question })
-
-      plot_subtitle <- reactive({
-        if (input$level == "National") {
-          "AGGREGATED NATIONAL AVERAGE"
-        } else if (input$level == "Regional") {
-          input$region
-        } else if (input$level == "ICB") {
-          input$icb
-        } else if (input$level == "PCN") {
-          input$pcn
-        } else if (input$level == "GP Practice") {
-          input$practice
-        }
-      })
-
-      gppt_plot <- reactive({
-        gppt_plot <- gppt_data() |>
-          ggplot2::ggplot(ggplot2::aes(
-            x = factor(year), y = value,
-            fill = stats::reorder(answer, response_scale)
-          )) +
-          ggplot2::geom_bar(
-            stat = "identity", position = "fill",
-            colour = "#333333", linewidth = 1
-          ) +
-          ggplot2::geom_hline(yintercept = 0, linewidth = 1, colour = "#333333") +
-          ggplot2::scale_y_continuous(labels = scales::label_percent()) +
-          scwplot::theme_scw(base_size = 12) +
-          scwplot::scale_fill_diverging(reverse = FALSE, discrete = TRUE) +
-          ggplot2::labs(
-            # title = plot_title(),
-            subtitle = plot_subtitle(),
-            x = NULL, y = "% Respondents"
-          )
-
-        return(gppt_plot)
-      })
-
-      output$download_plot <- downloadHandler(
-        filename = function() {
-          # Use the selected dataset as the suggested file name
-          paste0(input$level, "_gppt_plot.png")
-        },
-        content = function(file) {
-          # Write the dataset to the `file` that will be downloaded
-
-          ggplot2::ggsave(file, gppt_plot(), width = 12, height = 9, dpi = 320)
-        }
       )
 
       return(
