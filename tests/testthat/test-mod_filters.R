@@ -1,5 +1,5 @@
 testServer(
-  mod_gppt_server,
+  mod_filters_server,
   # Add here your module params
   args = list(data = CAP::gppt),
   {
@@ -28,10 +28,10 @@ testServer(
 )
 
 test_that("module ui works", {
-  ui <- mod_gppt_ui(id = "test")
+  ui <- mod_filters_ui(id = "test")
   golem::expect_shinytaglist(ui)
   # Check that formals have not been removed
-  fmls <- formals(mod_gppt_ui)
+  fmls <- formals(mod_filters_ui)
   for (i in c("id")) {
     expect_true(i %in% names(fmls))
   }
