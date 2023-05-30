@@ -17,12 +17,21 @@ ods_raw <-
     region_name = X8
   )
 
+ods |>
+  mutate() |>
+  select(icb_name)
+
 ods <-
   ods_raw |>
   # remove null columns
   dplyr::filter(dplyr::if_any(dplyr::ends_with("name"), ~ . != "NULL")) |>
-  # concatenate organisation codes and names
   dplyr::mutate(
+    # clean up organisation names
+    dplyr::across(
+      dplyr::ends_with("name"),
+      ~ stringr::str_replace_all(.x, "INTEGRATED CARE BOARD", "ICB")
+    ),
+    # concatenate organisation codes and names
     region = stringr::str_c(region_code, " - ", region_name),
     icb = stringr::str_c(icb_code, " - ", icb_name),
     pcn = stringr::str_c(pcn_code, " - ", pcn_name),
