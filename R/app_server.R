@@ -10,9 +10,11 @@ app_server <- function(input, output, session) {
 
   gppt <- CAP::gppt
 
-  mod_sidebar <- mod_sidebar_server("sidebar", gppt)
+  mod_filters <- mod_filters_server("filters", gppt)
 
-  mod_gppt_server("gppt_1", gppt, mod_sidebar)
-  mod_fft_server("fft_1")
-  mod_methodology_server("methodology_1")
+  mod_gppt <- mod_gppt_server("gppt", gppt, mod_filters)
+  mod_fft_server("fft")
+  mod_methodology_server("methodology")
+
+  mod_downloads_server("downloads", mod_filters, mod_gppt)
 }

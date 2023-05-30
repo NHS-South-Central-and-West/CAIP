@@ -36,7 +36,7 @@ mod_gppt_ui <- function(id) {
 #' GP Patient Survey Server Functions
 #'
 #' @noRd
-mod_gppt_server <- function(id, data, values) {
+mod_gppt_server <- function(id, data, filters_output) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -48,7 +48,7 @@ mod_gppt_server <- function(id, data, values) {
     )
 
     gppt_data <- reactive({
-      if (values$level() == "National") {
+      if (filters_output$level() == "National") {
         data |>
           dplyr::filter(
             question == input$question,
@@ -62,10 +62,10 @@ mod_gppt_server <- function(id, data, values) {
         data |>
           dplyr::filter(
             question == input$question,
-            conditional(values$region() != "", region == values$region()),
-            conditional(values$icb() != "", icb == values$icb()),
-            conditional(values$pcn() != "", pcn == values$pcn()),
-            conditional(values$practice() != "", practice == values$practice()),
+            conditional(filters_output$region() != "", region == filters_output$region()),
+            conditional(filters_output$icb() != "", icb == filters_output$icb()),
+            conditional(filters_output$pcn() != "", pcn == filters_output$pcn()),
+            conditional(filters_output$practice() != "", practice == filters_output$practice()),
             !is.na(response_scale)
           ) |>
           dplyr::select(
@@ -81,21 +81,21 @@ mod_gppt_server <- function(id, data, values) {
     })
 
     plot_subtitle <- reactive({
-      if (values$level() == "National") {
+      if (filters_output$level() == "National") {
         "AGGREGATED NATIONAL AVERAGE"
-      } else if (values$level() == "Regional") {
-        values$region()
-      } else if (values$level() == "ICB") {
-        values$icb()
-      } else if (values$level() == "PCN") {
-        values$pcn()
-      } else if (values$level() == "GP Practice") {
-        values$practice()
+      } else if (filters_output$level() == "Regional") {
+        filters_output$region()
+      } else if (filters_output$level() == "ICB") {
+        filters_output$icb()
+      } else if (filters_output$level() == "PCN") {
+        filters_output$pcn()
+      } else if (filters_output$level() == "GP Practice") {
+        filters_output$practice()
       }
     })
 
-    output$gppt_plot <- renderPlot({
-      gppt_data() |>
+    gppt_plot <- reactive({
+      plot <- gppt_data() |>
         ggplot2::ggplot(ggplot2::aes(
           x = factor(year), y = value,
           fill = stats::reorder(answer, response_scale)
@@ -113,6 +113,12 @@ mod_gppt_server <- function(id, data, values) {
           subtitle = plot_subtitle(),
           x = NULL, y = "% Respondents"
         )
+
+      return(plot)
+    })
+
+    output$gppt_plot <- renderPlot({
+      gppt_plot()
     })
 
 
@@ -143,5 +149,12 @@ mod_gppt_server <- function(id, data, values) {
         rownames = FALSE
       )
     })
+
+    return(
+      list(data = reactive({gppt_data()}),
+           plot = reactive({gppt_plot()}))
+      )
+
+
   })
 }
