@@ -77,6 +77,7 @@ mod_filters_ui <- function(id) {
 #' Sidebar Filters Server Function
 #'
 #' @param id Module's ID
+#' @param data Input GPPT data
 #' @param input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
@@ -120,7 +121,7 @@ mod_filters_server <- function(id, data) {
         "region",
         choices = c(
           "ALL" = "",
-          data |> dplyr::distinct(region) |> dplyr::pull()
+          unique(data$region)
         ),
         server = TRUE
       )
@@ -130,7 +131,7 @@ mod_filters_server <- function(id, data) {
         "icb",
         choices = c(
           "ALL" = "",
-          data |> dplyr::distinct(icb) |> dplyr::pull()
+          unique(data$icb)
         ),
         server = TRUE
       )
@@ -140,7 +141,7 @@ mod_filters_server <- function(id, data) {
         "pcn",
         choices = c(
           "ALL" = "",
-          data |> dplyr::distinct(pcn) |> dplyr::pull()
+          unique(data$pcn)
         ),
         server = TRUE
       )
@@ -150,7 +151,7 @@ mod_filters_server <- function(id, data) {
         "practice",
         choices = c(
           "ALL" = "",
-          data |> dplyr::distinct(practice) |> dplyr::pull()
+          unique(data$practice)
         ),
         server = TRUE
       )

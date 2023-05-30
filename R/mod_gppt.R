@@ -35,6 +35,8 @@ mod_gppt_ui <- function(id) {
 
 #' GP Patient Survey Server Functions
 #'
+#' @param filters_output Parameters passed from filters module
+#'
 #' @noRd
 mod_gppt_server <- function(id, data, filters_output) {
   moduleServer(id, function(input, output, session) {
@@ -43,7 +45,7 @@ mod_gppt_server <- function(id, data, filters_output) {
     updateSelectizeInput(
       session,
       "question",
-      choices = data |> dplyr::distinct(question) |> dplyr::pull(),
+      unique(data$question),
       server = TRUE
     )
 
@@ -52,26 +54,41 @@ mod_gppt_server <- function(id, data, filters_output) {
         data |>
           dplyr::filter(
             question == input$question,
-            !is.na(response_scale)
+            !is.na(.data$response_scale)
           ) |>
           dplyr::summarise(
-            value = sum(value),
-            .by = c(year, question, question_number, answer, response_scale)
+            value = sum(.data$value),
+            .by = c(
+              .data$year, .data$question, .data$question_number,
+              .data$answer, .data$response_scale
+            )
           )
       } else {
         data |>
           dplyr::filter(
             question == input$question,
-            conditional(filters_output$region() != "", region == filters_output$region()),
-            conditional(filters_output$icb() != "", icb == filters_output$icb()),
-            conditional(filters_output$pcn() != "", pcn == filters_output$pcn()),
-            conditional(filters_output$practice() != "", practice == filters_output$practice()),
-            !is.na(response_scale)
+            conditional(
+              filters_output$region() != "",
+              region == filters_output$region()
+            ),
+            conditional(
+              filters_output$icb() != "",
+              icb == filters_output$icb()
+            ),
+            conditional(
+              filters_output$pcn() != "",
+              pcn == filters_output$pcn()
+            ),
+            conditional(
+              filters_output$practice() != "",
+              practice == filters_output$practice()
+            ),
+            !is.na(.data$response_scale)
           ) |>
           dplyr::select(
-            region, icb, pcn, practice,
-            question_number, question, answer, value,
-            year, response_scale
+            .data$region, .data$icb, .data$pcn, .data$practice,
+            .data$question_number, .data$question, .data$answer,
+            .data$value, .data$region, .data$year, .data$response_scale
           )
       }
     })
@@ -97,8 +114,8 @@ mod_gppt_server <- function(id, data, filters_output) {
     gppt_plot <- reactive({
       plot <- gppt_data() |>
         ggplot2::ggplot(ggplot2::aes(
-          x = factor(year), y = value,
-          fill = stats::reorder(answer, response_scale)
+          x = factor(.data$year), y = .data$value,
+          fill = stats::reorder(.data$answer, .data$response_scale)
         )) +
         ggplot2::geom_bar(
           stat = "identity", position = "fill",
@@ -126,15 +143,18 @@ mod_gppt_server <- function(id, data, filters_output) {
       DT::datatable(
         gppt_data() |>
           dplyr::mutate(
-            total = sum(value),
-            value = scales::percent(value / total),
-            .by = year
+            total = sum(.data$value),
+            value = scales::percent(.data$value / .data$total),
+            .by = .data$year
           ) |>
-          dplyr::arrange(year, response_scale) |>
-          dplyr::select(!c(total, response_scale, question, question_number)) |>
+          dplyr::arrange(.data$year, .data$response_scale) |>
+          dplyr::select(!c(
+            .data$total, .data$response_scale,
+            .data$question, .data$question_number
+          )) |>
           tidyr::pivot_wider(
-            names_from = answer,
-            values_from = value
+            names_from = .data$answer,
+            values_from = .data$value
           ) |>
           dplyr::rename_with(
             ~ snakecase::to_title_case(
