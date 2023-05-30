@@ -64,9 +64,13 @@ mod_downloads_server <- function(id, filters_output, panel_output) {
           }
         })
 
-      data <- reactive({ panel_output$data() })
+      data <- reactive({
+        panel_output$data()
+      })
 
-      plot <- reactive({ panel_output$plot() })
+      plot <- reactive({
+        panel_output$plot()
+      })
 
       output$download_data <- downloadHandler(
         filename = function() {

@@ -151,10 +151,14 @@ mod_gppt_server <- function(id, data, filters_output) {
     })
 
     return(
-      list(data = reactive({gppt_data()}),
-           plot = reactive({gppt_plot()}))
+      list(
+        data = reactive({
+          gppt_data()
+        }),
+        plot = reactive({
+          gppt_plot()
+        })
       )
-
-
+    )
   })
 }
