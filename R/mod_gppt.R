@@ -45,7 +45,7 @@ mod_gppt_server <- function(id, data, filters_output) {
     updateSelectizeInput(
       session,
       "question",
-      unique(data$question),
+      choices = unique(data$question),
       server = TRUE
     )
 
