@@ -15,14 +15,15 @@ app_ui <- function(request) {
             class = "h-title",
             align = "center"
           ),
-          mod_sidebar_ui("sidebar")
+          mod_filters_ui("filters"),
+          mod_downloads_ui("downloads")
         )
       ),
       mainPanel(
         tabsetPanel(
-          tabPanel("GP Patient Survey", mod_gppt_ui("gppt_1")),
-          tabPanel("Friends & Family Test", mod_fft_ui("fft_1")),
-          tabPanel("Methodology", mod_methodology_ui("methodology_1"))
+          tabPanel("GP Patient Survey", mod_gppt_ui("gppt")),
+          tabPanel("Friends & Family Test", mod_fft_ui("fft")),
+          tabPanel("Methodology", mod_methodology_ui("methodology"))
         )
       )
     )
