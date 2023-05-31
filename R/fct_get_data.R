@@ -13,7 +13,10 @@ get_gppt_national_data <- function(question_code) {
       .data$year, .data$response_scale, .data$response_summary
     ) |>
     dplyr::filter(.data$question_number == question_code) |>
-    dplyr::group_by(.data$question, .data$question_number, .data$answer, .data$year, .data$response_scale) |>
+    dplyr::group_by(
+      .data$question, .data$question_number,
+      .data$answer, .data$year, .data$response_scale
+    ) |>
     dplyr::summarise(value = sum(.data$value)) |>
     dplyr::ungroup()
 }
@@ -47,7 +50,8 @@ get_gppt_org_data <- function(
     ) |>
     dplyr::select(
       .data$organisation_code, .data$organisation_name, .data$question_number,
-      .data$question, .data$answer, .data$value, .data$year, .data$response_scale, .data$response_summary
+      .data$question, .data$answer, .data$value, .data$year,
+      .data$response_scale, .data$response_summary
     ) |>
     dplyr::filter(.data$organisation_code == org_code &
       .data$question_number == question_code) |>
