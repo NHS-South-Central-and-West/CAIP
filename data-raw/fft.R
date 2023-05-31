@@ -27,18 +27,29 @@ fft <- fft_raw |>
     cols = !c(month, dplyr::ends_with(c("code", "name"))),
     names_to = "answer", values_to = "value"
   ) |>
+  dplyr::rename(date = month) |>
   dplyr::filter(!answer %in% c(
     "% Recommend", "% Not Recommend", "Total Responses",
     "patient_registered_population"
   )) |>
   dplyr::mutate(
+    date = lubridate::round_date(date, unit = "month"),
+    answer = dplyr::case_when(
+      answer == "Extremely Likely/Very Good" ~ "Very Good",
+      answer == "Likely/Good" ~ "Good",
+      answer == "Neither Likely nor Unlikely/Neither Good nor Poor" ~
+        "Neither Good nor Poor",
+      answer == "Unlikely/Poor" ~ "Poor",
+      answer == "Extremely Unlikely/Very Poor" ~ "Very Poor",
+      answer == "Do not Know" ~ "Don't Know"
+    ),
     response_scale = dplyr::case_when(
-      answer == "Extremely Likely/Very Good" ~ 1,
-      answer == "Likely/Good" ~ 2,
-      answer == "Neither Likely nor Unlikely/Neither Good nor Poor" ~ 3,
-      answer == "Unlikely/Poor" ~ 4,
-      answer == "Extremely Unlikely/Very Poor" ~ 5,
-      answer == "Do not Know" ~ NA
+      answer == "Very Good" ~ 1,
+      answer == "Good" ~ 2,
+      answer == "Neither Good nor Poor" ~ 3,
+      answer == "Poor" ~ 4,
+      answer == "Very Poor" ~ 5,
+      answer == "Don't Know" ~ NA
     )
   )
 
