@@ -45,6 +45,20 @@ mod_methodology_ui <- function(id) {
           "See the GP Patient Survey website FAQ
           for more information about the survey."
         ),
+        tags$hr(),
+        tags$h3("Code"),
+        tags$a(
+          href = "https://github.com/NHS-South-Central-and-West/CAP",
+          target = "_blank", icon("code"),
+          "For all code, and to report bugs."
+        ),
+        tags$hr(),
+        tags$h3("Contact"),
+        tags$a(
+          href = "mailto:scwcsu.primarycaresupport@nhs.net",
+          target = "_blank", icon("inbox"),
+          "For enquiries, issues, bugs etc."
+        ),
         tags$hr()
       )
     )
@@ -59,9 +73,3 @@ mod_methodology_server <- function(id) {
     ns <- session$ns
   })
 }
-
-## To be copied in the UI
-# mod_methodology_ui("methodology_1")
-
-## To be copied in the server
-# mod_methodology_server("methodology_1")
