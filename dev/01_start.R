@@ -19,13 +19,13 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ##
 golem::fill_desc(
-  pkg_name = "CAP", # The Name of the package containing the App
-  pkg_title = "CAP", # The Title of the package containing the App
+  pkg_name = "CAIP", # The Name of the package containing the App
+  pkg_title = "CAIP", # The Title of the package containing the App
   pkg_description = "PCN Local Capacity and Access Improvement Payment Dashboard.", # The Description of the package containing the App
   author_first_name = "Paul", # Your First Name
   author_last_name = "Johnson", # Your Last Name
   author_email = "paul.johnson50@nhs.net", # Your Email
-  repo_url = "https://github.com/NHS-South-Central-and-West/CAP", # The URL of the GitHub Repo (optional),
+  repo_url = "https://github.com/NHS-South-Central-and-West/CAIP", # The URL of the GitHub Repo (optional),
   pkg_version = "0.0.0.9000" # The Version of the package containing the App
 )
 

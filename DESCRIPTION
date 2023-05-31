@@ -1,38 +1,41 @@
-Package: CAP
-Title: CAP
-Version: 0.0.0.9000
+Package: CAIP
+Title: CAIP
+Version: 0.0.0.9001
 Authors@R: c(
-    person("Paul", "Johnson", , "paul.johnson50@nhs.net",
-           role = c("cre", "aut")),
-    person("Ruth", "Johnson", , "ruth.johnson@nhs.net", role = c("aut"))
-    )
+  person("Paul", "Johnson", , "paul.johnson50@nhs.net",
+         role = c("cre", "aut")),
+  person("Ruth", "Johnson", , "ruth.johnson@nhs.net", role = c("aut"))
+  )
 Description: PCN Local Capacity and Access Improvement Payment Dashboard.
 License: MIT + file LICENSE
-URL: https://github.com/NHS-South-Central-and-West/CAP
-BugReports: https://github.com/NHS-South-Central-and-West/CAP/issues
+URL: https://github.com/NHS-South-Central-and-West/CAIP
+BugReports: https://github.com/NHS-South-Central-and-West/CAIP/issues
 Imports: 
-    config (>= 0.3.1),
-    dplyr,
-    DT,
-    ggplot2,
-    golem (>= 0.4.0),
-    readr,
-    scales,
-    scwplot,
-    shinipsum,
-    shiny (>= 1.7.1),
-    shinyjs,
-    shinyWidgets,
-    snakecase,
-    stringr,
-    tidyr
+  config (>= 0.3.1),
+  dplyr,
+  DT,
+  ggplot2,
+  golem (>= 0.4.0),
+  lubridate,
+  readr,
+  readxl,
+  scales,
+  scwplot,
+  shinipsum,
+  shiny (>= 1.7.1),
+  shinyjs,
+  shinyWidgets,
+  snakecase,
+  stringr,
+  tidyr
 Suggests: 
-    knitr,
-    rmarkdown,
-    spelling,
-    testthat (>= 3.0.0)
+  covr,
+  knitr,
+  rmarkdown,
+  spelling,
+  testthat (>= 3.0.0)
 Remotes:
-    NHS-South-Central-and-West/scwplot
+  NHS-South-Central-and-West/scwplot
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-GB
@@ -40,5 +43,5 @@ LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.2.3
 Depends: 
-    R (>= 2.10)
+  R (>= 2.10)
 VignetteBuilder: knitr

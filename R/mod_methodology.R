@@ -48,7 +48,7 @@ mod_methodology_ui <- function(id) {
         tags$hr(),
         tags$h3("Code"),
         tags$a(
-          href = "https://github.com/NHS-South-Central-and-West/CAP",
+          href = "https://github.com/NHS-South-Central-and-West/CAIP",
           target = "_blank", icon("code"),
           "For all code, and to report bugs."
         ),

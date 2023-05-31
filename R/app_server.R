@@ -8,7 +8,7 @@ app_server <- function(input, output, session) {
   # List the first level callModules here
   r <- reactiveValues()
 
-  gppt <- CAP::gppt
+  gppt <- CAIP::gppt
 
   mod_filters <- mod_filters_server("filters", gppt)
 

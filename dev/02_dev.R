@@ -20,7 +20,8 @@ attachment::att_amend_desc()
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "sidebar", with_test = TRUE)
+golem::add_module(name = "filters", with_test = TRUE)
+golem::add_module(name = "downloads", with_test = TRUE)
 golem::add_module(name = "gppt", with_test = TRUE)
 golem::add_module(name = "fft", with_test = TRUE)
 golem::add_module(name = "methodology", with_test = TRUE)
@@ -42,6 +43,7 @@ golem::add_sass_file("custom")
 ## If you have data in your package
 usethis::use_data_raw(name = "ods", open = TRUE)
 usethis::use_data_raw(name = "gppt", open = TRUE)
+usethis::use_data_raw(name = "fft", open = TRUE)
 
 ## Tests ----
 ## Add one line by test you want to create
@@ -50,12 +52,12 @@ usethis::use_test("app")
 # Documentation
 
 ## Vignette ----
-usethis::use_vignette("CAP")
+usethis::use_vignette("CAIP")
 devtools::build_vignettes()
 
 ## Code Coverage----
 ## Set the code coverage service ("codecov" or "coveralls")
-usethis::use_coverage()
+usethis::use_coverage("codecov")
 
 # Create a summary readme for the testthat subdirectory
 covrpage::covrpage()

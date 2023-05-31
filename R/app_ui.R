@@ -48,7 +48,7 @@ golem_add_external_resources <- function() {
     favicon(),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "CAP"
+      app_title = "CAIP"
     ),
     # Add here other external resources
     shinyjs::useShinyjs()
