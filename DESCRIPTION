@@ -1,6 +1,6 @@
-Package: CAP
-Title: CAP
-Version: 0.0.0.9000
+Package: CAIP
+Title: CAIP
+Version: 0.0.0.9001
 Authors@R: c(
     person("Paul", "Johnson", , "paul.johnson50@nhs.net",
            role = c("cre", "aut")),
@@ -8,15 +8,17 @@ Authors@R: c(
     )
 Description: PCN Local Capacity and Access Improvement Payment Dashboard.
 License: MIT + file LICENSE
-URL: https://github.com/NHS-South-Central-and-West/CAP
-BugReports: https://github.com/NHS-South-Central-and-West/CAP/issues
+URL: https://github.com/NHS-South-Central-and-West/CAIP
+BugReports: https://github.com/NHS-South-Central-and-West/CAIP/issues
 Imports: 
     config (>= 0.3.1),
     dplyr,
     DT,
     ggplot2,
     golem (>= 0.4.0),
+    lubridate,
     readr,
+    readxl,
     scales,
     scwplot,
     shinipsum,
@@ -27,6 +29,7 @@ Imports:
     stringr,
     tidyr
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     spelling,

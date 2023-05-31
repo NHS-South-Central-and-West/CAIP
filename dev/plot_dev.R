@@ -13,7 +13,7 @@ library(scwplot)
 ### GP Practice ----
 # practice_code and question_number dependent on the selected item on the app
 gppt_practice_data <-
-  CAP::gppt |>
+  CAIP::gppt |>
   filter(practice_code == "K84028" & question_number == "Q21")
 
 # response totals
@@ -51,7 +51,7 @@ gppt_practice_data |>
 ### National ----
 
 gppt_national_data <-
-  CAP::gppt |>
+  CAIP::gppt |>
   select(
     question_number, question, answer, value,
     year, response_scale, response_summary
@@ -95,7 +95,7 @@ gppt_national_data |>
 ### GP Practice ----
 
 gppt_summary_data <-
-  CAP::gppt |>
+  CAIP::gppt |>
   filter(!is.na(response_summary) &
     practice_code == "K84028" &
     question_number == "Q04") |>
@@ -140,7 +140,7 @@ gppt_summary_data |>
 ### GP Practice ----
 # practice_code and question_number dependent on the selected item on the app
 fft_practice_data <-
-  CAP::fft |>
+  CAIP::fft |>
   filter(practice_code == "K84045" & !is.na(response_scale))
 
 # response totals
@@ -201,7 +201,7 @@ fft_practice_data |>
 ### National ----
 
 fft_national_data <-
-  CAP::fft |>
+  CAIP::fft |>
   filter(!is.na(response_scale)) |>
   select(date, answer, value, response_scale) |>
   group_by(date, answer, response_scale) |>

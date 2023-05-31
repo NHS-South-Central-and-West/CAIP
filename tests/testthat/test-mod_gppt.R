@@ -1,7 +1,7 @@
 testServer(
   mod_gppt_server,
   # Add here your module params
-  args = list(data = CAP::gppt),
+  args = list(data = CAIP::gppt),
   {
     ns <- session$ns
     expect_true(

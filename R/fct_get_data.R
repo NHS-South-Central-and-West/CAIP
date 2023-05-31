@@ -7,7 +7,7 @@
 #' @noRd
 
 get_gppt_national_data <- function(question_code) {
-  CAP::gppt |>
+  CAIP::gppt |>
     dplyr::select(
       .data$question_number, .data$question, .data$answer, .data$value,
       .data$year, .data$response_scale, .data$response_summary
@@ -32,7 +32,7 @@ get_gppt_national_data <- function(question_code) {
 get_gppt_org_data <- function(
     level = c("Regional", "ICB", "PCN", "GP Practice"),
     org_code, question_code, summary = FALSE) {
-  CAP::gppt |>
+  CAIP::gppt |>
     dplyr::filter(!is.na(.data$response_scale)) |>
     dplyr::mutate(
       organisation_code = dplyr::case_when(

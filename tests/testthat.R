@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(CAP)
+library(CAIP)
 
-test_check("CAP")
+test_check("CAIP")

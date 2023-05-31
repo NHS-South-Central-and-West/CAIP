@@ -18,3 +18,5 @@ $run_dev.*
 ^deploy$
 ^manifest.json
 ^logs
+^Meta$
+^codecov\.yml$

@@ -3024,7 +3024,7 @@
     "data/ods.rda": {
       "checksum": "e773d524c467d9a439ea29964dd84b01"
     },
-    "deploy/CAP_0.0.0.9000.tar.gz": {
+    "deploy/CAIP_0.0.0.9000.tar.gz": {
       "checksum": "c73820c625075376c14df0411d80514d"
     },
     "deploy/Dockerfile": {
@@ -3177,7 +3177,7 @@
     "vignettes/.gitignore": {
       "checksum": "607d07f72740b12d031bca87a68503cb"
     },
-    "vignettes/CAP.Rmd": {
+    "vignettes/CAIP.Rmd": {
       "checksum": "26c52ff2c5a69bd978f22edd951f5883"
     }
   },
