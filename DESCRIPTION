@@ -16,12 +16,16 @@ Imports:
     DT,
     ggplot2,
     golem (>= 0.4.0),
+    readr,
     scales,
     scwplot,
     shinipsum,
     shiny (>= 1.7.1),
     shinyjs,
-    shinyWidgets
+    shinyWidgets,
+    snakecase,
+    stringr,
+    tidyr
 Suggests: 
     knitr,
     rmarkdown,
