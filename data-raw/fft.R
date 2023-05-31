@@ -25,12 +25,12 @@ fft <- fft_raw |>
   dplyr::left_join(ods_raw, by = "practice_code") |>
   tidyr::pivot_longer(
     cols = !c(month, dplyr::ends_with(c("code", "name"))),
-    names_to = "answer", values_to = "value") |>
+    names_to = "answer", values_to = "value"
+  ) |>
   dplyr::filter(!answer %in% c(
     "% Recommend", "% Not Recommend", "Total Responses",
     "patient_registered_population"
-    )
-    ) |>
+  )) |>
   dplyr::mutate(
     response_scale = dplyr::case_when(
       answer == "Extremely Likely/Very Good" ~ 1,
