@@ -7,6 +7,14 @@
 #' responses
 "gppt"
 
+#' Friends & Family Test Survey Data
+#'
+#' Friends & Family Test survey responses aggregated to GP Practice level.
+#'
+#' @format A data frame that contains GP practice, PCN, ICB, and region
+#' identifiers, the survey month, and responses
+"fft"
+
 #' Organisation Data Service (ODS) Data
 #'
 #' A dataset for identifying organisations across the NHS. Includes GP practice
