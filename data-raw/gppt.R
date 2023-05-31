@@ -58,7 +58,7 @@ gppt <-
   ) |>
   dplyr::mutate(
     question = stringr::str_squish(question),
-    # question = glue::glue("{question_number} - {question}"),
+    question = glue::glue("{question_number} - {question}"),
     answer = stringr::str_squish(answer),
     # create standardised/consistent ordinal scale for responses
     response_scale =
