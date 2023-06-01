@@ -28,6 +28,10 @@ mod_filters_ui <- function(id) {
         choices = c("National", "Regional", "ICB", "PCN", "GP Practice"),
         selected = "National"
       ),
+      # shinyjs::hidden(uiOutput(ns("region"))),
+      # shinyjs::hidden(uiOutput(ns("icb"))),
+      # shinyjs::hidden(uiOutput(ns("pcn"))),
+      # shinyjs::hidden(uiOutput(ns("practice"))),
       shinyjs::hidden(
         selectizeInput(
           inputId = ns("region"),
@@ -116,45 +120,93 @@ mod_filters_server <- function(id, data) {
         }
       })
 
-      updateSelectizeInput(
-        session,
-        "region",
-        choices = c(
-          "ALL" = "",
-          unique(data$region)
-        ),
-        server = TRUE
-      )
+      region_selection <- reactive({
+        data |>
+          dplyr::distinct(.data$region) |>
+          dplyr::pull()
+      })
 
-      updateSelectizeInput(
-        session,
-        "icb",
-        choices = c(
-          "ALL" = "",
-          unique(data$icb)
-        ),
-        server = TRUE
-      )
+      icb_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region)
+            ) |>
+          dplyr::distinct(.data$icb) |>
+          dplyr::pull()
+      })
 
-      updateSelectizeInput(
-        session,
-        "pcn",
-        choices = c(
-          "ALL" = "",
-          unique(data$pcn)
-        ),
-        server = TRUE
-      )
+      pcn_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region),
+            conditional(input$icb != "", icb == input$icb)
+            ) |>
+          dplyr::distinct(.data$pcn) |>
+          dplyr::pull()
+      })
 
-      updateSelectizeInput(
-        session,
-        "practice",
-        choices = c(
-          "ALL" = "",
-          unique(data$practice)
-        ),
-        server = TRUE
-      )
+      practice_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region),
+            conditional(input$icb != "", icb == input$icb),
+            conditional(input$pcn != "", pcn == input$pcn)
+            ) |>
+          dplyr::distinct(.data$practice) |>
+          dplyr::pull()
+      })
+
+      observeEvent(ignoreInit = TRUE, input$level, {
+        updateSelectizeInput(
+          session,
+          "region",
+          choices = c(
+            "ALL" = "",
+            region_selection()
+          ),
+          server = TRUE
+        )
+      })
+
+      observeEvent(ignoreInit = TRUE,
+                   list(input$level, input$region), {
+        updateSelectizeInput(
+          session,
+          "icb",
+          choices = c(
+            "ALL" = "",
+            icb_selection()
+          ),
+          server = TRUE
+        )
+      })
+
+      observeEvent(ignoreInit = TRUE,
+                   list(input$level, input$region, input$icb), {
+        updateSelectizeInput(
+          session,
+          "pcn",
+          choices = c(
+            "ALL" = "",
+            pcn_selection()
+          ),
+          server = TRUE
+        )
+      })
+
+      observeEvent(ignoreInit = TRUE,
+                   list(input$level, input$region,
+                        input$icb, input$pcn), {
+        updateSelectizeInput(
+          session,
+          "practice",
+          choices = c(
+            "ALL" = "",
+            practice_selection()
+          ),
+          server = TRUE
+        )
+      })
 
       return(
         list(

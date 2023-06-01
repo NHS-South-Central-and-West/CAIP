@@ -45,7 +45,7 @@ mod_gppt_server <- function(id, data, filters_output) {
     updateSelectizeInput(
       session,
       "question",
-      choices = unique(data$question),
+      choices = sort(unique(data$question)),
       server = TRUE
     )
 
@@ -61,6 +61,74 @@ mod_gppt_server <- function(id, data, filters_output) {
             .by = c(
               .data$year, .data$question, .data$question_number,
               .data$answer, .data$response_scale
+            )
+          )
+      } else if (filters_output$level() == "Regional") {
+        data |>
+          dplyr::filter(
+            question == input$question,
+            conditional(
+              filters_output$region() != "",
+              region == filters_output$region()
+            ),
+            !is.na(.data$response_scale)
+          ) |>
+          dplyr::summarise(
+            value = sum(.data$value),
+            .by = c(
+              .data$year, .data$region, .data$question,
+              .data$question_number, .data$answer,
+              .data$response_scale
+            )
+          )
+
+      } else if (filters_output$level() == "ICB") {
+        data |>
+          dplyr::filter(
+            question == input$question,
+            conditional(
+              filters_output$region() != "",
+              region == filters_output$region()
+            ),
+            conditional(
+              filters_output$icb() != "",
+              icb == filters_output$icb()
+            ),
+            !is.na(.data$response_scale)
+          ) |>
+          dplyr::summarise(
+            value = sum(.data$value),
+            .by = c(
+              .data$year, .data$icb, .data$question,
+              .data$question_number, .data$answer,
+              .data$response_scale
+            )
+          )
+
+      } else if (filters_output$level() == "PCN") {
+        data |>
+          dplyr::filter(
+            question == input$question,
+            conditional(
+              filters_output$region() != "",
+              region == filters_output$region()
+            ),
+            conditional(
+              filters_output$icb() != "",
+              icb == filters_output$icb()
+            ),
+            conditional(
+              filters_output$pcn() != "",
+              pcn == filters_output$pcn()
+            ),
+            !is.na(.data$response_scale)
+          ) |>
+          dplyr::summarise(
+            value = sum(.data$value),
+            .by = c(
+              .data$year, .data$pcn, .data$question,
+              .data$question_number, .data$answer,
+              .data$response_scale
             )
           )
       } else {
@@ -117,10 +185,8 @@ mod_gppt_server <- function(id, data, filters_output) {
           x = factor(.data$year), y = .data$value,
           fill = stats::reorder(.data$answer, .data$response_scale)
         )) +
-        ggplot2::geom_bar(
-          stat = "identity", position = "fill",
-          colour = "#333333", linewidth = 1
-        ) +
+        ggplot2::geom_col(position = "fill", colour = "#333333",
+                          linewidth = 0.6) +
         ggplot2::geom_hline(yintercept = 0, linewidth = 1, colour = "#333333") +
         ggplot2::scale_y_continuous(labels = scales::label_percent()) +
         scwplot::theme_scw(base_size = 12) +
