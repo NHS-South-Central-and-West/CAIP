@@ -64,25 +64,60 @@ mod_gppt_server <- function(id, data, filters_output) {
             )
           )
       } else if (filters_output$level() == "Regional") {
-        data |>
-          dplyr::filter(
-            question == input$question,
-            conditional(
-              filters_output$region() != "",
-              region == filters_output$region()
-            ),
-            !is.na(.data$response_scale)
-          ) |>
-          dplyr::summarise(
-            value = sum(.data$value),
-            .by = c(
-              .data$year, .data$region, .data$question,
-              .data$question_number, .data$answer,
-              .data$response_scale
-            )
-          )
 
+        if (filters_output$region() == "") {
+          data |>
+            dplyr::filter(
+              question == input$question,
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$question, .data$question_number,
+                .data$answer, .data$response_scale
+              )
+            )
+        } else {
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$region, .data$question,
+                .data$question_number, .data$answer,
+                .data$response_scale
+              )
+            )
+        }
       } else if (filters_output$level() == "ICB") {
+
+        if (filters_output$icb() == "") {
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$region, .data$question,
+                .data$question_number, .data$answer,
+                .data$response_scale
+              )
+            )
+      } else {
         data |>
           dplyr::filter(
             question == input$question,
@@ -104,60 +139,120 @@ mod_gppt_server <- function(id, data, filters_output) {
               .data$response_scale
             )
           )
+      }
 
       } else if (filters_output$level() == "PCN") {
-        data |>
-          dplyr::filter(
-            question == input$question,
-            conditional(
-              filters_output$region() != "",
-              region == filters_output$region()
-            ),
-            conditional(
-              filters_output$icb() != "",
-              icb == filters_output$icb()
-            ),
-            conditional(
-              filters_output$pcn() != "",
-              pcn == filters_output$pcn()
-            ),
-            !is.na(.data$response_scale)
-          ) |>
-          dplyr::summarise(
-            value = sum(.data$value),
-            .by = c(
-              .data$year, .data$pcn, .data$question,
-              .data$question_number, .data$answer,
-              .data$response_scale
+
+        if (filters_output$pcn() == "") {
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              conditional(
+                filters_output$icb() != "",
+                icb == filters_output$icb()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$icb, .data$question,
+                .data$question_number, .data$answer,
+                .data$response_scale
+              )
             )
-          )
+        } else {
+
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              conditional(
+                filters_output$icb() != "",
+                icb == filters_output$icb()
+              ),
+              conditional(
+                filters_output$pcn() != "",
+                pcn == filters_output$pcn()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$pcn, .data$question,
+                .data$question_number, .data$answer,
+                .data$response_scale
+              )
+            )
+        }
+
+
       } else {
-        data |>
-          dplyr::filter(
-            question == input$question,
-            conditional(
-              filters_output$region() != "",
-              region == filters_output$region()
-            ),
-            conditional(
-              filters_output$icb() != "",
-              icb == filters_output$icb()
-            ),
-            conditional(
-              filters_output$pcn() != "",
-              pcn == filters_output$pcn()
-            ),
-            conditional(
-              filters_output$practice() != "",
-              practice == filters_output$practice()
-            ),
-            !is.na(.data$response_scale)
-          ) |>
-          dplyr::select(
-            .data$region, .data$icb, .data$pcn, .data$practice,
-            .data$question_number, .data$question, .data$answer,
-            .data$value, .data$region, .data$year, .data$response_scale
-          )
+
+        if (filters_output$practice() == "") {
+
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              conditional(
+                filters_output$icb() != "",
+                icb == filters_output$icb()
+              ),
+              conditional(
+                filters_output$pcn() != "",
+                pcn == filters_output$pcn()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::summarise(
+              value = sum(.data$value),
+              .by = c(
+                .data$year, .data$pcn, .data$question,
+                .data$question_number, .data$answer,
+                .data$response_scale
+              )
+            )
+
+        } else {
+          data |>
+            dplyr::filter(
+              question == input$question,
+              conditional(
+                filters_output$region() != "",
+                region == filters_output$region()
+              ),
+              conditional(
+                filters_output$icb() != "",
+                icb == filters_output$icb()
+              ),
+              conditional(
+                filters_output$pcn() != "",
+                pcn == filters_output$pcn()
+              ),
+              conditional(
+                filters_output$practice() != "",
+                practice == filters_output$practice()
+              ),
+              !is.na(.data$response_scale)
+            ) |>
+            dplyr::select(
+              .data$region, .data$icb, .data$pcn, .data$practice,
+              .data$question_number, .data$question, .data$answer,
+              .data$value, .data$region, .data$year, .data$response_scale
+            )
+        }
       }
     })
 
