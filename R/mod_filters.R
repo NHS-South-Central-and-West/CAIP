@@ -130,7 +130,7 @@ mod_filters_server <- function(id, data) {
         data |>
           dplyr::filter(
             conditional(input$region != "", region == input$region)
-            ) |>
+          ) |>
           dplyr::distinct(.data$icb) |>
           dplyr::pull()
       })
@@ -140,7 +140,7 @@ mod_filters_server <- function(id, data) {
           dplyr::filter(
             conditional(input$region != "", region == input$region),
             conditional(input$icb != "", icb == input$icb)
-            ) |>
+          ) |>
           dplyr::distinct(.data$pcn) |>
           dplyr::pull()
       })
@@ -151,7 +151,7 @@ mod_filters_server <- function(id, data) {
             conditional(input$region != "", region == input$region),
             conditional(input$icb != "", icb == input$icb),
             conditional(input$pcn != "", pcn == input$pcn)
-            ) |>
+          ) |>
           dplyr::distinct(.data$practice) |>
           dplyr::pull()
       })
@@ -168,45 +168,56 @@ mod_filters_server <- function(id, data) {
         )
       })
 
-      observeEvent(ignoreInit = TRUE,
-                   list(input$level, input$region), {
-        updateSelectizeInput(
-          session,
-          "icb",
-          choices = c(
-            "ALL" = "",
-            icb_selection()
-          ),
-          server = TRUE
-        )
-      })
+      observeEvent(
+        ignoreInit = TRUE,
+        list(input$level, input$region),
+        {
+          updateSelectizeInput(
+            session,
+            "icb",
+            choices = c(
+              "ALL" = "",
+              icb_selection()
+            ),
+            server = TRUE
+          )
+        }
+      )
 
-      observeEvent(ignoreInit = TRUE,
-                   list(input$level, input$region, input$icb), {
-        updateSelectizeInput(
-          session,
-          "pcn",
-          choices = c(
-            "ALL" = "",
-            pcn_selection()
-          ),
-          server = TRUE
-        )
-      })
+      observeEvent(
+        ignoreInit = TRUE,
+        list(input$level, input$region, input$icb),
+        {
+          updateSelectizeInput(
+            session,
+            "pcn",
+            choices = c(
+              "ALL" = "",
+              pcn_selection()
+            ),
+            server = TRUE
+          )
+        }
+      )
 
-      observeEvent(ignoreInit = TRUE,
-                   list(input$level, input$region,
-                        input$icb, input$pcn), {
-        updateSelectizeInput(
-          session,
-          "practice",
-          choices = c(
-            "ALL" = "",
-            practice_selection()
-          ),
-          server = TRUE
-        )
-      })
+      observeEvent(
+        ignoreInit = TRUE,
+        list(
+          input$level, input$region,
+          input$icb, input$pcn
+        ),
+        {
+          updateSelectizeInput(
+            session,
+            "practice",
+            choices = c(
+              "ALL" = "",
+              practice_selection()
+            ),
+            server = TRUE
+          )
+        }
+      )
 
       return(
         list(
