@@ -1,5 +1,6 @@
 ## Script to Import & Wrangle GP Practice Data Sources for Comparison Model
 
+##Data source - NCDR ODS table
 ods_raw <-
   readr::read_csv(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//ODS.csv",
@@ -16,29 +17,35 @@ ods_raw <-
     region_name = X8
   )
 
+##SP05 - [UK_Health_Dimensions].[ODS].[GP_Practices_And_Prescribing_CCs_SCD]
 postcodes_raw <-
   readr::read_csv(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//GP Postcode.csv"
   ) |>
   janitor::clean_names()
 
+##Data for General Practice (IMD 2019) - Sorted to rank and assign decile
+##https://fingertips.phe.org.uk/profile/general-practice/data#page/9/gid/2000005/pat/204/par/U00070/ati/7/are/H85026/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1
 imd_raw <-
   readxl::read_excel(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//IMD_for_upload.xlsx"
   ) |>
   janitor::clean_names()
 
+##NCDR - [NHSE_UKHF].[Demography].[vw_No_Of_Patients_Regd_At_GP_Practice_Single_Age1]
 population_raw <-
   readr::read_csv(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//Population 1 yr band.csv"
   ) |>
   janitor::clean_names()
 
+##https://digital.nhs.uk/data-and-information/publications/statistical/general-and-personal-medical-services
 workforce_raw <-
   readr::read_csv(
     "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//GP_workforce.csv"
   ) |>
   janitor::clean_names()
+
 
 postcodes <-
   postcodes_raw |>
