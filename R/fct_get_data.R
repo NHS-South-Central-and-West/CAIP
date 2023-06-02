@@ -6,19 +6,121 @@
 #'
 #' @noRd
 
-get_gppt_national_data <- function(question_code) {
+get_gppt_national_data <- function(qn) {
   CAIP::gppt |>
-    dplyr::select(
-      .data$question_number, .data$question, .data$answer, .data$value,
-      .data$year, .data$response_scale, .data$response_summary
+    dplyr::filter(
+      question == qn,
+      !is.na(.data$response_scale)
     ) |>
-    dplyr::filter(.data$question_number == question_code) |>
-    dplyr::group_by(
-      .data$question, .data$question_number,
-      .data$answer, .data$year, .data$response_scale
+    dplyr::summarise(
+      value = sum(.data$value),
+      .by = c(
+        "year", "question", "question_number",
+        "answer", "response_scale"
+      )
+    )
+}
+
+#' Get GPPT data aggregated at a regional level
+#'
+#' @description A fct function
+#'
+#' @return The return value, if any, from executing the function.
+#'
+#' @noRd
+
+get_gppt_region_data <- function(qn, org) {
+  CAIP::gppt |>
+    dplyr::filter(
+      question == qn,
+      conditional(org != "", region == org),
+      !is.na(.data$response_scale)
     ) |>
-    dplyr::summarise(value = sum(.data$value)) |>
-    dplyr::ungroup()
+    dplyr::summarise(
+      value = sum(.data$value),
+      .by = c(
+        "year", "region", "question",
+        "question_number", "answer",
+        "response_scale"
+      )
+    )
+}
+
+#' Get GPPT data aggregated at an ICB level
+#'
+#' @description A fct function
+#'
+#' @return The return value, if any, from executing the function.
+#'
+#' @noRd
+
+get_gppt_icb_data <- function(qn, org) {
+  CAIP::gppt |>
+    dplyr::filter(
+      question == qn,
+      conditional(org != "", icb == org),
+      !is.na(.data$response_scale)
+    ) |>
+    dplyr::summarise(
+      value = sum(.data$value),
+      .by = c(
+        "year", "icb", "question",
+        "question_number", "answer",
+        "response_scale"
+      )
+    )
+}
+
+
+#' Get GPPT data aggregated at a PCN level
+#'
+#' @description A fct function
+#'
+#' @return The return value, if any, from executing the function.
+#'
+#' @noRd
+
+get_gppt_pcn_data <- function(qn, org) {
+  CAIP::gppt |>
+    dplyr::filter(
+      question == qn,
+      conditional(org != "", pcn == org),
+      !is.na(.data$response_scale)
+    ) |>
+    dplyr::summarise(
+      value = sum(.data$value),
+      .by = c(
+        "year", "pcn", "question",
+        "question_number", "answer",
+        "response_scale"
+      )
+    )
+}
+
+
+#' Get GPPT data aggregated at a GP Practice level
+#'
+#' @description A fct function
+#'
+#' @return The return value, if any, from executing the function.
+#'
+#' @noRd
+
+get_gppt_practice_data <- function(qn, org) {
+  CAIP::gppt |>
+    dplyr::filter(
+      question == qn,
+      conditional(org != "", practice == org),
+      !is.na(.data$response_scale)
+    ) |>
+    dplyr::summarise(
+      value = sum(.data$value),
+      .by = c(
+        "year", "practice", "question",
+        "question_number", "answer",
+        "response_scale"
+      )
+    )
 }
 
 #' Get GPPT data aggregated at a regional, ICB, PCN, or GP Practice level
@@ -29,36 +131,13 @@ get_gppt_national_data <- function(question_code) {
 #'
 #' @noRd
 
-get_gppt_org_data <- function(
-    level = c("Regional", "ICB", "PCN", "GP Practice"),
-    org_code, question_code, summary = FALSE) {
-  CAIP::gppt |>
-    dplyr::filter(!is.na(.data$response_scale)) |>
-    dplyr::mutate(
-      organisation_code = dplyr::case_when(
-        level == "Regional" ~ .data$region_code,
-        level == "ICB" ~ .data$icb_code,
-        level == "PCN" ~ .data$pcn_code,
-        level == "GP Practice" ~ .data$practice_code
-      ),
-      organisation_name = dplyr::case_when(
-        level == "Regional" ~ .data$region_name,
-        level == "ICB" ~ .data$icb_name,
-        level == "PCN" ~ .data$pcn_name,
-        level == "GP Practice" ~ .data$practice_name
-      )
-    ) |>
-    dplyr::select(
-      .data$organisation_code, .data$organisation_name, .data$question_number,
-      .data$question, .data$answer, .data$value, .data$year,
-      .data$response_scale, .data$response_summary
-    ) |>
-    dplyr::filter(.data$organisation_code == org_code &
-      .data$question_number == question_code) |>
-    dplyr::group_by(
-      .data$organisation_code, .data$organisation_name, .data$question,
-      .data$question_number, .data$answer, .data$year, .data$response_scale
-    ) |>
-    dplyr::summarise(value = sum(.data$value)) |>
-    dplyr::ungroup()
+get_gppt_data <- function(level, qn, org = NULL) {
+  switch(level,
+    "National" = get_gppt_national_data(qn),
+    "Regional" = get_gppt_region_data(qn, org),
+    "ICB" = get_gppt_icb_data(qn, org),
+    "PCN" = get_gppt_pcn_data(qn, org),
+    "GP Practice" = get_gppt_practice_data(qn, org),
+    stop("Unknown GPPT Level")
+  )
 }

@@ -116,44 +116,103 @@ mod_filters_server <- function(id, data) {
         }
       })
 
-      updateSelectizeInput(
-        session,
-        "region",
-        choices = c(
-          "ALL" = "",
-          unique(data$region)
-        ),
-        server = TRUE
+      region_selection <- reactive({
+        data |>
+          dplyr::distinct(.data$region) |>
+          dplyr::pull()
+      })
+
+      icb_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region)
+          ) |>
+          dplyr::distinct(.data$icb) |>
+          dplyr::pull()
+      })
+
+      pcn_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region),
+            conditional(input$icb != "", icb == input$icb)
+          ) |>
+          dplyr::distinct(.data$pcn) |>
+          dplyr::pull()
+      })
+
+      practice_selection <- reactive({
+        data |>
+          dplyr::filter(
+            conditional(input$region != "", region == input$region),
+            conditional(input$icb != "", icb == input$icb),
+            conditional(input$pcn != "", pcn == input$pcn)
+          ) |>
+          dplyr::distinct(.data$practice) |>
+          dplyr::pull()
+      })
+
+      observeEvent(ignoreInit = TRUE, input$level, {
+        updateSelectizeInput(
+          session,
+          "region",
+          choices = c(
+            "ALL" = "",
+            region_selection()
+          ),
+          server = TRUE
+        )
+      })
+
+      observeEvent(
+        ignoreInit = TRUE,
+        list(input$level, input$region),
+        {
+          updateSelectizeInput(
+            session,
+            "icb",
+            choices = c(
+              "ALL" = "",
+              icb_selection()
+            ),
+            server = TRUE
+          )
+        }
       )
 
-      updateSelectizeInput(
-        session,
-        "icb",
-        choices = c(
-          "ALL" = "",
-          unique(data$icb)
-        ),
-        server = TRUE
+      observeEvent(
+        ignoreInit = TRUE,
+        list(input$level, input$region, input$icb),
+        {
+          updateSelectizeInput(
+            session,
+            "pcn",
+            choices = c(
+              "ALL" = "",
+              pcn_selection()
+            ),
+            server = TRUE
+          )
+        }
       )
 
-      updateSelectizeInput(
-        session,
-        "pcn",
-        choices = c(
-          "ALL" = "",
-          unique(data$pcn)
+      observeEvent(
+        ignoreInit = TRUE,
+        list(
+          input$level, input$region,
+          input$icb, input$pcn
         ),
-        server = TRUE
-      )
-
-      updateSelectizeInput(
-        session,
-        "practice",
-        choices = c(
-          "ALL" = "",
-          unique(data$practice)
-        ),
-        server = TRUE
+        {
+          updateSelectizeInput(
+            session,
+            "practice",
+            choices = c(
+              "ALL" = "",
+              practice_selection()
+            ),
+            server = TRUE
+          )
+        }
       )
 
       return(

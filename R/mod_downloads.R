@@ -46,21 +46,75 @@ mod_downloads_server <- function(id, filters_output, panel_output) {
             filters_output$level() |>
               stringr::str_to_lower()
           } else if (filters_output$level() == "Regional") {
-            filters_output$region() |>
-              stringr::str_remove(pattern = "\\ - .*") |>
-              stringr::str_to_lower()
+            if (filters_output$region() == "") {
+              "National" |>
+                stringr::str_to_lower()
+            } else {
+              filters_output$region() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            }
           } else if (filters_output$level() == "ICB") {
-            filters_output$icb() |>
-              stringr::str_remove(pattern = "\\ - .*") |>
-              stringr::str_to_lower()
+            if ((filters_output$icb() == "") &
+              (filters_output$region() == "")) {
+              "National" |>
+                stringr::str_to_lower()
+            } else if (filters_output$icb == "") {
+              filters_output$region() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else {
+              filters_output$icb() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            }
           } else if (filters_output$level() == "PCN") {
-            filters_output$pcn() |>
-              stringr::str_remove(pattern = "\\ - .*") |>
-              stringr::str_to_lower()
+            if ((filters_output$pcn() == "") &
+              (filters_output$icb() == "") &
+              (filters_output$region() == "")) {
+              "National" |>
+                stringr::str_to_lower()
+            } else if ((filters_output$pcn() == "") &
+              (filters_output$icb() == "")) {
+              filters_output$region() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else if (filters_output$pcn() == "") {
+              filters_output$icb() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else {
+              filters_output$pcn() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            }
           } else if (filters_output$level() == "GP Practice") {
-            filters_output$practice() |>
-              stringr::str_remove(pattern = "\\ - .*") |>
-              stringr::str_to_lower()
+            if ((filters_output$practice() == "") &
+              (filters_output$pcn() == "") &
+              (filters_output$icb() == "") &
+              (filters_output$region() == "")) {
+              "National" |>
+                stringr::str_to_lower()
+            } else if ((filters_output$practice() == "") &
+              (filters_output$pcn() == "") &
+              (filters_output$icb() == "")) {
+              filters_output$region() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else if ((filters_output$practice() == "") &
+              (filters_output$pcn() == "")) {
+              filters_output$icb() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else if (filters_output$practice() == "") {
+              filters_output$pcn() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            } else {
+              filters_output$practice() |>
+                stringr::str_remove(pattern = "\\ - .*") |>
+                stringr::str_to_lower()
+            }
           }
         })
 
