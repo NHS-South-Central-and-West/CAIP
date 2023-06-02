@@ -63,7 +63,7 @@ mod_gppt_server <- function(id, data, filters_output) {
         }
       } else if (filters_output$level() == "ICB") {
         if ((filters_output$icb() == "") &
-            (filters_output$region() == "")) {
+          (filters_output$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
         } else if (filters_output$icb() == "") {
           get_gppt_data(
@@ -78,11 +78,11 @@ mod_gppt_server <- function(id, data, filters_output) {
         }
       } else if (filters_output$level() == "PCN") {
         if ((filters_output$pcn() == "") &
-            (filters_output$icb() == "") &
-            (filters_output$region() == "")) {
+          (filters_output$icb() == "") &
+          (filters_output$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
         } else if ((filters_output$pcn() == "") &
-                   (filters_output$icb() == "")) {
+          (filters_output$icb() == "")) {
           get_gppt_data(
             level = "Regional", qn = input$question,
             org = filters_output$region()
@@ -100,19 +100,19 @@ mod_gppt_server <- function(id, data, filters_output) {
         }
       } else {
         if ((filters_output$practice() == "") &
-            (filters_output$pcn() == "") &
-            (filters_output$icb() == "") &
-            (filters_output$region() == "")) {
+          (filters_output$pcn() == "") &
+          (filters_output$icb() == "") &
+          (filters_output$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
         } else if ((filters_output$practice() == "") &
-                   (filters_output$pcn() == "") &
-                   (filters_output$icb() == "")) {
+          (filters_output$pcn() == "") &
+          (filters_output$icb() == "")) {
           get_gppt_data(
             level = "Regional", qn = input$question,
             org = filters_output$region()
           )
         } else if ((filters_output$practice() == "") &
-                   (filters_output$pcn() == "")) {
+          (filters_output$pcn() == "")) {
           get_gppt_data(
             level = "ICB", qn = input$question,
             org = filters_output$icb()

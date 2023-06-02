@@ -19,7 +19,6 @@ get_gppt_national_data <- function(qn) {
         "answer", "response_scale"
       )
     )
-
 }
 
 #' Get GPPT data aggregated at a regional level
@@ -133,13 +132,12 @@ get_gppt_practice_data <- function(qn, org) {
 #' @noRd
 
 get_gppt_data <- function(level, qn, org = NULL) {
-
-    switch(level,
-           "National" = get_gppt_national_data(qn),
-           "Regional" = get_gppt_region_data(qn, org),
-           "ICB" = get_gppt_icb_data(qn, org),
-           "PCN" = get_gppt_pcn_data(qn, org),
-           "GP Practice" = get_gppt_practice_data(qn, org),
-           stop("Unknown GPPT Level")
-    )
-  }
+  switch(level,
+    "National" = get_gppt_national_data(qn),
+    "Regional" = get_gppt_region_data(qn, org),
+    "ICB" = get_gppt_icb_data(qn, org),
+    "PCN" = get_gppt_pcn_data(qn, org),
+    "GP Practice" = get_gppt_practice_data(qn, org),
+    stop("Unknown GPPT Level")
+  )
+}
