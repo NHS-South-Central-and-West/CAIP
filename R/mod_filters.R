@@ -28,10 +28,6 @@ mod_filters_ui <- function(id) {
         choices = c("National", "Regional", "ICB", "PCN", "GP Practice"),
         selected = "National"
       ),
-      # shinyjs::hidden(uiOutput(ns("region"))),
-      # shinyjs::hidden(uiOutput(ns("icb"))),
-      # shinyjs::hidden(uiOutput(ns("pcn"))),
-      # shinyjs::hidden(uiOutput(ns("practice"))),
       shinyjs::hidden(
         selectizeInput(
           inputId = ns("region"),
