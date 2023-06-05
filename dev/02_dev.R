@@ -30,7 +30,7 @@ golem::add_module(name = "methodology", with_test = TRUE)
 ## Creates fct_* and utils_*
 golem::add_fct("plot", with_test = TRUE)
 golem::add_fct("get_data", with_test = TRUE)
-golem::add_utils("helpers", with_test = TRUE)
+golem::add_fct("date_range", with_test = TRUE)
 
 ## External resources
 ## Creates .js and .css files at inst/app/www
