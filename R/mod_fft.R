@@ -47,14 +47,18 @@ mod_fft_server <- function(id, data, filters_res) {
 
     fft_data <- reactive({
       if (filters_res$level() == "National") {
-        get_fft_data(level = "National",
-                     date_from = reset_monthday(input$date_range[1]),
-                     date_to = reset_monthday(input$date_range[2]))
+        get_fft_data(
+          level = "National",
+          date_from = reset_monthday(input$date_range[1]),
+          date_to = reset_monthday(input$date_range[2])
+        )
       } else if (filters_res$level() == "Regional") {
         if (filters_res$region() == "") {
-          get_fft_data(level = "National",
-                       date_from = reset_monthday(input$date_range[1]),
-                       date_to = reset_monthday(input$date_range[2]))
+          get_fft_data(
+            level = "National",
+            date_from = reset_monthday(input$date_range[1]),
+            date_to = reset_monthday(input$date_range[2])
+          )
         } else {
           get_fft_data(
             level = "Regional",
@@ -65,10 +69,12 @@ mod_fft_server <- function(id, data, filters_res) {
         }
       } else if (filters_res$level() == "ICB") {
         if ((filters_res$icb() == "") &
-            (filters_res$region() == "")) {
-          get_fft_data(level = "National",
-                       date_from = reset_monthday(input$date_range[1]),
-                       date_to = reset_monthday(input$date_range[2]))
+          (filters_res$region() == "")) {
+          get_fft_data(
+            level = "National",
+            date_from = reset_monthday(input$date_range[1]),
+            date_to = reset_monthday(input$date_range[2])
+          )
         } else if (filters_res$icb() == "") {
           get_fft_data(
             level = "Regional",
@@ -86,13 +92,15 @@ mod_fft_server <- function(id, data, filters_res) {
         }
       } else if (filters_res$level() == "PCN") {
         if ((filters_res$pcn() == "") &
-            (filters_res$icb() == "") &
-            (filters_res$region() == "")) {
-          get_fft_data(level = "National",
-                       date_from = reset_monthday(input$date_range[1]),
-                       date_to = reset_monthday(input$date_range[2]))
+          (filters_res$icb() == "") &
+          (filters_res$region() == "")) {
+          get_fft_data(
+            level = "National",
+            date_from = reset_monthday(input$date_range[1]),
+            date_to = reset_monthday(input$date_range[2])
+          )
         } else if ((filters_res$pcn() == "") &
-                   (filters_res$icb() == "")) {
+          (filters_res$icb() == "")) {
           get_fft_data(
             level = "Regional",
             date_from = reset_monthday(input$date_range[1]),
@@ -116,15 +124,17 @@ mod_fft_server <- function(id, data, filters_res) {
         }
       } else {
         if ((filters_res$practice() == "") &
-            (filters_res$pcn() == "") &
-            (filters_res$icb() == "") &
-            (filters_res$region() == "")) {
-          get_fft_data(level = "National",
-                       date_from = reset_monthday(input$date_range[1]),
-                       date_to = reset_monthday(input$date_range[2]))
+          (filters_res$pcn() == "") &
+          (filters_res$icb() == "") &
+          (filters_res$region() == "")) {
+          get_fft_data(
+            level = "National",
+            date_from = reset_monthday(input$date_range[1]),
+            date_to = reset_monthday(input$date_range[2])
+          )
         } else if ((filters_res$practice() == "") &
-                   (filters_res$pcn() == "") &
-                   (filters_res$icb() == "")) {
+          (filters_res$pcn() == "") &
+          (filters_res$icb() == "")) {
           get_fft_data(
             level = "Regional",
             date_from = reset_monthday(input$date_range[1]),
@@ -132,7 +142,7 @@ mod_fft_server <- function(id, data, filters_res) {
             org = filters_res$region()
           )
         } else if ((filters_res$practice() == "") &
-                   (filters_res$pcn() == "")) {
+          (filters_res$pcn() == "")) {
           get_fft_data(
             level = "ICB",
             date_from = reset_monthday(input$date_range[1]),
@@ -158,7 +168,7 @@ mod_fft_server <- function(id, data, filters_res) {
     })
 
     plot_title <- reactive({
-      paste0("Friends and Family Test", input$date_range[1] -input$date_range[2])
+      paste0("Friends and Family Test", input$date_range[1] - input$date_range[2])
     })
 
     plot_subtitle <- reactive({
@@ -177,24 +187,30 @@ mod_fft_server <- function(id, data, filters_res) {
 
     fft_plot <- reactive({
       plot <- fft_data() |>
-        dplyr::group_by(date = lubridate::floor_date(date, "year"),
-                        answer, response_scale) |>
+        dplyr::group_by(
+          date = lubridate::floor_date(date, "year"),
+          answer, response_scale
+        ) |>
         dplyr::reframe(value = sum(value)) |>
         dplyr::mutate(
           total = sum(value),
           value = value / total,
           .by = c(date)
         ) |>
-        ggplot2::ggplot(ggplot2::aes(x = as.Date(date), y = value,
-                   colour = stats::reorder(answer, response_scale),
-                   fill = stats::reorder(answer, response_scale))) +
-        ggplot2::geom_line(size = 1*1.2, colour = "#333333") +
+        ggplot2::ggplot(ggplot2::aes(
+          x = as.Date(date), y = value,
+          colour = stats::reorder(answer, response_scale),
+          fill = stats::reorder(answer, response_scale)
+        )) +
+        ggplot2::geom_line(size = 1 * 1.2, colour = "#333333") +
         ggplot2::geom_line(size = 1) +
         ggplot2::geom_point(shape = 21, size = 5, colour = "#333333") +
         scwplot::theme_scw() +
         ggplot2::scale_x_date(date_breaks = "1 years", date_labels = "%Y") +
-        ggplot2::scale_y_continuous(labels = scales::label_percent(),
-                                    limits = c(0, 1)) +
+        ggplot2::scale_y_continuous(
+          labels = scales::label_percent(),
+          limits = c(0, 1)
+        ) +
         scwplot::scale_colour_diverging(discrete = TRUE) +
         scwplot::scale_fill_diverging(discrete = TRUE) +
         ggplot2::labs(
@@ -250,6 +266,5 @@ mod_fft_server <- function(id, data, filters_res) {
         })
       )
     )
-
   })
 }

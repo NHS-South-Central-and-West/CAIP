@@ -4,8 +4,8 @@ test_that("conditional correctly evaluates sums", {
 })
 
 test_that("conditional correctly evaluates strings", {
-  empty_input = ""
-  test_input = "test"
+  empty_input <- ""
+  test_input <- "test"
   expect_equal(conditional(empty_input != "", empty_input), TRUE)
   expect_equal(conditional(test_input != "", test_input), "test")
 })
