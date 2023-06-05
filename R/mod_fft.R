@@ -186,8 +186,8 @@ mod_fft_server <- function(id, data, filters_res) {
           .by = c(date)
         ) |>
         ggplot2::ggplot(ggplot2::aes(x = as.Date(date), y = value,
-                   colour = reorder(answer, response_scale),
-                   fill = reorder(answer, response_scale))) +
+                   colour = stats::reorder(answer, response_scale),
+                   fill = stats::reorder(answer, response_scale))) +
         ggplot2::geom_line(size = 1*1.2, colour = "#333333") +
         ggplot2::geom_line(size = 1) +
         ggplot2::geom_point(shape = 21, size = 5, colour = "#333333") +
