@@ -153,7 +153,7 @@ fft_practice_data |>
   scale_y_continuous(labels = scales::label_number_si()) +
   labs(
     title = "Friends and Family Test",
-    subtitle = fft_practice_data$practice_name,
+    subtitle = fft_practice_data$practice,
     x = NULL, y = "Total Respondents"
   )
 
@@ -167,7 +167,7 @@ fft_practice_data |>
   scale_fill_diverging(discrete = TRUE) +
   labs(
     title = "Friends and Family Test",
-    subtitle = fft_practice_data$practice_name,
+    subtitle = fft_practice_data$practice,
     x = NULL, y = "% Respondents"
   )
 
@@ -181,7 +181,7 @@ fft_practice_data |>
     value = value / total,
     .by = c(date)
   ) |>
-  ggplot(aes(x = date, y = value,
+  ggplot(aes(x = as.Date(date), y = value,
              colour = reorder(answer, response_scale),
              fill = reorder(answer, response_scale),
              group = answer)) +
@@ -189,12 +189,13 @@ fft_practice_data |>
   geom_line(size = 1) +
   geom_point(shape = 21, size = 5, colour = "#333333") +
   theme_scw() +
+  scale_x_date(date_breaks = "1 years", date_labels = "%Y") +
   scale_y_continuous(labels = scales::label_percent()) +
   scale_colour_diverging(discrete = TRUE) +
   scale_fill_diverging(discrete = TRUE) +
   labs(
     title = "Friends and Family Test",
-    subtitle = fft_practice_data$practice_name,
+    subtitle = fft_practice_data$practice,
     x = NULL, y = "% Respondents"
   )
 
@@ -253,6 +254,7 @@ fft_national_data |>
   geom_line(size = 1) +
   geom_point(shape = 21, size = 5, colour = "#333333") +
   theme_scw() +
+  scale_x_date(date_breaks = "1 years", date_labels = "%Y") +
   scale_y_continuous(labels = scales::label_percent()) +
   scale_colour_diverging(discrete = TRUE) +
   scale_fill_diverging(discrete = TRUE) +
