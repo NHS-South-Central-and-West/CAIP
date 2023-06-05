@@ -253,24 +253,3 @@ mod_fft_server <- function(id, data, filters_res) {
 
   })
 }
-
-CAIP::fft |>
-  dplyr::mutate(
-    total = sum(.data$value),
-    value = scales::percent(.data$value / .data$total),
-    .by = "date"
-  ) |>
-  dplyr::arrange(.data$date, .data$response_scale) |>
-  dplyr::mutate(date = format(date, format = "%b %Y")) |>
-  dplyr::select(!c("total", "response_scale")) |>
-  tidyr::pivot_wider(
-    names_from = "answer",
-    values_from = "value"
-  ) |>
-  dplyr::rename_with(
-    ~ snakecase::to_title_case(
-      .x,
-      abbreviations = c("ICB", "PCN", "I", "'")
-    )
-  )
-
