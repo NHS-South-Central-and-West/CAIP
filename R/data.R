@@ -23,3 +23,12 @@
 #' @format A data frame that contains GP practice name and code, PCN name and
 #' code, ICB name and code, and region name and code.
 "ods"
+
+#' GP Practice Comparison Data
+#'
+#' A dataset for building organisation comparison/similarity models using GP
+#' practice data
+#'
+#' @format A data frame that contains GP practice data relating to practice and
+#' patient sociodemographics, practice location, and practice workforce
+"comparison"
