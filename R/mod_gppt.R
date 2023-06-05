@@ -35,10 +35,10 @@ mod_gppt_ui <- function(id) {
 
 #' GP Patient Survey Server Functions
 #'
-#' @param filters_output Parameters passed from filters module
+#' @param filters_res Parameters passed from filters module
 #'
 #' @noRd
-mod_gppt_server <- function(id, data, filters_output) {
+mod_gppt_server <- function(id, data, filters_res) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -50,82 +50,82 @@ mod_gppt_server <- function(id, data, filters_output) {
     )
 
     gppt_data <- reactive({
-      if (filters_output$level() == "National") {
+      if (filters_res$level() == "National") {
         get_gppt_data(level = "National", qn = input$question)
-      } else if (filters_output$level() == "Regional") {
-        if (filters_output$region() == "") {
+      } else if (filters_res$level() == "Regional") {
+        if (filters_res$region() == "") {
           get_gppt_data(level = "National", qn = input$question)
         } else {
           get_gppt_data(
             level = "Regional", qn = input$question,
-            org = filters_output$region()
+            org = filters_res$region()
           )
         }
-      } else if (filters_output$level() == "ICB") {
-        if ((filters_output$icb() == "") &
-          (filters_output$region() == "")) {
+      } else if (filters_res$level() == "ICB") {
+        if ((filters_res$icb() == "") &
+          (filters_res$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
-        } else if (filters_output$icb() == "") {
+        } else if (filters_res$icb() == "") {
           get_gppt_data(
             level = "Regional", qn = input$question,
-            org = filters_output$region()
+            org = filters_res$region()
           )
         } else {
           get_gppt_data(
             level = "ICB", qn = input$question,
-            org = filters_output$icb()
+            org = filters_res$icb()
           )
         }
-      } else if (filters_output$level() == "PCN") {
-        if ((filters_output$pcn() == "") &
-          (filters_output$icb() == "") &
-          (filters_output$region() == "")) {
+      } else if (filters_res$level() == "PCN") {
+        if ((filters_res$pcn() == "") &
+          (filters_res$icb() == "") &
+          (filters_res$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
-        } else if ((filters_output$pcn() == "") &
-          (filters_output$icb() == "")) {
+        } else if ((filters_res$pcn() == "") &
+          (filters_res$icb() == "")) {
           get_gppt_data(
             level = "Regional", qn = input$question,
-            org = filters_output$region()
+            org = filters_res$region()
           )
-        } else if (filters_output$pcn() == "") {
+        } else if (filters_res$pcn() == "") {
           get_gppt_data(
             level = "ICB", qn = input$question,
-            org = filters_output$icb()
+            org = filters_res$icb()
           )
         } else {
           get_gppt_data(
             level = "PCN", qn = input$question,
-            org = filters_output$pcn()
+            org = filters_res$pcn()
           )
         }
       } else {
-        if ((filters_output$practice() == "") &
-          (filters_output$pcn() == "") &
-          (filters_output$icb() == "") &
-          (filters_output$region() == "")) {
+        if ((filters_res$practice() == "") &
+          (filters_res$pcn() == "") &
+          (filters_res$icb() == "") &
+          (filters_res$region() == "")) {
           get_gppt_data(level = "National", qn = input$question)
-        } else if ((filters_output$practice() == "") &
-          (filters_output$pcn() == "") &
-          (filters_output$icb() == "")) {
+        } else if ((filters_res$practice() == "") &
+          (filters_res$pcn() == "") &
+          (filters_res$icb() == "")) {
           get_gppt_data(
             level = "Regional", qn = input$question,
-            org = filters_output$region()
+            org = filters_res$region()
           )
-        } else if ((filters_output$practice() == "") &
-          (filters_output$pcn() == "")) {
+        } else if ((filters_res$practice() == "") &
+          (filters_res$pcn() == "")) {
           get_gppt_data(
             level = "ICB", qn = input$question,
-            org = filters_output$icb()
+            org = filters_res$icb()
           )
-        } else if (filters_output$practice() == "") {
+        } else if (filters_res$practice() == "") {
           get_gppt_data(
             level = "PCN", qn = input$question,
-            org = filters_output$pcn()
+            org = filters_res$pcn()
           )
         } else {
           get_gppt_data(
             level = "GP Practice", qn = input$question,
-            org = filters_output$practice()
+            org = filters_res$practice()
           )
         }
       }
@@ -136,16 +136,16 @@ mod_gppt_server <- function(id, data, filters_output) {
     })
 
     plot_subtitle <- reactive({
-      if (filters_output$level() == "National") {
+      if (filters_res$level() == "National") {
         "AGGREGATED NATIONAL AVERAGE"
-      } else if (filters_output$level() == "Regional") {
-        filters_output$region()
-      } else if (filters_output$level() == "ICB") {
-        filters_output$icb()
-      } else if (filters_output$level() == "PCN") {
-        filters_output$pcn()
-      } else if (filters_output$level() == "GP Practice") {
-        filters_output$practice()
+      } else if (filters_res$level() == "Regional") {
+        filters_res$region()
+      } else if (filters_res$level() == "ICB") {
+        filters_res$icb()
+      } else if (filters_res$level() == "PCN") {
+        filters_res$pcn()
+      } else if (filters_res$level() == "GP Practice") {
+        filters_res$practice()
       }
     })
 

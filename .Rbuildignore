@@ -20,3 +20,5 @@ $run_dev.*
 ^logs
 ^Meta$
 ^codecov\.yml$
+^Dockerfile$
+^\.dockerignore$

@@ -33,6 +33,13 @@ fft <- fft_raw |>
     "patient_registered_population"
   )) |>
   dplyr::mutate(
+    icb_name = stringr::str_remove(icb_name, "NHS "),
+    icb_name = stringr::str_replace(icb_name, "INTEGRATED CARE BOARD", "ICB"),
+    # concatenate organisation codes and names
+    region = stringr::str_c(region_code, " - ", region_name),
+    icb = stringr::str_c(icb_code, " - ", icb_name),
+    pcn = stringr::str_c(pcn_code, " - ", pcn_name),
+    practice = stringr::str_c(practice_code, " - ", practice_name),
     date = lubridate::round_date(date, unit = "month"),
     answer = dplyr::case_when(
       answer == "Extremely Likely/Very Good" ~ "Very Good",
@@ -51,6 +58,11 @@ fft <- fft_raw |>
       answer == "Very Poor" ~ 5,
       answer == "Don't Know" ~ NA
     )
-  )
+  ) |>
+  dplyr::select(!dplyr::all_of(dplyr::ends_with("name"))) |>
+  dplyr::relocate(region, .after = region_code) |>
+  dplyr::relocate(icb, .after = icb_code) |>
+  dplyr::relocate(pcn, .after = pcn_code) |>
+  dplyr::relocate(practice, .after = practice_code)
 
 usethis::use_data(fft, overwrite = TRUE)
