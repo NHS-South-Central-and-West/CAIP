@@ -24,6 +24,20 @@ mod_downloads_ui <- function(id) {
       width = 6,
       align = "center",
       downloadButton(outputId = ns("download_plot"), label = "Download Plot")
+    ),
+    column(
+      width = 12,
+      align = "center",
+      offset = 0.5,
+      tags$hr(),
+      tags$b("This app is in active development. Features will be added and
+               bugs will be squashed.",
+             style = "color:#B82A4E"),
+      tags$br(),
+      tags$br(),
+      tags$b("If you spot any errors, however, please let us know!",
+             style = "color:#B82A4E"),
+      tags$br()
     )
   )
 }
