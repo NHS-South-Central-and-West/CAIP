@@ -56,20 +56,20 @@ mod_filters_ui <- function(id) {
           choices = NULL
         )
       ),
-    #   tags$p("If you would like to compare an organisation (Region, ICB, PCN,
-    #          GP Practice) with similar organisations of the same aggregate
-    #          level, click the switch below:"),
-    # ),
-    # column(
-    #   width = 12,
-    #   align = "center",
-    #   shinyWidgets::switchInput(
-    #     inputId = ns("comparison"),
-    #     label = "Compare",
-    #     size = "normal",
-    #     width = "50%",
-    #     value = FALSE
-    #   )
+      # tags$p("If you would like to compare an organisation (Region, ICB, PCN,
+      #        GP Practice) with similar organisations of the same aggregate
+      #        level, click the switch below:"),
+      # ),
+      # column(
+      #   width = 12,
+      #   align = "center",
+      #   shinyWidgets::switchInput(
+      #     inputId = ns("comparison"),
+      #     label = "Compare",
+      #     size = "normal",
+      #     width = "50%",
+      #     value = FALSE
+      #   )
     )
   )
 }

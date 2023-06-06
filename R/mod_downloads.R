@@ -32,11 +32,13 @@ mod_downloads_ui <- function(id) {
       tags$hr(),
       tags$b("This app is in active development. Features will be added and
                bugs will be squashed.",
-             style = "color:#B82A4E"),
+        style = "color:#B82A4E"
+      ),
       tags$br(),
       tags$br(),
       tags$b("If you spot any errors, however, please let us know!",
-             style = "color:#B82A4E"),
+        style = "color:#B82A4E"
+      ),
       tags$br()
     )
   )
