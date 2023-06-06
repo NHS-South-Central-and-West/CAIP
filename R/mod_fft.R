@@ -12,9 +12,10 @@ mod_fft_ui <- function(id) {
   tagList(
     fluidRow(
       column(
-        width = 9,
-        offset = 1,
+        width = 12,
+        offset = 0.5,
         align = "center",
+        tags$br(),
         dateRangeMonthsInput(
           inputId = ns("date_range"),
           label = "Date Range",
@@ -28,7 +29,7 @@ mod_fft_ui <- function(id) {
         )
       ),
       column(
-        width = 9,
+        width = 12,
         align = "center",
         plotOutput(ns("fft_plot"), width = 1000, height = 500),
         DT::DTOutput(ns("fft_table"), width = 1000)

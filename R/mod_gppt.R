@@ -12,9 +12,10 @@ mod_gppt_ui <- function(id) {
   tagList(
     fluidRow(
       column(
-        width = 9,
-        offset = 1,
+        width = 12,
+        offset = 0.5,
         align = "center",
+        tags$br(),
         selectizeInput(
           ns("question"),
           "Question",
@@ -24,7 +25,7 @@ mod_gppt_ui <- function(id) {
       )
     ),
     column(
-      width = 9,
+      width = 12,
       align = "center",
       plotOutput(ns("gppt_plot"), width = 1000, height = 500),
       DT::DTOutput(ns("gppt_table"), width = 1000)
