@@ -30,8 +30,37 @@ mod_fft_ui <- function(id) {
       ),
       column(
         width = 12,
+        align = "right",
+        shinyWidgets::downloadBttn(
+          outputId = ns("download_plot"),
+          label = "Download",
+          style = "material-circle",
+          color = "default",
+          size = "sm",
+          icon = fa_icon(name = "download", fill_opacity = 1)
+        )
+      ),
+      column(
+        width = 12,
         align = "center",
-        plotOutput(ns("fft_plot"), width = 1000, height = 500),
+        plotOutput(ns("fft_plot"), width = 1000, height = 500)
+      ),
+      column(
+        width = 12,
+        align = "right",
+        shinyWidgets::downloadBttn(
+          outputId = ns("download_data"),
+          label = "Download",
+          style = "material-circle",
+          color = "default",
+          size = "sm",
+          no_outline = TRUE,
+          icon = fa_icon(name = "download", fill_opacity = 1)
+        )
+      ),
+      column(
+        width = 12,
+        align = "center",
         DT::DTOutput(ns("fft_table"), width = 1000)
       )
     )
@@ -257,15 +286,109 @@ mod_fft_server <- function(id, data, filters_res) {
       )
     })
 
-    return(
-      list(
-        data = reactive({
-          fft_data()
-        }),
-        plot = reactive({
-          fft_plot()
-        })
-      )
+    org <-
+      reactive({
+        if (filters_res$level() == "National") {
+          filters_res$level() |>
+            stringr::str_to_lower()
+        } else if (filters_res$level() == "Regional") {
+          if (filters_res$region() == "") {
+            "National" |>
+              stringr::str_to_lower()
+          } else {
+            filters_res$region() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          }
+        } else if (filters_res$level() == "ICB") {
+          if ((filters_res$icb() == "") &
+            (filters_res$region() == "")) {
+            "National" |>
+              stringr::str_to_lower()
+          } else if (filters_res$icb == "") {
+            filters_res$region() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else {
+            filters_res$icb() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          }
+        } else if (filters_res$level() == "PCN") {
+          if ((filters_res$pcn() == "") &
+            (filters_res$icb() == "") &
+            (filters_res$region() == "")) {
+            "National" |>
+              stringr::str_to_lower()
+          } else if ((filters_res$pcn() == "") &
+            (filters_res$icb() == "")) {
+            filters_res$region() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else if (filters_res$pcn() == "") {
+            filters_res$icb() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else {
+            filters_res$pcn() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          }
+        } else if (filters_res$level() == "GP Practice") {
+          if ((filters_res$practice() == "") &
+            (filters_res$pcn() == "") &
+            (filters_res$icb() == "") &
+            (filters_res$region() == "")) {
+            "National" |>
+              stringr::str_to_lower()
+          } else if ((filters_res$practice() == "") &
+            (filters_res$pcn() == "") &
+            (filters_res$icb() == "")) {
+            filters_res$region() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else if ((filters_res$practice() == "") &
+            (filters_res$pcn() == "")) {
+            filters_res$icb() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else if (filters_res$practice() == "") {
+            filters_res$pcn() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          } else {
+            filters_res$practice() |>
+              stringr::str_remove(pattern = "\\ - .*") |>
+              stringr::str_to_lower()
+          }
+        }
+      })
+
+    yrs <- reactive({
+      paste0(input$date_range[1], "-", input$date_range[2])
+    })
+
+    output$download_data <- downloadHandler(
+      filename = function() {
+        # Use the selected dataset as the suggested file name
+        paste0("fft-", org(), "-", yrs(), ".csv")
+      },
+      content = function(file) {
+        # Write the dataset to the `file` that will be downloaded
+        readr::write_csv(fft_data(), file)
+      }
+    )
+
+    output$download_plot <- downloadHandler(
+      filename = function() {
+        # Use the selected dataset as the suggested file name
+        paste0("fft-", org(), "-", yrs(), ".png")
+      },
+      content = function(file) {
+        # Write the dataset to the `file` that will be downloaded
+
+        ggplot2::ggsave(file, fft_plot(), width = 20, height = 10, dpi = 320)
+      }
     )
   })
 }
