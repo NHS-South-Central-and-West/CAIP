@@ -24,9 +24,11 @@ fa_icon <- function(name) {
 
 The CAIP App aggregates publicly-available data, about patient satisfaction with their GP practice, from the GP Patient Survey (GPPT) and the Friends and Family Test (FFT).
 
-### `r fa_icon(name = "database")` Data
+---
 
-#### GP Patient Survey
+## `r fa_icon(name = "database")` Data
+
+### GP Patient Survey
 
 The GP Patient Survey is an independent survey run by Ipsos on behalf of NHS England. The survey is sent out to over two million people across the UK. The results show how people feel about their GP practice. The GP Patient Survey data used in this app is collected from patients aged 16+ registered with a GP practice in England. The data is weighted by age and gender to reflect the population of eligible patients within each practice and ICS.
 
@@ -36,7 +38,7 @@ For more information about the GP Patient Survey:
 -   [Frequently Asked Questions](https://gp-patient.co.uk/faq)
 -   [GPPT Survey Weighting](https://gp-patient.co.uk/weighted-data)
 
-#### Friends and Family Test
+### Friends and Family Test
 
 The Friends and Family Test (FFT) is a feedback tool that asks people if they would recommend the services they have used and offers a range of responses. It was created to help evaluate whether patients are happy with the services provided, or whether improvements are needed. The data in this app reflects the results provided for GP practices which have submitted them, from December 2015 to the present day.
 
@@ -66,7 +68,7 @@ For more information about the Friends and Family Test:
 
 <!-- --- -->
 
-### `r fa_icon(name = "code")` Code
+## `r fa_icon(name = "code")` Code
 
 The app is powered by [`{shiny}`](https://shiny.posit.co/) and has been written in R, using the [`{golem}`](https://thinkr-open.github.io/golem/) framework for building the app backend, and deployed to Posit Connect. The data visualisation uses [`{ggplot2}`](https://ggplot2.tidyverse.org/), the tables use [`{DT}`], and data transformation relies heavily on [`{dplyr}`](https://dplyr.tidyverse.org/), [`{tidyr}`](https://dplyr.tidyverse.org/), [`{stringr}`](https://stringr.tidyverse.org/), and [`{lubridate}`](https://lubridate.tidyverse.org/).
 
@@ -77,7 +79,7 @@ For more information about the CAIP App:
 
 ---
 
-### `r fa_icon(name = "envelope")` Contact
+## `r fa_icon(name = "envelope")` Contact
 
 For further enquiries about the CAIP app, and to find out how NHS South, Central, and West CSU can support you to achieve the CAIP target, please get in touch by [email](mailto:scwcsu.primarycaresupport@nhs.net).
 

@@ -16,7 +16,9 @@ mod_about_ui <- function(id) {
         align = "left",
         offset = 0.5,
         tags$br(),
-        includeHTML(here::here("inst", "app", "www", "about.html"))
+        includeHTML(
+          system.file("app/www/about.html", package = "CAIP")
+        )
       )
     )
   )
