@@ -4618,7 +4618,7 @@
       "checksum": "ba63a3aea2a1d0d92c1c2f2760463e8a"
     },
     ".Rprofile": {
-      "checksum": "df75a20874802a01369d8a285ae05a56"
+      "checksum": "5664d8b7a3ef9ac0f5f24a80ff02cbd1"
     },
     "app.R": {
       "checksum": "57a5e4d5e53e1fa19289783240029906"
@@ -4669,7 +4669,7 @@
       "checksum": "19d7ea048e1f9832a06f85fd7afe4b84"
     },
     "DESCRIPTION": {
-      "checksum": "5f1b62bfe57e24af6232f419e184aba2"
+      "checksum": "1419e292f4890407ba656cd5619c4816"
     },
     "dev/01_start.R": {
       "checksum": "ee6b53b21f38afac226d2c0bec62bf5c"
@@ -4693,7 +4693,7 @@
       "checksum": "e39daee432cd5d31b9933872251f2d00"
     },
     "inst/app/www/about.Rmd": {
-      "checksum": "4777f37ee44e4c8e57509140fcd354e0"
+      "checksum": "105022f497ee821b9548a071e5434e37"
     },
     "inst/app/www/custom.css": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
