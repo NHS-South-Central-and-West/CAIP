@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# CAIP
+# CAIP App
 
 <!-- badges: start -->
 
@@ -12,4 +12,4 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 coverage](https://codecov.io/gh/NHS-South-Central-and-West/CAIP/branch/main/graph/badge.svg)](https://app.codecov.io/gh/NHS-South-Central-and-West/CAIP?branch=main)
 <!-- badges: end -->
 
-PCN Local Capacity and Access Improvement Payment App
+PCN Local Capacity and Access Improvement Payment (CAIP) App
