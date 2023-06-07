@@ -22,6 +22,7 @@ mod_filters_ui <- function(id) {
       tags$p("Select the level at which you want to aggregate the GPPT and FFT
              responses, before choosing any filters needed for the data that you
              are interested in."),
+      tags$br(),
       selectInput(
         inputId = ns("level"),
         label = "Level",
