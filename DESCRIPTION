@@ -34,6 +34,7 @@ Imports:
     tidyr
 Suggests: 
     knitr,
+    pkgload,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
