@@ -1836,7 +1836,7 @@
       "description": {
         "Package": "golem",
         "Title": "A Framework for Robust Shiny Applications",
-        "Version": "0.4.0",
+        "Version": "0.4.1",
         "Authors@R": "c(\n    person(\"Colin\", \"Fay\", , \"contact@colinfay.me\", role = c(\"cre\", \"aut\"),\n           comment = c(ORCID = \"0000-0001-7343-1846\")),\n    person(\"Vincent\", \"Guyader\", , \"vincent@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-0671-9270\", \"previous maintainer\")),\n    person(\"Sébastien\", \"Rochette\", , \"sebastien@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-1565-9313\")),\n    person(\"Cervan\", \"Girard\", , \"cervan@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4816-4624\")),\n    person(\"Novica\", \"Nakov\", , \"nnovica@gmail.com\", role = \"ctb\"),\n    person(\"David\", \"Granjon\", , \"dgranjon@ymail.com\", role = \"ctb\"),\n    person(\"Arthur\", \"Bréant\", , \"arthur@thinkr.fr\", role = \"ctb\"),\n    person(\"Antoine\", \"Languillaume\", , \"antoine@thinkr.fr\", role = \"ctb\"),\n    person(\"ThinkR\", role = \"cph\")\n  )",
         "Description": "An opinionated framework for building a production-ready\n    'Shiny' application. This package contains a series of tools for\n    building a robust 'Shiny' application from start to finish.",
         "License": "MIT + file LICENSE",
@@ -1851,12 +1851,12 @@
         "Language": "en-US",
         "RoxygenNote": "7.2.3",
         "NeedsCompilation": "no",
-        "Packaged": "2023-03-10 13:02:12 UTC; colinfay",
+        "Packaged": "2023-06-05 15:00:10 UTC; colinfay",
         "Author": "Colin Fay [cre, aut] (<https://orcid.org/0000-0001-7343-1846>),\n  Vincent Guyader [aut] (<https://orcid.org/0000-0003-0671-9270>,\n    previous maintainer),\n  Sébastien Rochette [aut] (<https://orcid.org/0000-0002-1565-9313>),\n  Cervan Girard [aut] (<https://orcid.org/0000-0002-4816-4624>),\n  Novica Nakov [ctb],\n  David Granjon [ctb],\n  Arthur Bréant [ctb],\n  Antoine Languillaume [ctb],\n  ThinkR [cph]",
         "Maintainer": "Colin Fay <contact@colinfay.me>",
         "Repository": "CRAN",
-        "Date/Publication": "2023-03-12 10:20:18 UTC",
-        "Built": "R 4.3.0; ; 2023-05-02 02:54:52 UTC; windows"
+        "Date/Publication": "2023-06-05 15:50:03 UTC",
+        "Built": "R 4.3.0; ; 2023-06-05 23:51:02 UTC; windows"
       }
     },
     "gridExtra": {
@@ -2268,7 +2268,7 @@
       "GithubSha1": null,
       "description": {
         "Package": "jsonlite",
-        "Version": "1.8.4",
+        "Version": "1.8.5",
         "Title": "A Simple and Robust JSON Parser and Generator for R",
         "License": "MIT + file LICENSE",
         "Depends": "methods",
@@ -2279,14 +2279,14 @@
         "VignetteBuilder": "knitr, R.rsp",
         "Description": "A reasonably fast JSON parser and generator, optimized for statistical \n    data and the web. Offers simple, flexible tools for working with JSON in R, and\n    is particularly powerful for building pipelines and interacting with a web API. \n    The implementation is based on the mapping described in the vignette (Ooms, 2014).\n    In addition to converting JSON data from/to R objects, 'jsonlite' contains \n    functions to stream, validate, and prettify JSON data. The unit tests included \n    with the package verify that all edge cases are encoded and decoded consistently \n    for use with dynamic data in systems and applications.",
         "Suggests": "httr, vctrs, testthat, knitr, rmarkdown, R.rsp, sf",
-        "RoxygenNote": "7.2.1",
+        "RoxygenNote": "7.2.3",
         "Encoding": "UTF-8",
         "NeedsCompilation": "yes",
-        "Packaged": "2022-12-05 23:21:23 UTC; jeroen",
+        "Packaged": "2023-06-05 08:55:05 UTC; jeroen",
         "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Duncan Temple Lang [ctb],\n  Lloyd Hilaiel [cph] (author of bundled libyajl)",
         "Repository": "CRAN",
-        "Date/Publication": "2022-12-06 08:10:02 UTC",
-        "Built": "R 4.3.0; x86_64-w64-mingw32; 2023-04-29 00:42:49 UTC; windows",
+        "Date/Publication": "2023-06-05 12:20:02 UTC",
+        "Built": "R 4.3.0; x86_64-w64-mingw32; 2023-06-05 23:50:42 UTC; windows",
         "Archs": "x64"
       }
     },
@@ -4618,7 +4618,7 @@
       "checksum": "ba63a3aea2a1d0d92c1c2f2760463e8a"
     },
     ".Rprofile": {
-      "checksum": "34222ecf3dead74a6a00c03eddeea5e4"
+      "checksum": "df75a20874802a01369d8a285ae05a56"
     },
     "app.R": {
       "checksum": "57a5e4d5e53e1fa19289783240029906"
@@ -4669,7 +4669,7 @@
       "checksum": "19d7ea048e1f9832a06f85fd7afe4b84"
     },
     "DESCRIPTION": {
-      "checksum": "2b9cbfd8be1b25bee6e641563fe0a55d"
+      "checksum": "5f1b62bfe57e24af6232f419e184aba2"
     },
     "dev/01_start.R": {
       "checksum": "ee6b53b21f38afac226d2c0bec62bf5c"
@@ -4689,6 +4689,12 @@
     "dev/run_dev.R": {
       "checksum": "54b6cb3d2914363b6df1276b37cc6fe9"
     },
+    "inst/app/www/about.html": {
+      "checksum": "e39daee432cd5d31b9933872251f2d00"
+    },
+    "inst/app/www/about.Rmd": {
+      "checksum": "4777f37ee44e4c8e57509140fcd354e0"
+    },
     "inst/app/www/custom.css": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -4696,7 +4702,7 @@
       "checksum": "bc949ea893a9384070c31f083ccefd26"
     },
     "inst/app/www/favicon.ico": {
-      "checksum": "81560d1b906a530c87fa0acbb2f5cca4"
+      "checksum": "fbfcd1c5823f65561cc07f81851bafea"
     },
     "inst/app/www/handlers.js": {
       "checksum": "53ee49db795d72d615229504bef59d11"
@@ -4744,7 +4750,7 @@
       "checksum": "5d49c46627260b39197fbbcf7027e1d5"
     },
     "NEWS.md": {
-      "checksum": "caa159649ae43f30cabe8e4ebf602dcd"
+      "checksum": "6a31aedc19e44af262df7146dfb7c59b"
     },
     "R/_disable_autoload.R": {
       "checksum": "9d8f7f20e88b559c046ec1f59fe82cba"
@@ -4753,10 +4759,10 @@
       "checksum": "9dd7bbcec29f1c68c5ea4753e27c4097"
     },
     "R/app_server.R": {
-      "checksum": "1e0917975f390e5ea728bd827a012642"
+      "checksum": "ebe3c634a8ef82c55fd7061168b907b8"
     },
     "R/app_ui.R": {
-      "checksum": "d0d0eb518a9306c5910736ba4313e164"
+      "checksum": "a1fc9084fd3c8c44d7d99acd460f2e12"
     },
     "R/data.R": {
       "checksum": "956373a425b9e73f2f1559fbcb1c8f30"
@@ -4785,26 +4791,26 @@
     "R/golem_utils_ui.R": {
       "checksum": "e0b7c9c2f032eb0c4962c5b447f02620"
     },
+    "R/mod_about.R": {
+      "checksum": "4489590bbf30b2894115cc5d678f24a5"
+    },
     "R/mod_downloads.R": {
-      "checksum": "fb456b391188547ec7fb5f723b4b181e"
+      "checksum": "47a226e465c06289bf8c0bd2de80511c"
     },
     "R/mod_fft.R": {
-      "checksum": "c9ecfef0a2b7ac8ca7c32fdc5f9c7b3f"
+      "checksum": "edfe3619970bc5970a67cab9f7d6f904"
     },
     "R/mod_filters.R": {
-      "checksum": "b38cdf58ee02b1c7984a63ed9a5cc741"
+      "checksum": "1599dfa45d7eadeeb1a20a1d819c1872"
     },
     "R/mod_gppt.R": {
-      "checksum": "002ebc0437eee620d30fddde39a47829"
-    },
-    "R/mod_methodology.R": {
-      "checksum": "8e1af1bd971c96a96d0209cc1eda71cb"
+      "checksum": "e958e5ec979e4ff08d831f5129164f26"
     },
     "R/run_app.R": {
       "checksum": "0fd85883945a42f68b8fc9a2700bc6cc"
     },
     "R/utils.R": {
-      "checksum": "4d38ccba7b10e6663ef1403aac707053"
+      "checksum": "7239ea773bba68c567970a28346ed0cf"
     },
     "README.md": {
       "checksum": "fc078e391cc107e8bfb64e11c4cbb41f"
@@ -4845,6 +4851,9 @@
     "tests/testthat/test-golem_utils_ui.R": {
       "checksum": "d100ad8441b0893ddb8435b069d83226"
     },
+    "tests/testthat/test-mod_about.R": {
+      "checksum": "f1f203d5f49f7931f616660b4621484f"
+    },
     "tests/testthat/test-mod_downloads.R": {
       "checksum": "a254ef6403285af87f2f5ec3ad762710"
     },
@@ -4856,9 +4865,6 @@
     },
     "tests/testthat/test-mod_gppt.R": {
       "checksum": "af494eb5e16fddcefe2fae288fac8f02"
-    },
-    "tests/testthat/test-mod_methodology.R": {
-      "checksum": "6c5ab18a549c096a416105c5223c903c"
     },
     "tests/testthat/test-utils.R": {
       "checksum": "2c52ad69546bcfdbd03cab9e9d0ef859"
