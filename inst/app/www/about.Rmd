@@ -70,7 +70,7 @@ For more information about the Friends and Family Test:
 
 ## `r fa_icon(name = "code")` Code
 
-The app is powered by [`{shiny}`](https://shiny.posit.co/) and has been written in R, using the [`{golem}`](https://thinkr-open.github.io/golem/) framework for building the app backend, and deployed to Posit Connect. The data visualisation uses [`{ggplot2}`](https://ggplot2.tidyverse.org/), the tables use [`{DT}`], and data transformation relies heavily on [`{dplyr}`](https://dplyr.tidyverse.org/), [`{tidyr}`](https://dplyr.tidyverse.org/), [`{stringr}`](https://stringr.tidyverse.org/), and [`{lubridate}`](https://lubridate.tidyverse.org/).
+The app is powered by [`{shiny}`](https://shiny.posit.co/) and has been written in R, using the [`{golem}`](https://thinkr-open.github.io/golem/) framework for building the app backend, and deployed to Posit Connect. The data visualisation uses [`{ggplot2}`](https://ggplot2.tidyverse.org/), the tables use [`{DT}`](https://rstudio.github.io/DT/), and data transformation relies heavily on [`{dplyr}`](https://dplyr.tidyverse.org/), [`{tidyr}`](https://dplyr.tidyverse.org/), [`{stringr}`](https://stringr.tidyverse.org/), and [`{lubridate}`](https://lubridate.tidyverse.org/).
 
 For more information about the CAIP App:
 
