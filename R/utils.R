@@ -35,3 +35,16 @@ reset_monthday <- function(date) {
   date$mday <- 1
   as.Date(date)
 }
+
+#' Return stylized font awesome icons
+#'
+#' @description A utility function for outputting font awesome icons that
+#' follow a consistent style.
+#'
+#' @param name The name of the icon taken from the font awesome website
+#' (https://fontawesome.com/icons)
+#'
+#' @noRd
+fa_icon <- function(name) {
+  fontawesome::fa(name = name, fill = "#231F20", fill_opacity = .8)
+}

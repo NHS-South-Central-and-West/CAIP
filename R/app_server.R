@@ -15,7 +15,7 @@ app_server <- function(input, output, session) {
 
   mod_gppt <- mod_gppt_server("gppt", gppt, mod_filters)
   mod_fft <- mod_fft_server("fft", fft, mod_filters)
-  mod_methodology_server("methodology")
+  mod_about_server("about")
 
   mod_downloads_server("downloads", mod_filters, mod_gppt)
 }

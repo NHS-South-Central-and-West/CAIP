@@ -730,7 +730,7 @@
     },
     "golem": {
       "Package": "golem",
-      "Version": "0.4.0",
+      "Version": "0.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -744,7 +744,7 @@
         "utils",
         "yaml"
       ],
-      "Hash": "4275a95781526a472cff3e39f957c8be"
+      "Hash": "dc12172dc35c6c80e18b430dc546fc24"
     },
     "gridExtra": {
       "Package": "gridExtra",
@@ -928,13 +928,13 @@
     },
     "jsonlite": {
       "Package": "jsonlite",
-      "Version": "1.8.4",
+      "Version": "1.8.5",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "methods"
       ],
-      "Hash": "a4269a09a9b865579b2635c77e572374"
+      "Hash": "3ee4d9899e4db3e976fc82b98d24a31a"
     },
     "juicyjuice": {
       "Package": "juicyjuice",

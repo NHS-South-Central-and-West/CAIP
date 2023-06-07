@@ -1,6 +1,6 @@
 Package: CAIP
 Title: CAIP
-Version: 0.0.0.9001
+Version: 0.0.0.9003
 Authors@R: c(
     person("Paul", "Johnson", , "paul.johnson50@nhs.net", role = c("cre", "aut")),
     person("Ruth", "Johnson", , "ruth.johnson@nhs.net", role = "aut")
@@ -16,6 +16,7 @@ Imports:
     config (>= 0.3.1),
     dplyr,
     DT,
+    fontawesome,
     ggplot2,
     golem (>= 0.4.0),
     htmltools,
@@ -33,6 +34,7 @@ Imports:
     tidyr
 Suggests: 
     knitr,
+    pkgload,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)

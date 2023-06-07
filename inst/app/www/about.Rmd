@@ -1,0 +1,86 @@
+---
+output: 
+  html_fragment:
+    embed-resources: true
+---
+
+<style>
+ summary {
+  display: list-item
+}
+</style>
+
+
+```{r}
+#| label: fa-fct
+#| echo: false
+
+fa_icon <- function(name) {
+  fontawesome::fa(name = name, fill = "#231F20", fill_opacity = .8)
+}
+```
+
+## `r fa_icon(name = "circle-question")` About the CAIP App
+
+The CAIP App aggregates publicly-available data, about patient satisfaction with their GP practice, from the GP Patient Survey (GPPT) and the Friends and Family Test (FFT).
+
+---
+
+## `r fa_icon(name = "database")` Data
+
+### GP Patient Survey
+
+The GP Patient Survey is an independent survey run by Ipsos on behalf of NHS England. The survey is sent out to over two million people across the UK. The results show how people feel about their GP practice. The GP Patient Survey data used in this app is collected from patients aged 16+ registered with a GP practice in England. The data is weighted by age and gender to reflect the population of eligible patients within each practice and ICS.
+
+For more information about the GP Patient Survey:
+
+-   [GPPT Homepage](https://gp-patient.co.uk/)
+-   [Frequently Asked Questions](https://gp-patient.co.uk/faq)
+-   [GPPT Survey Weighting](https://gp-patient.co.uk/weighted-data)
+
+### Friends and Family Test
+
+The Friends and Family Test (FFT) is a feedback tool that asks people if they would recommend the services they have used and offers a range of responses. It was created to help evaluate whether patients are happy with the services provided, or whether improvements are needed. The data in this app reflects the results provided for GP practices which have submitted them, from December 2015 to the present day.
+
+For more information about the Friends and Family Test:
+
+-   [FFT Homepage](https://www.england.nhs.uk/fft)
+-   [Frequently Asked Questions](https://www.england.nhs.uk/fft/friends-and-family-test-development-project-2018-19/faqs/)
+-   [FFT Data](https://www.england.nhs.uk/fft/friends-and-family-test-data/)
+
+<details>
+  <summary>FFT Details & Notes</summary>
+  -   FFT was [redeveloped in 2018/19](https://www.england.nhs.uk/fft/friends-and-family-test-development-project-2018-19/), leading to changes to the question/response wording, which were rolled out from April 2020.
+  -   The CAIP App standardizes the responses from the FFT to reflect the new question format, but also includes responses from before the redevelopment.
+  -   Data submission and publication was paused from February 2020, during the response to COVID-19, and was restarted for GP practices from July 2022.
+</details>
+
+---
+
+<!-- ## `r fa_icon(name = "chart-simple")` Comparison Methodology -->
+
+<!-- The second iteration of this tool will contain the ability to compare between similar practices. This will be developed using practice location, workforce, population and deprivation data. -->
+
+<!-- <details> -->
+<!--   <summary>`r fa_icon(name = "arrow-down")` Advanced Methodology Details</summary> -->
+<!-- The metholodogy for the comparison... -->
+<!-- </details> -->
+
+<!-- --- -->
+
+## `r fa_icon(name = "code")` Code
+
+The app is powered by [`{shiny}`](https://shiny.posit.co/) and has been written in R, using the [`{golem}`](https://thinkr-open.github.io/golem/) framework for building the app backend, and deployed to Posit Connect. The data visualisation uses [`{ggplot2}`](https://ggplot2.tidyverse.org/), the tables use [`{DT}`](https://rstudio.github.io/DT/), and data transformation relies heavily on [`{dplyr}`](https://dplyr.tidyverse.org/), [`{tidyr}`](https://dplyr.tidyverse.org/), [`{stringr}`](https://stringr.tidyverse.org/), and [`{lubridate}`](https://lubridate.tidyverse.org/).
+
+For more information about the CAIP App:
+
+-   [CAIP GitHub](https://github.com/NHS-South-Central-and-West/CAIP)
+-   [Source Code](https://github.com/NHS-South-Central-and-West/CAIP/R)
+
+---
+
+## `r fa_icon(name = "envelope")` Contact
+
+For further enquiries about the CAIP app, and to find out how NHS South, Central, and West CSU can support you to achieve the CAIP target, please get in touch by [email](mailto:scwcsu.primarycaresupport@nhs.net).
+
+To let us know about any issues or bugs that you've found in the app, or for any suggestions for the app's development, please submit an issue on [GitHub](https://github.com/NHS-South-Central-and-West/CAIP/issues).
