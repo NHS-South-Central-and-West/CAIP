@@ -20,7 +20,7 @@ mod_gppt_ui <- function(id) {
           ns("question"),
           "Question",
           choices = NULL,
-          width = "120%"
+          width = "auto"
         )
       )
     ),
@@ -39,7 +39,9 @@ mod_gppt_ui <- function(id) {
     column(
       width = 12,
       align = "center",
-      plotOutput(ns("gppt_plot"), width = 1000, height = 500)
+      tags$br(),
+      plotOutput(ns("gppt_plot"), width = "auto"),
+      tags$br()
     ),
     column(
       width = 12,
@@ -50,14 +52,14 @@ mod_gppt_ui <- function(id) {
         style = "material-circle",
         color = "default",
         size = "sm",
-        no_outline = TRUE,
         icon = fa_icon(name = "download", fill_opacity = 1)
       )
     ),
     column(
       width = 12,
       align = "center",
-      DT::DTOutput(ns("gppt_table"), width = 1000)
+      tags$br(),
+      DT::DTOutput(ns("gppt_table"), width = "auto")
     )
   )
 }
@@ -162,7 +164,9 @@ mod_gppt_server <- function(id, data, filters_res) {
     })
 
     plot_title <- reactive({
-      input$question
+      input$question |>
+        stringr::str_remove(pattern = ".*\\ - ") |>
+        snakecase::to_title_case(abbreviations = c("GP", "Using", "/", "'"))
     })
 
     plot_subtitle <- reactive({
@@ -191,12 +195,20 @@ mod_gppt_server <- function(id, data, filters_res) {
         ) +
         ggplot2::geom_hline(yintercept = 0, linewidth = 1, colour = "#333333") +
         ggplot2::scale_y_continuous(labels = scales::label_percent()) +
-        scwplot::theme_scw(base_size = 12) +
-        scwplot::scale_fill_diverging(reverse = FALSE, discrete = TRUE) +
+        scwplot::theme_scw(base_size = 10) +
+        scwplot::scale_fill_diverging(
+          labels = scales::label_wrap(20),
+          reverse = FALSE, discrete = TRUE
+        ) +
         ggplot2::labs(
           title = plot_title(),
           subtitle = plot_subtitle(),
           x = NULL, y = "% Respondents"
+        ) +
+        ggplot2::theme(
+          plot.margin = ggplot2::margin(t = 10, r = 20, b = 10, l = 20),
+          legend.key.width = ggplot2::unit(1.5, "cm"),
+          legend.text.align = .5
         )
 
       return(plot)

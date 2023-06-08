@@ -1,4 +1,4 @@
-# CAIP (development version)
+# CAIP 0.1.0
 
 # CAIP 0.0.0.9001
 

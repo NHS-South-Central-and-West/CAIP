@@ -25,7 +25,7 @@ mod_fft_ui <- function(id) {
           end = Sys.Date(),
           min = "2015-12-01",
           max = Sys.Date(),
-          width = "120%"
+          width = "auto"
         )
       ),
       column(
@@ -43,7 +43,9 @@ mod_fft_ui <- function(id) {
       column(
         width = 12,
         align = "center",
-        plotOutput(ns("fft_plot"), width = 1000, height = 500)
+        tags$br(),
+        plotOutput(ns("fft_plot"), width = "auto"),
+        tags$br()
       ),
       column(
         width = 12,
@@ -61,7 +63,8 @@ mod_fft_ui <- function(id) {
       column(
         width = 12,
         align = "center",
-        DT::DTOutput(ns("fft_table"), width = 1000)
+        tags$br(),
+        DT::DTOutput(ns("fft_table"), width = "auto")
       )
     )
   )
@@ -235,20 +238,31 @@ mod_fft_server <- function(id, data, filters_res) {
         ggplot2::geom_line(size = 1 * 1.2, colour = "#333333") +
         ggplot2::geom_line(size = 1) +
         ggplot2::geom_point(shape = 21, size = 5, colour = "#333333") +
-        scwplot::theme_scw() +
+        scwplot::theme_scw(base_size = 10) +
         ggplot2::scale_x_date(date_breaks = "1 years", date_labels = "%Y") +
         ggplot2::scale_y_continuous(
           labels = scales::label_percent(),
           limits = c(0, 1)
         ) +
-        scwplot::scale_colour_diverging(discrete = TRUE) +
-        scwplot::scale_fill_diverging(discrete = TRUE) +
+        scwplot::scale_colour_diverging(
+          labels = scales::label_wrap(15),
+          reverse = FALSE, discrete = TRUE
+        ) +
+        scwplot::scale_fill_diverging(
+          labels = scales::label_wrap(15),
+          reverse = FALSE, discrete = TRUE
+        ) +
         ggplot2::labs(
           title = "Friends and Family Test",
           subtitle = plot_subtitle(),
           x = NULL, y = "% Respondents"
         ) +
-        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 0.5))
+        ggplot2::theme(
+          plot.margin = ggplot2::margin(t = 10, r = 25, b = 10, l = 20),
+          axis.text.x = ggplot2::element_text(angle = 45, vjust = .25),
+          legend.key.width = ggplot2::unit(1.5, "cm"),
+          legend.text.align = .5
+        )
 
       return(plot)
     })

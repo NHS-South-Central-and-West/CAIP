@@ -1,6 +1,6 @@
 Package: CAIP
 Title: CAIP
-Version: 0.0.0.9004
+Version: 0.1.0
 Authors@R: c(
     person("Paul", "Johnson", , "paul.johnson50@nhs.net", role = c("cre", "aut")),
     person("Ruth", "Johnson", , "ruth.johnson@nhs.net", role = "aut")
