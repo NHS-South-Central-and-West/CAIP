@@ -245,9 +245,9 @@ mod_fft_server <- function(id, data, filters_res) {
           limits = c(0, 1)
         ) +
         scwplot::scale_colour_diverging(
-            labels = scales::label_wrap(15),
-            reverse = FALSE, discrete = TRUE
-          ) +
+          labels = scales::label_wrap(15),
+          reverse = FALSE, discrete = TRUE
+        ) +
         scwplot::scale_fill_diverging(
           labels = scales::label_wrap(15),
           reverse = FALSE, discrete = TRUE
@@ -262,7 +262,7 @@ mod_fft_server <- function(id, data, filters_res) {
           axis.text.x = ggplot2::element_text(angle = 45, vjust = .25),
           legend.key.width = ggplot2::unit(1.5, "cm"),
           legend.text.align = .5
-          )
+        )
 
       return(plot)
     })

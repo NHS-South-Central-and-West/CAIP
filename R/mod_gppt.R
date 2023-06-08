@@ -199,7 +199,7 @@ mod_gppt_server <- function(id, data, filters_res) {
         scwplot::scale_fill_diverging(
           labels = scales::label_wrap(20),
           reverse = FALSE, discrete = TRUE
-          ) +
+        ) +
         ggplot2::labs(
           title = plot_title(),
           subtitle = plot_subtitle(),
