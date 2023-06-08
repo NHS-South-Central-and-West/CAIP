@@ -201,8 +201,10 @@ mod_fft_server <- function(id, data, filters_res) {
     })
 
     plot_title <- reactive({
-      paste0("Friends and Family Test",
-             input$date_range[1] - input$date_range[2])
+      paste0(
+        "Friends and Family Test",
+        input$date_range[1] - input$date_range[2]
+      )
     })
 
     plot_subtitle <- reactive({
