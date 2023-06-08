@@ -43,9 +43,10 @@ reset_monthday <- function(date) {
 #'
 #' @param name The name of the icon taken from the font awesome website
 #' (https://fontawesome.com/icons)
-#' @param fill_opacity
+#' @param fill Icon colour
+#' @param fill_opacity Icon opacity
 #'
 #' @noRd
-fa_icon <- function(name, fill_opacity = 0.8) {
-  fontawesome::fa(name = name, fill = "#231F20", fill_opacity = fill_opacity)
+fa_icon <- function(name, fill = "#231F20", fill_opacity = 0.8) {
+  fontawesome::fa(name = name, fill = fill, fill_opacity = fill_opacity)
 }
