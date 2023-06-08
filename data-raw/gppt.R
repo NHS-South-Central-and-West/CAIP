@@ -59,10 +59,11 @@ gppt <-
   dplyr::mutate(
     question = stringr::str_squish(question),
     question = glue::glue("{question_number} - {question}"),
-    question = dplyr::recode(
-      question,
-      "Q16 - Satisfaction with type of appointment offered" =
-        "Q16 - Satisfaction with appointment offered"
+    question = dplyr::case_when(
+      question_number == "Q16" ~ "Q16 - Satisfaction with appointment offered",
+      question_number == "Q04" ~
+        "Q04 - Ease of using GP practice's website to look for information/access services",
+      .default = question
     ),
     answer = stringr::str_squish(answer),
     # create standardised/consistent ordinal scale for responses
