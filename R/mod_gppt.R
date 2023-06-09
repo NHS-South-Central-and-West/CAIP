@@ -216,7 +216,6 @@ mod_gppt_server <- function(id, data, filters_res) {
 
     output$gppt_plot <- renderPlot({
       gppt_plot()
-
     })
 
 
@@ -331,13 +330,11 @@ mod_gppt_server <- function(id, data, filters_res) {
 
     qn <- reactive({
       input$question |>
-        # dplyr::pull() |>
         stringr::str_remove(pattern = "\\ - .*") |>
         stringr::str_to_lower()
     })
 
     formatted_plot <- reactive({
-
       logo <-
         magick::image_read(here::here("inst", "app", "www", "logo.svg"))
 
@@ -347,7 +344,7 @@ mod_gppt_server <- function(id, data, filters_res) {
           subtitle = plot_subtitle(),
           x = NULL, y = "% Respondents",
           caption = glue::glue(
-            "Graphic: **CAIP App** | Source: **GP Patient Survey** | " ,
+            "Graphic: **CAIP App** | Source: **GP Patient Survey** | ",
             "Contact: **scwcsu.primarycaresupport<span>&#64;</span>nhs.net**"
           )
         ) +
@@ -360,8 +357,7 @@ mod_gppt_server <- function(id, data, filters_res) {
           plot.margin = ggplot2::margin(t = 20, r = 20, b = 40, l = 20),
           legend.key.width = ggplot2::unit(2, "cm"),
           plot.caption = ggtext::element_markdown()
-          )
-
+        )
     })
 
     output$download_data <- downloadHandler(
