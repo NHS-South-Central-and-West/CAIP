@@ -4772,7 +4772,7 @@
       "checksum": "ba63a3aea2a1d0d92c1c2f2760463e8a"
     },
     ".Rprofile": {
-      "checksum": "a421c990b98e7e7aa8fcc1c1832fc4d9"
+      "checksum": "775a9444c0a52badd14130c90684767b"
     },
     "app.R": {
       "checksum": "57a5e4d5e53e1fa19289783240029906"
@@ -4823,7 +4823,7 @@
       "checksum": "19d7ea048e1f9832a06f85fd7afe4b84"
     },
     "DESCRIPTION": {
-      "checksum": "1a055e63b7caf391b45e2ff230bec39a"
+      "checksum": "d2c7b034745cfc7af0a843624c8f9995"
     },
     "dev/01_start.R": {
       "checksum": "ee6b53b21f38afac226d2c0bec62bf5c"
@@ -4958,13 +4958,13 @@
       "checksum": "e09590fe251a26946e465b61e397fe19"
     },
     "R/mod_fft.R": {
-      "checksum": "4e4bfb6b0046cd0fe39770cb1eb36327"
+      "checksum": "a204766df5673e3e617fc5dfe5e7bf5e"
     },
     "R/mod_filters.R": {
       "checksum": "7cbd5c478f16fd0aecb67b47d5eb5f52"
     },
     "R/mod_gppt.R": {
-      "checksum": "efa1d005830bd5f59aea21a9f5b7437d"
+      "checksum": "80be2abae07ef96a80868092c233f8d4"
     },
     "R/run_app.R": {
       "checksum": "0fd85883945a42f68b8fc9a2700bc6cc"
