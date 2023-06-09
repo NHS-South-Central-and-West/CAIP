@@ -393,7 +393,7 @@ mod_fft_server <- function(id, data, filters_res) {
 
     formatted_plot <- reactive({
       logo <-
-        magick::image_read(here::here("inst", "app", "www", "logo.svg"))
+        magick::image_read(here::here("inst", "app", "www", "scw_logo.jpg"))
 
       fft_plot() +
         ggplot2::labs(
@@ -406,7 +406,7 @@ mod_fft_server <- function(id, data, filters_res) {
           )
         ) +
         ggplot2::annotation_custom(
-          grid::rasterGrob(image = logo, x = 0.96, y = -0.15, width = 0.06)
+          grid::rasterGrob(image = logo, x = 0.96, y = -0.15, width = 0.07)
         ) +
         ggplot2::coord_cartesian(clip = "off") +
         scwplot::theme_scw(base_size = 13) +
