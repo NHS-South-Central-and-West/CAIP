@@ -401,7 +401,7 @@ mod_fft_server <- function(id, data, filters_res) {
           subtitle = plot_subtitle(),
           x = NULL, y = "% Respondents",
           caption = glue::glue(
-            "Graphic: **CAIP App** | Source: **GP Patient Survey** | ",
+            "Graphic: **CAIP App** | Source: **Friends and Family Test** | ",
             "Contact: **scwcsu.primarycaresupport<span>&#64;</span>nhs.net**"
           )
         ) +
