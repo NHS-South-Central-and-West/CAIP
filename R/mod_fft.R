@@ -235,9 +235,9 @@ mod_fft_server <- function(id, data, filters_res) {
           colour = stats::reorder(answer, response_scale),
           fill = stats::reorder(answer, response_scale)
         )) +
-        ggplot2::geom_line(size = 1 * 1.2, colour = "#333333") +
+        ggplot2::geom_line(size = 1 * 1.2, colour = "#2E2F30") +
         ggplot2::geom_line(size = 1) +
-        ggplot2::geom_point(shape = 21, size = 5, colour = "#333333") +
+        ggplot2::geom_point(shape = 21, size = 5, colour = "#2E2F30") +
         scwplot::theme_scw(base_size = 10) +
         ggplot2::scale_x_date(date_breaks = "1 years", date_labels = "%Y") +
         ggplot2::scale_y_continuous(
@@ -382,6 +382,35 @@ mod_fft_server <- function(id, data, filters_res) {
       paste0(input$date_range[1], "-", input$date_range[2])
     })
 
+    formatted_plot <- reactive({
+
+      logo <-
+        magick::image_read(here::here("inst", "app", "www", "logo.svg"))
+
+      fft_plot() +
+        ggplot2::labs(
+          title = "Friends and Family Test",
+          subtitle = plot_subtitle(),
+          x = NULL, y = "% Respondents",
+          caption = glue::glue(
+            "Graphic: **CAIP App** | Source: **GP Patient Survey** | " ,
+            "Contact: **scwcsu.primarycaresupport<span>&#64;</span>nhs.net**"
+          )
+        ) +
+        ggplot2::annotation_custom(
+          grid::rasterGrob(image = logo, x = 0.96, y = -0.115, width = 0.06)
+        ) +
+        ggplot2::coord_cartesian(clip = "off") +
+        scwplot::theme_scw(base_size = 13) +
+        ggplot2::theme(
+          plot.margin = ggplot2::margin(t = 20, r = 20, b = 40, l = 20),
+          legend.key.width = ggplot2::unit(2, "cm"),
+          plot.caption = ggtext::element_markdown()
+        )
+
+    })
+
+
     output$download_data <- downloadHandler(
       filename = function() {
         # Use the selected dataset as the suggested file name
@@ -401,7 +430,7 @@ mod_fft_server <- function(id, data, filters_res) {
       content = function(file) {
         # Write the dataset to the `file` that will be downloaded
 
-        ggplot2::ggsave(file, fft_plot(), width = 20, height = 10, dpi = 320)
+        ggplot2::ggsave(file, formatted_plot(), width = 20, height = 10, dpi = 320)
       }
     )
   })
