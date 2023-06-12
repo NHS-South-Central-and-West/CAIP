@@ -36,7 +36,8 @@ Imports:
     snakecase,
     stats,
     stringr,
-    tidyr
+    tidyr,
+    waiter
 Suggests: 
     knitr,
     pkgload,
