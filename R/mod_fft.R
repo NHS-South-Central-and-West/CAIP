@@ -44,7 +44,11 @@ mod_fft_ui <- function(id) {
         width = 12,
         align = "center",
         tags$br(),
-        plotOutput(ns("fft_plot"), width = "auto"),
+        shinycssloaders::withSpinner(
+          plotOutput(ns("fft_plot"), width = "auto"),
+          type = 7,
+          color = "#005EB8"
+        ),
         tags$br()
       ),
       column(
@@ -64,7 +68,11 @@ mod_fft_ui <- function(id) {
         width = 12,
         align = "center",
         tags$br(),
-        DT::DTOutput(ns("fft_table"), width = "auto")
+        shinycssloaders::withSpinner(
+          DT::DTOutput(ns("fft_table"), width = "auto"),
+          type = 7,
+          color = "#005EB8"
+        )
       )
     )
   )

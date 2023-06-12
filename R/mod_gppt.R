@@ -40,7 +40,11 @@ mod_gppt_ui <- function(id) {
       width = 12,
       align = "center",
       tags$br(),
-      plotOutput(ns("gppt_plot"), width = "auto"),
+      shinycssloaders::withSpinner(
+        plotOutput(ns("gppt_plot"), width = "auto"),
+        type = 7,
+        color = "#005EB8"
+        ),
       tags$br()
     ),
     column(
@@ -59,7 +63,11 @@ mod_gppt_ui <- function(id) {
       width = 12,
       align = "center",
       tags$br(),
-      DT::DTOutput(ns("gppt_table"), width = "auto")
+      shinycssloaders::withSpinner(
+        DT::DTOutput(ns("gppt_table"), width = "auto"),
+        type = 7,
+        color = "#005EB8"
+      )
     )
   )
 }
