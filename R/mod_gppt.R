@@ -44,7 +44,7 @@ mod_gppt_ui <- function(id) {
         plotOutput(ns("gppt_plot"), width = "auto"),
         type = 7,
         color = "#005EB8"
-        ),
+      ),
       tags$br()
     ),
     column(

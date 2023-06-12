@@ -30,13 +30,14 @@ app_ui <- function(request) {
     waiter::waiterPreloader(
       html = tagList(
         waiter::spin_loaders(
-          3, color = "#005EB8", style = "width: 80px; height: 80px"),
+          3,
+          color = "#005EB8", style = "width: 80px; height: 80px"
+        ),
         h2("Loading...", style = "color: #2E2F30;"),
       ),
       color = "white",
       fadeout = TRUE
     )
-
   )
 }
 
