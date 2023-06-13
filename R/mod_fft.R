@@ -403,7 +403,7 @@ mod_fft_server <- function(id, data, filters_res) {
       logo <-
         magick::image_read(
           system.file("app/www/scw_logo.jpg", package = "CAIP")
-          )
+        )
 
       fft_plot() +
         ggplot2::labs(
