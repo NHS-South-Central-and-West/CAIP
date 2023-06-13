@@ -344,7 +344,9 @@ mod_gpps_server <- function(id, data, filters_res) {
 
     formatted_plot <- reactive({
       logo <-
-        magick::image_read(here::here("inst", "app", "www", "scw_logo.jpg"))
+        magick::image_read(
+          system.file("app/www/scw_logo.jpg", package = "CAIP")
+        )
 
       gpps_plot() +
         ggplot2::labs(
@@ -401,7 +403,7 @@ mod_gpps_server <- function(id, data, filters_res) {
         )
         on.exit(removeNotification(id), add = TRUE)
 
-        readr::write_csv(gpps_data(), file)
+        write.csv(gpps_data(), file, row.names = FALSE)
       }
     )
   })
