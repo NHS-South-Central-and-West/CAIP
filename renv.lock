@@ -1629,6 +1629,18 @@
       ],
       "Hash": "fbb0c9259a1775283c0c594c92d78763"
     },
+    "sever": {
+      "Package": "sever",
+      "Version": "0.0.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "cli",
+        "htmltools",
+        "shiny"
+      ],
+      "Hash": "ed311815f35a5ef4884ae72ae0f86cca"
+    },
     "shiny": {
       "Package": "shiny",
       "Version": "1.7.4",
@@ -1680,6 +1692,20 @@
         "shiny"
       ],
       "Hash": "fd889b32caa37b8ed9b1e9e7ef1564bc"
+    },
+    "shinycssloaders": {
+      "Package": "shinycssloaders",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "digest",
+        "glue",
+        "grDevices",
+        "shiny"
+      ],
+      "Hash": "f39bb3c44a9b496723ec7e86f9a771d8"
     },
     "shinyjs": {
       "Package": "shinyjs",
@@ -1960,6 +1986,22 @@
         "withr"
       ],
       "Hash": "8318e64ffb3a70e652494017ec455561"
+    },
+    "waiter": {
+      "Package": "waiter",
+      "Version": "0.2.5.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "JohnCoene",
+      "RemoteRepo": "waiter",
+      "RemoteRef": "master",
+      "RemoteSha": "6e5e60e77a8c95b66f0ffcac3a5b8f67ead82584",
+      "Requirements": [
+        "htmltools",
+        "shiny"
+      ],
+      "Hash": "04a7d5051922b096aaffa3424e2c00d7"
     },
     "waldo": {
       "Package": "waldo",
