@@ -403,7 +403,7 @@ mod_gpps_server <- function(id, data, filters_res) {
         )
         on.exit(removeNotification(id), add = TRUE)
 
-        write.csv(gpps_data(), file, row.names = FALSE)
+        readr::write_csv(gpps_data(), file)
       }
     )
   })

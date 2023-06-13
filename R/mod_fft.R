@@ -458,7 +458,7 @@ mod_fft_server <- function(id, data, filters_res) {
           closeButton = FALSE
         )
         on.exit(removeNotification(id), add = TRUE)
-        write.csv(fft_data(), file, row.names = FALSE)
+        readr::write_csv(fft_data(), file)
       }
     )
   })
