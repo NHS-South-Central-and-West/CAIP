@@ -1,7 +1,7 @@
 testServer(
   mod_filters_server,
   # Add here your module params
-  args = list(data = CAIP::gppt),
+  args = list(data = CAIP::gpps),
   {
     ns <- session$ns
     expect_true(
