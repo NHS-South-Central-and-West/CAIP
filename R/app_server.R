@@ -30,6 +30,6 @@ app_server <- function(input, output, session) {
       subtitle = "Your session ended because you were idle for too long.",
       button = "Reconnect", button_class = "default"
     ),
-    bg_color = "white", color = "black"
+    bg_color = "white", color = "#2E2F30"
   )
 }
