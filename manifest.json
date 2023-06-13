@@ -720,29 +720,29 @@
       "description": {
         "Package": "bslib",
         "Title": "Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'",
-        "Version": "0.4.2",
-        "Authors@R": "c(\n    person(\"Carson\", \"Sievert\", role = c(\"aut\", \"cre\"), email = \"carson@rstudio.com\", comment = c(ORCID = \"0000-0002-4958-2844\")),\n    person(\"Joe\", \"Cheng\", role = \"aut\", email = \"joe@rstudio.com\"),\n    person(family = \"RStudio\", role = \"cph\"),\n    person(family = \"Bootstrap contributors\", role = \"ctb\",\n    comment = \"Bootstrap library\"),\n    person(family = \"Twitter, Inc\", role = \"cph\",\n    comment = \"Bootstrap library\"),\n    person(\"Javi\", \"Aguilar\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootstrap colorpicker library\"),\n    person(\"Thomas\", \"Park\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootswatch library\"),\n    person(family = \"PayPal\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootstrap accessibility plugin\")\n    )",
-        "Description": "Simplifies custom 'CSS' styling of both 'shiny' and 'rmarkdown' via 'Bootstrap' 'Sass'. Supports 'Bootstrap' 3, 4 and 5 as well as their various 'Bootswatch' themes. An interactive widget is also provided for previewing themes in real time.",
-        "Depends": "R (>= 2.10)",
-        "Imports": "grDevices, htmltools (>= 0.5.4), jsonlite, sass (>= 0.4.0),\njquerylib (>= 0.1.3), rlang, cachem, memoise (>= 2.0.1),\nbase64enc, mime",
-        "Suggests": "shiny (>= 1.6.0), rmarkdown (>= 2.7), thematic, knitr,\ntestthat, withr, rappdirs, curl, magrittr, fontawesome, bsicons",
+        "Version": "0.5.0",
+        "Authors@R": "c(\n    person(\"Carson\", \"Sievert\", role = c(\"aut\", \"cre\"), email = \"carson@rstudio.com\", comment = c(ORCID = \"0000-0002-4958-2844\")),\n    person(\"Joe\", \"Cheng\", role = \"aut\", email = \"joe@rstudio.com\"),\n    person(\"Garrick\", \"Aden-Buie\", role = \"aut\", email = \"garrick@posit.co\", comment = c(ORCID = \"0000-0002-7111-0077\")),\n    person(given = \"Posit Software, PBC\", role = c(\"cph\", \"fnd\")),\n    person(family = \"Bootstrap contributors\", role = \"ctb\",\n    comment = \"Bootstrap library\"),\n    person(family = \"Twitter, Inc\", role = \"cph\",\n    comment = \"Bootstrap library\"),\n    person(\"Javi\", \"Aguilar\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootstrap colorpicker library\"),\n    person(\"Thomas\", \"Park\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootswatch library\"),\n    person(family = \"PayPal\", role = c(\"ctb\", \"cph\"),\n    comment = \"Bootstrap accessibility plugin\")\n    )",
+        "Description": "Simplifies custom 'CSS' styling of both 'shiny' and\n    'rmarkdown' via 'Bootstrap' 'Sass'. Supports 'Bootstrap' 3, 4 and 5 as\n    well as their various 'Bootswatch' themes. An interactive widget is\n    also provided for previewing themes in real time.",
         "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.3",
-        "Collate": "'bootswatch.R' 'bs-current-theme.R' 'bs-dependencies.R'\n'bs-global.R' 'bs-remove.R' 'bs-theme-layers.R' 'utils.R'\n'bs-theme-preview.R' 'bs-theme-update.R' 'bs-theme.R' 'card.R'\n'deprecated.R' 'files.R' 'imports.R' 'layout.R' 'nav-items.R'\n'nav-update.R' 'navs-legacy.R' 'navs.R' 'onLoad.R' 'page.R'\n'precompiled.R' 'print.R' 'shiny-devmode.R' 'staticimports.R'\n'utils-shiny.R' 'utils-tags.R' 'value-box.R'\n'version-default.R' 'versions.R'",
         "URL": "https://rstudio.github.io/bslib/, https://github.com/rstudio/bslib",
         "BugReports": "https://github.com/rstudio/bslib/issues",
+        "Depends": "R (>= 2.10)",
+        "Imports": "base64enc, cachem, grDevices, htmltools (>= 0.5.4), jquerylib\n(>= 0.1.3), jsonlite, memoise (>= 2.0.1), mime, rlang, sass (>=\n0.4.0)",
+        "Suggests": "bsicons, curl, fontawesome, ggplot2, knitr, magrittr,\nrappdirs, rmarkdown (>= 2.7), shiny (>= 1.6.0), testthat,\nthematic, withr",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "Collate": "'accordion.R' 'bootswatch.R' 'breakpoints.R'\n'bs-current-theme.R' 'bs-dependencies.R' 'bs-global.R'\n'bs-remove.R' 'bs-theme-layers.R' 'utils.R'\n'bs-theme-preview.R' 'bs-theme-update.R' 'bs-theme.R' 'card.R'\n'deprecated.R' 'files.R' 'fill.R' 'imports.R' 'layout.R'\n'nav-items.R' 'nav-update.R' 'navs-legacy.R' 'navs.R'\n'onLoad.R' 'page.R' 'precompiled.R' 'print.R' 'shiny-devmode.R'\n'sidebar.R' 'staticimports.R' 'utils-shiny.R' 'utils-tags.R'\n'value-box.R' 'version-default.R' 'versions.R'",
         "Config/testthat/edition": "3",
-        "Config/Needs/routine": "desc, renv",
-        "Config/Needs/website": "brio, dplyr, glue, purrr, rprojroot, stringr,\ntidyr, DT, leaflet, plotly, htmlwidgets, shiny, ggplot2,\nsvglite",
-        "Config/Needs/deploy": "BH, DT, ggplot2, hexbin, lattice, lubridate,\ndplyr, modelr, nycflights13, histoslider, reactable, rprojroot,\nrsconnect, plotly, leaflet, gt, shiny, htmlwidgets",
+        "Config/Needs/routine": "chromote, desc, renv",
+        "Config/Needs/website": "brio, crosstalk, dplyr, DT, ggplot2, glue,\nhtmlwidgets, leaflet, lorem, palmerpenguins, plotly, purrr,\nrprojroot, rstudio/htmltools, scales, stringr, tidyr, webshot2",
+        "Config/Needs/deploy": "BH, cpp11, dplyr, DT, ggplot2, ggridges, gt,\nhexbin, histoslider, lattice, leaflet, lubridate, modelr,\nnycflights13, plotly, reactable, reshape2, rprojroot,\nrsconnect, scales",
         "NeedsCompilation": "no",
-        "Packaged": "2022-12-15 16:02:29 UTC; cpsievert",
-        "Author": "Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\n  Joe Cheng [aut],\n  RStudio [cph],\n  Bootstrap contributors [ctb] (Bootstrap library),\n  Twitter, Inc [cph] (Bootstrap library),\n  Javi Aguilar [ctb, cph] (Bootstrap colorpicker library),\n  Thomas Park [ctb, cph] (Bootswatch library),\n  PayPal [ctb, cph] (Bootstrap accessibility plugin)",
+        "Packaged": "2023-06-09 12:27:20 UTC; cpsievert",
+        "Author": "Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\n  Joe Cheng [aut],\n  Garrick Aden-Buie [aut] (<https://orcid.org/0000-0002-7111-0077>),\n  Posit Software, PBC [cph, fnd],\n  Bootstrap contributors [ctb] (Bootstrap library),\n  Twitter, Inc [cph] (Bootstrap library),\n  Javi Aguilar [ctb, cph] (Bootstrap colorpicker library),\n  Thomas Park [ctb, cph] (Bootswatch library),\n  PayPal [ctb, cph] (Bootstrap accessibility plugin)",
         "Maintainer": "Carson Sievert <carson@rstudio.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2022-12-16 10:30:06 UTC",
-        "Built": "R 4.3.0; ; 2023-05-02 02:29:40 UTC; windows"
+        "Date/Publication": "2023-06-09 13:10:02 UTC",
+        "Built": "R 4.3.0; ; 2023-06-09 16:54:56 UTC; windows"
       }
     },
     "cachem": {
@@ -3849,7 +3849,7 @@
       "GithubRepo": "scwplot",
       "GithubUsername": "NHS-South-Central-and-West",
       "GithubRef": "HEAD",
-      "GithubSha1": "cf78f825058074eaecb36798135b702f01d73d05",
+      "GithubSha1": "2277f314e31c3fd242779cd422798de983d5dfbf",
       "description": {
         "Package": "scwplot",
         "Title": "Making ggplot graphics using an SCW style",
@@ -3868,18 +3868,47 @@
         "LazyData": "true",
         "Author": "Paul Johnson [aut, cre],\n  Brian Lau [aut]",
         "Maintainer": "Paul Johnson <paul.johnson50@nhs.net>",
-        "Built": "R 4.3.0; ; 2023-05-31 20:27:25 UTC; windows",
+        "Built": "R 4.3.0; ; 2023-06-09 16:55:31 UTC; windows",
         "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "scwplot",
         "RemoteUsername": "NHS-South-Central-and-West",
+        "RemoteRepo": "scwplot",
         "RemoteRef": "HEAD",
-        "RemoteSha": "cf78f825058074eaecb36798135b702f01d73d05",
+        "RemoteSha": "2277f314e31c3fd242779cd422798de983d5dfbf",
+        "RemoteHost": "api.github.com",
         "GithubHost": "api.github.com",
         "GithubRepo": "scwplot",
         "GithubUsername": "NHS-South-Central-and-West",
         "GithubRef": "HEAD",
-        "GithubSHA1": "cf78f825058074eaecb36798135b702f01d73d05"
+        "GithubSHA1": "2277f314e31c3fd242779cd422798de983d5dfbf"
+      }
+    },
+    "sever": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "sever",
+        "Title": "Customise 'Shiny' Disconnected Screens and Error Messages",
+        "Version": "0.0.7",
+        "Date": "2021-07-14",
+        "Authors@R": "\n    person(given = \"John\",\n           family = \"Coene\",\n           role = c(\"aut\", \"cre\"),\n           email = \"jcoenep@gmail.com\")",
+        "Description": "Customise 'Shiny' disconnected screens as well as sanitize error messages to make them clearer and friendlier to the user.",
+        "License": "MIT + file LICENSE",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.1.1",
+        "Imports": "cli, shiny, htmltools",
+        "URL": "https://sever.john-coene.com/",
+        "BugReports": "https://github.com/JohnCoene/sever/issues",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-07-14 18:38:02 UTC; jp",
+        "Author": "John Coene [aut, cre]",
+        "Maintainer": "John Coene <jcoenep@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2021-07-14 18:50:02 UTC",
+        "Built": "R 4.3.0; ; 2023-06-11 02:14:36 UTC; windows"
       }
     },
     "shiny": {
@@ -3946,6 +3975,37 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-01-08 19:30:04 UTC",
         "Built": "R 4.3.0; ; 2023-05-11 02:38:57 UTC; windows"
+      }
+    },
+    "shinycssloaders": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "shinycssloaders",
+        "Type": "Package",
+        "Title": "Add Loading Animations to a 'shiny' Output While It's\nRecalculating",
+        "Version": "1.0.0",
+        "Authors@R": "c(\n    person(\"Andras\",\"Sali\",email=\"andras.sali@alphacruncher.hu\",role=c(\"aut\"),comment=\"Original creator of shinycssloaders package\"),\n    person(\"Luke\",\"Hass\",role=c(\"ctb\",\"cph\"),comment=\"Author of included CSS loader code\"),\n    person(\"Dean\",\"Attali\",email=\"daattali@gmail.com\",role=c(\"aut\",\"cre\"),comment=\"Maintainer of shinycssloaders since 2019\")\n    )",
+        "Description": "When a 'Shiny' output (such as a plot, table, map, etc.) is recalculating, it remains \n    visible but gets greyed out. Using 'shinycssloaders', you can add a loading animation (\"spinner\")\n    to outputs instead. By wrapping a 'Shiny' output in 'withSpinner()', a spinner will automatically\n    appear while the output is recalculating. See the demo online at\n    <https://daattali.com/shiny/shinycssloaders-demo/>.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://github.com/daattali/shinycssloaders",
+        "BugReports": "https://github.com/daattali/shinycssloaders/issues",
+        "Depends": "R (>= 3.1)",
+        "Imports": "digest, glue, grDevices, shiny",
+        "Suggests": "shinydisconnect, shinyjs",
+        "RoxygenNote": "7.1.0",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "no",
+        "Packaged": "2020-07-28 15:50:54 UTC; D",
+        "Author": "Andras Sali [aut] (Original creator of shinycssloaders package),\n  Luke Hass [ctb, cph] (Author of included CSS loader code),\n  Dean Attali [aut, cre] (Maintainer of shinycssloaders since 2019)",
+        "Maintainer": "Dean Attali <daattali@gmail.com>",
+        "Repository": "RSPM",
+        "Date/Publication": "2020-07-28 16:20:03 UTC",
+        "Built": "R 4.3.0; ; 2023-04-25 05:35:53 UTC; windows"
       }
     },
     "shinyjs": {
@@ -4553,6 +4613,45 @@
         "Archs": "x64"
       }
     },
+    "waiter": {
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "waiter",
+      "GithubUsername": "JohnCoene",
+      "GithubRef": "master",
+      "GithubSha1": "6e5e60e77a8c95b66f0ffcac3a5b8f67ead82584",
+      "description": {
+        "Package": "waiter",
+        "Title": "Loading Screen for 'Shiny'",
+        "Version": "0.2.5.9000",
+        "Date": "2022-01-02",
+        "Authors@R": "c(\n    person(given = \"John\",\n           family = \"Coene\",\n           role = c(\"aut\", \"cre\"),\n           email = \"jcoenep@gmail.com\"),\n    person(given = \"Jinhwan\",\n           family = \"Kim\",\n           role = \"ctb\",\n           email = 'hwanistic@gmail.com'),\n    person(given = \"Victor\",\n           family = \"Granda\",\n           role = c(\"ctb\"),\n           email = \"victorgrandagarcia@gmail.com\",\n           comment = c(ORCID = \"0000-0002-0469-1991\")))",
+        "Description": "Full screen and partial loading screens for 'Shiny' with spinners, progress bars, and notifications.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://waiter.john-coene.com/, https://github.com/JohnCoene/waiter",
+        "BugReports": "https://github.com/JohnCoene/waiter/issues",
+        "Encoding": "UTF-8",
+        "Imports": "shiny,\nhtmltools",
+        "Roxygen": "list(markdown = TRUE)",
+        "RoxygenNote": "7.2.0",
+        "Suggests": "R6,\nhttr,\nknitr,\npacker,\nrmarkdown",
+        "VignetteBuilder": "knitr",
+        "Author": "John Coene [aut, cre],\n  Jinhwan Kim [ctb],\n  Victor Granda [ctb] (<https://orcid.org/0000-0002-0469-1991>)",
+        "Maintainer": "John Coene <jcoenep@gmail.com>",
+        "Built": "R 4.3.0; ; 2023-06-09 22:57:03 UTC; windows",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteUsername": "JohnCoene",
+        "RemoteRepo": "waiter",
+        "RemoteRef": "master",
+        "RemoteSha": "6e5e60e77a8c95b66f0ffcac3a5b8f67ead82584",
+        "GithubHost": "api.github.com",
+        "GithubRepo": "waiter",
+        "GithubUsername": "JohnCoene",
+        "GithubRef": "master",
+        "GithubSHA1": "6e5e60e77a8c95b66f0ffcac3a5b8f67ead82584"
+      }
+    },
     "waldo": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -4772,7 +4871,7 @@
       "checksum": "ba63a3aea2a1d0d92c1c2f2760463e8a"
     },
     ".Rprofile": {
-      "checksum": "775a9444c0a52badd14130c90684767b"
+      "checksum": "56a174c334a51630ffc97e967fea9417"
     },
     "app.R": {
       "checksum": "57a5e4d5e53e1fa19289783240029906"
@@ -4789,8 +4888,8 @@
     "data-raw/fft.R": {
       "checksum": "8f1a251ef10196d5b316d9a89e6c56fa"
     },
-    "data-raw/gppt.R": {
-      "checksum": "124b01c3624ab110acb41f285ab62e5f"
+    "data-raw/gpps.R": {
+      "checksum": "e1b1ddac46a6879d3baf6ee9c83537e5"
     },
     "data-raw/ods.R": {
       "checksum": "cb09e67533bb16f6dc0f0acb4a77d236"
@@ -4801,35 +4900,20 @@
     "data/fft.rda": {
       "checksum": "59901ad5817fc2425ab3ed319ca3d7c5"
     },
-    "data/gppt.rda": {
-      "checksum": "438985074bc39697b686bf2e9611297f"
+    "data/gpps.rda": {
+      "checksum": "9c9432ed08ac7a8a5d4bfbb9df95b65f"
     },
     "data/ods.rda": {
       "checksum": "094c098e196776f5913198df932bb3cf"
     },
-    "deploy/CAIP_0.0.0.9001.tar.gz": {
-      "checksum": "ef858f477543b658986ba70a50422808"
-    },
-    "deploy/Dockerfile": {
-      "checksum": "4b9b6220858d66bfa0e9f7da6d08eb97"
-    },
-    "deploy/Dockerfile_base": {
-      "checksum": "bb8b4b27ca4a2995836a5618d6e5e754"
-    },
-    "deploy/README": {
-      "checksum": "c76aac18fa77b95b3d422bf44e945c65"
-    },
-    "deploy/renv.lock.prod": {
-      "checksum": "19d7ea048e1f9832a06f85fd7afe4b84"
-    },
     "DESCRIPTION": {
-      "checksum": "d2c7b034745cfc7af0a843624c8f9995"
+      "checksum": "78e74ce90cef6337a1736145cce2f233"
     },
     "dev/01_start.R": {
       "checksum": "ee6b53b21f38afac226d2c0bec62bf5c"
     },
     "dev/02_dev.R": {
-      "checksum": "2ac4877309b49b7e2d39cb2b5d9c245e"
+      "checksum": "fbb72c8068abe484a9d3fe4e89cc764f"
     },
     "dev/03_deploy.R": {
       "checksum": "40e1efffc5ec8b6a8864351ab08e145b"
@@ -4841,16 +4925,13 @@
       "checksum": "e3ccf7c2d6b9ed8e0f99189b6d1d0d37"
     },
     "dev/run_dev.R": {
-      "checksum": "54b6cb3d2914363b6df1276b37cc6fe9"
+      "checksum": "985c47e710d9fefffbf25e6d33cce9e0"
     },
     "inst/app/www/about.html": {
-      "checksum": "ee49f039a320f1adfb14748fa838b227"
+      "checksum": "6f9a6f0a5bf31a7f7535a3b85cf44db7"
     },
     "inst/app/www/about.Rmd": {
-      "checksum": "0b3af6e87e1fa51c9bd2e9efe81f0f11"
-    },
-    "inst/app/www/custom.css": {
-      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+      "checksum": "3b8972daf675afd4994467aff880715b"
     },
     "inst/app/www/custom.sass": {
       "checksum": "bc949ea893a9384070c31f083ccefd26"
@@ -4869,6 +4950,9 @@
     },
     "inst/app/www/scw_logo.jpg": {
       "checksum": "5e04c0e1e81dcecb3a5ebe5b7ecf23d0"
+    },
+    "inst/app/www/styles.css": {
+      "checksum": "b93cd07cb360903620409d1fafce01a4"
     },
     "inst/golem-config.yml": {
       "checksum": "2f271a52b900fb8af27b18a587efe657"
@@ -4897,8 +4981,8 @@
     "man/figures/README-pressure-1.png": {
       "checksum": "502a5f8dd6ba90060101596366cb7d58"
     },
-    "man/gppt.Rd": {
-      "checksum": "8e681d224d20ce03442c04f14ac4b221"
+    "man/gpps.Rd": {
+      "checksum": "c48bf8561110f5585a28d1037045b92e"
     },
     "man/ods.Rd": {
       "checksum": "76feee6297376ee2582819451ac43b58"
@@ -4919,28 +5003,28 @@
       "checksum": "9dd7bbcec29f1c68c5ea4753e27c4097"
     },
     "R/app_server.R": {
-      "checksum": "ebe3c634a8ef82c55fd7061168b907b8"
+      "checksum": "14dd28cdc1693723d4a3efa02a380e93"
     },
     "R/app_ui.R": {
-      "checksum": "a1fc9084fd3c8c44d7d99acd460f2e12"
+      "checksum": "d3b24784490d780516653bd9ae2af707"
     },
     "R/data.R": {
-      "checksum": "956373a425b9e73f2f1559fbcb1c8f30"
+      "checksum": "f2566c52f81ed8f9ed46454337d83db2"
     },
     "R/fct_date_range.R": {
       "checksum": "6e25dbad200f22d46a901f352b239459"
     },
     "R/fct_downloads.R": {
-      "checksum": "7c2942fb729ee1b0c2110f47a8099f16"
+      "checksum": "0630f7dbbd614256fc0ef49afd01a7eb"
     },
     "R/fct_fft_data.R": {
       "checksum": "d5666f73f4d8e17a93c27888c9045843"
     },
-    "R/fct_gppt_data.R": {
-      "checksum": "aed81b429c4e2bbe9fbf7d11f55e896e"
+    "R/fct_gpps_data.R": {
+      "checksum": "bc9e674ee7a16613bcda6994331eb408"
     },
     "R/fct_plots.R": {
-      "checksum": "66e569553eb992755110cb77c449aa7b"
+      "checksum": "e40c8ac1755d659e0e3de0ffaa56eea1"
     },
     "R/globals.R": {
       "checksum": "cc532a78dd840df6b1d349767fc81371"
@@ -4958,13 +5042,13 @@
       "checksum": "e09590fe251a26946e465b61e397fe19"
     },
     "R/mod_fft.R": {
-      "checksum": "a204766df5673e3e617fc5dfe5e7bf5e"
+      "checksum": "1c572e7f27efb9d17a321ef24c091fd8"
     },
     "R/mod_filters.R": {
-      "checksum": "7cbd5c478f16fd0aecb67b47d5eb5f52"
+      "checksum": "53cac43e4dcf6ae8278502576ac7fb3c"
     },
-    "R/mod_gppt.R": {
-      "checksum": "80be2abae07ef96a80868092c233f8d4"
+    "R/mod_gpps.R": {
+      "checksum": "88a0905f85de8829f5f55309603d2fb7"
     },
     "R/run_app.R": {
       "checksum": "0fd85883945a42f68b8fc9a2700bc6cc"
@@ -4973,10 +5057,10 @@
       "checksum": "cf9deb4447d1e0e7754f13734f454bab"
     },
     "README.md": {
-      "checksum": "aacd62a171d212b1bf0b22ab15186628"
+      "checksum": "df4afab8392ecd453ee409e1a15832f0"
     },
     "README.Rmd": {
-      "checksum": "9526fdfcb918450747894602cce0b59c"
+      "checksum": "c70b5f104fc0d6ed0e0bd48d1fc34685"
     },
     "tests/README.md": {
       "checksum": "00dade677739f2d93beabd6938598e6f"
@@ -4996,7 +5080,7 @@
     "tests/testthat/test-fct_downloads.R": {
       "checksum": "d34d57f82ae1e156fb594850d28fc2ff"
     },
-    "tests/testthat/test-fct_gppt_data.R": {
+    "tests/testthat/test-fct_gpps_data.R": {
       "checksum": "d34d57f82ae1e156fb594850d28fc2ff"
     },
     "tests/testthat/test-fct_plots.R": {
@@ -5021,10 +5105,10 @@
       "checksum": "a67e3f15f815874f60e59af324d86bf7"
     },
     "tests/testthat/test-mod_filters.R": {
-      "checksum": "b7dfcae205b21c7cc6d50e0b2a7ba1ff"
+      "checksum": "c50f56f99adba832ecb801ea31cdb7e6"
     },
-    "tests/testthat/test-mod_gppt.R": {
-      "checksum": "fb9deab618406fa3d082b9d6d4483aaf"
+    "tests/testthat/test-mod_gpps.R": {
+      "checksum": "e74f1f499a068cd587fe920a2fdf8c2a"
     },
     "tests/testthat/test-utils.R": {
       "checksum": "2c52ad69546bcfdbd03cab9e9d0ef859"

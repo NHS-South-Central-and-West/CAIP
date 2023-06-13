@@ -5,7 +5,7 @@
 #' @format A data frame that contains GP practice, PCN, ICB, and region
 #' identifiers, the survey year, survey question number and description, and
 #' responses
-"gppt"
+"gpps"
 
 #' Friends & Family Test Survey Data
 #'

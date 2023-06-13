@@ -10,24 +10,31 @@ mod_filters_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    tags$hr(),
+    hr(),
     column(12,
       align = "left",
-      tags$p(
-        "National, Regional, ICB, PCN, and GP Practice level aggregated
-        responses to the GP Patient (GPPT) and Friends & Family Test (FFT)
-        surveys."
-      ),
-      tags$br(),
-      tags$p("Select the level at which you want to aggregate the GPPT and FFT
-             responses, before choosing any filters needed for the data that you
-             are interested in."),
-      tags$br(),
+      div("National, Regional, ICB, PCN, and GP Practice level aggregated
+          responses to the GP Patient Survey (GPPS) and Friends & Family Test
+          (FFT)."),
+      br(),
+      div("To visualise the organisation you are interested in, select the
+        relevant level in the dropdown box below."),
+      br(),
       selectInput(
         inputId = ns("level"),
         label = "Level",
         choices = c("National", "Regional", "ICB", "PCN", "GP Practice"),
         selected = "National"
+      ),
+      shinyjs::hidden(
+        div(
+          id = ns("guide"),
+          HTML(
+            "Use the dropdown boxes below to filter the data. The main panel
+              will display aggregated patient responses for the GP practices
+              selected by the filters. <br> <br>"
+          )
+        )
       ),
       shinyjs::hidden(
         selectizeInput(
@@ -57,7 +64,7 @@ mod_filters_ui <- function(id) {
           choices = NULL
         )
       ),
-      # tags$p("If you would like to compare an organisation (Region, ICB, PCN,
+      # p("If you would like to compare an organisation (Region, ICB, PCN,
       #        GP Practice) with similar organisations of the same aggregate
       #        level, click the switch below:"),
       # ),
@@ -78,7 +85,7 @@ mod_filters_ui <- function(id) {
 #' Sidebar Filters Server Function
 #'
 #' @param id Module's ID
-#' @param data Input GPPT data
+#' @param data Input GPPS data
 #' @param input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
@@ -90,27 +97,32 @@ mod_filters_server <- function(id, data) {
 
       observeEvent(input$level, {
         if (input$level == "Regional") {
-          shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::show("guide", anim = TRUE, animType = "fade", time = 1.2)
+          shinyjs::show("region", anim = TRUE, animType = "fade", time = 1.2)
           shinyjs::hide("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("pcn", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("practice", anim = TRUE, animType = "slide", time = 1.2)
         } else if (input$level == "ICB") {
-          shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::show("guide", anim = TRUE, animType = "fade", time = 1.2)
+          shinyjs::show("region", anim = TRUE, animType = "fade", time = 1.2)
           shinyjs::show("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("pcn", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("practice", anim = TRUE, animType = "slide", time = 1.2)
         } else if (input$level == "PCN") {
-          shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::show("guide", anim = TRUE, animType = "fade", time = 1.2)
+          shinyjs::show("region", anim = TRUE, animType = "fade", time = 1.2)
           shinyjs::show("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::show("pcn", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("practice", anim = TRUE, animType = "slide", time = 1.2)
         } else if (input$level == "GP Practice") {
-          shinyjs::show("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::show("guide", anim = TRUE, animType = "fade", time = 1.2)
+          shinyjs::show("region", anim = TRUE, animType = "fade", time = 1.2)
           shinyjs::show("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::show("pcn", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::show("practice", anim = TRUE, animType = "slide", time = 1.2)
         } else {
-          shinyjs::hide("region", anim = TRUE, animType = "fade", time = .2)
+          shinyjs::hide("guide", anim = TRUE, animType = "fade", time = 1.2)
+          shinyjs::hide("region", anim = TRUE, animType = "fade", time = 1.2)
           shinyjs::hide("icb", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("pcn", anim = TRUE, animType = "slide", time = 1.2)
           shinyjs::hide("practice", anim = TRUE, animType = "slide", time = 1.2)

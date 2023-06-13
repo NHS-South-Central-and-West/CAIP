@@ -22,7 +22,7 @@ fa_icon <- function(name) {
 
 ## `r fa_icon(name = "circle-question")` About the CAIP App
 
-The CAIP App aggregates publicly-available data, about patient satisfaction with their GP practice, from the GP Patient Survey (GPPT) and the Friends and Family Test (FFT).
+The CAIP App aggregates publicly-available data, about patient satisfaction with their GP practice, from the GP Patient Survey (GPPS) and the Friends and Family Test (FFT).
 
 ---
 
@@ -34,9 +34,9 @@ The GP Patient Survey is an independent survey run by Ipsos on behalf of NHS Eng
 
 For more information about the GP Patient Survey:
 
--   [GPPT Homepage](https://gp-patient.co.uk/)
+-   [GPPS Homepage](https://gp-patient.co.uk/)
 -   [Frequently Asked Questions](https://gp-patient.co.uk/faq)
--   [GPPT Survey Weighting](https://gp-patient.co.uk/weighted-data)
+-   [GPPS Response Weighting](https://gp-patient.co.uk/weighted-data)
 
 ### Friends and Family Test
 
