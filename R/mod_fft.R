@@ -15,7 +15,7 @@ mod_fft_ui <- function(id) {
         width = 12,
         offset = 0.5,
         align = "center",
-        tags$br(),
+        br(),
         dateRangeMonthsInput(
           inputId = ns("date_range"),
           label = "Date Range",
@@ -43,13 +43,13 @@ mod_fft_ui <- function(id) {
       column(
         width = 12,
         align = "center",
-        tags$br(),
+        br(),
         shinycssloaders::withSpinner(
           plotOutput(ns("fft_plot"), width = "auto"),
           type = 7,
           color = "#005EB8"
         ),
-        tags$br()
+        br()
       ),
       column(
         width = 12,
@@ -67,7 +67,7 @@ mod_fft_ui <- function(id) {
       column(
         width = 12,
         align = "center",
-        tags$br(),
+        br(),
         shinycssloaders::withSpinner(
           DT::DTOutput(ns("fft_table"), width = "auto"),
           type = 7,
@@ -427,27 +427,38 @@ mod_fft_server <- function(id, data, filters_res) {
         )
     })
 
+    output$download_plot <- downloadHandler(
+      filename = function() {
+        paste0("fft-", org(), "-", yrs(), ".png")
+      },
+      content = function(file) {
+
+        id <- showNotification(
+          "Downloading Plot...",
+          duration = NULL,
+          closeButton = FALSE
+        )
+        on.exit(removeNotification(id), add = TRUE)
+
+        ggplot2::ggsave(file, formatted_plot(),
+                        width = 20, height = 10, dpi = 320)
+      }
+    )
+
     output$download_data <- downloadHandler(
       filename = function() {
-        # Use the selected dataset as the suggested file name
         paste0("fft-", org(), "-", yrs(), ".csv")
       },
       content = function(file) {
-        # Write the dataset to the `file` that will be downloaded
+        id <- showNotification(
+          "Downloading Data...",
+          duration = NULL,
+          closeButton = FALSE
+        )
+        on.exit(removeNotification(id), add = TRUE)
         readr::write_csv(fft_data(), file)
       }
     )
 
-    output$download_plot <- downloadHandler(
-      filename = function() {
-        # Use the selected dataset as the suggested file name
-        paste0("fft-", org(), "-", yrs(), ".png")
-      },
-      content = function(file) {
-        # Write the dataset to the `file` that will be downloaded
-
-        ggplot2::ggsave(file, formatted_plot(), width = 20, height = 10, dpi = 320)
-      }
-    )
   })
 }
