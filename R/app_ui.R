@@ -11,9 +11,14 @@ app_ui <- function(request) {
       sidebarPanel(
         width = 3,
         fluidRow(
-          h1("PCN Local Capacity & Access Improvement Payment (CAIP) App",
+          h1("PCN Capacity & Access Improvement Payment (CAIP) App",
             class = "h-title",
             align = "center"
+          ),
+          h2("Preparation Phase Data",
+            class = "h-title",
+            align = "center",
+            style = "color: #5D5F5F;"
           ),
           mod_filters_ui("filters"),
           mod_downloads_ui("downloads")
@@ -26,6 +31,17 @@ app_ui <- function(request) {
           tabPanel("About", mod_about_ui("about"))
         )
       )
+    ),
+    waiter::waiterPreloader(
+      html = tagList(
+        waiter::spin_loaders(
+          3,
+          color = "#005EB8", style = "width: 80px; height: 80px"
+        ),
+        h2("Loading...", style = "color: #2E2F30;"),
+      ),
+      color = "white",
+      fadeout = TRUE
     )
   )
 }
@@ -51,6 +67,8 @@ golem_add_external_resources <- function() {
       app_title = "CAIP"
     ),
     # Add here other external resources
-    shinyjs::useShinyjs()
+    shinyjs::useShinyjs(),
+    waiter::useWaiter(),
+    sever::useSever()
   )
 }

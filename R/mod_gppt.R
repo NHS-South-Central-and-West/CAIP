@@ -15,7 +15,7 @@ mod_gppt_ui <- function(id) {
         width = 12,
         offset = 0.5,
         align = "center",
-        tags$br(),
+        br(),
         selectizeInput(
           ns("question"),
           "Question",
@@ -39,9 +39,13 @@ mod_gppt_ui <- function(id) {
     column(
       width = 12,
       align = "center",
-      tags$br(),
-      plotOutput(ns("gppt_plot"), width = "auto"),
-      tags$br()
+      br(),
+      shinycssloaders::withSpinner(
+        plotOutput(ns("gppt_plot"), width = "auto"),
+        type = 7,
+        color = "#005EB8"
+      ),
+      br()
     ),
     column(
       width = 12,
@@ -58,8 +62,12 @@ mod_gppt_ui <- function(id) {
     column(
       width = 12,
       align = "center",
-      tags$br(),
-      DT::DTOutput(ns("gppt_table"), width = "auto")
+      br(),
+      shinycssloaders::withSpinner(
+        DT::DTOutput(ns("gppt_table"), width = "auto"),
+        type = 7,
+        color = "#005EB8"
+      )
     )
   )
 }
@@ -360,26 +368,40 @@ mod_gppt_server <- function(id, data, filters_res) {
         )
     })
 
+    output$download_plot <-
+      downloadHandler(
+        filename = function() {
+          paste0("gppt-", org(), "-", qn(), ".png")
+        },
+        content = function(file) {
+          id <- showNotification(
+            "Downloading Plot...",
+            duration = NULL,
+            closeButton = FALSE
+          )
+          on.exit(removeNotification(id), add = TRUE)
+
+          ggplot2::ggsave(file, formatted_plot(),
+            width = 20, height = 10, dpi = 320
+          )
+        }
+      )
+
+
+
     output$download_data <- downloadHandler(
       filename = function() {
-        # Use the selected dataset as the suggested file name
         paste0("gppt-", org(), "-", qn(), ".csv")
       },
       content = function(file) {
-        # Write the dataset to the `file` that will be downloaded
+        id <- showNotification(
+          "Downloading Data...",
+          duration = NULL,
+          closeButton = FALSE
+        )
+        on.exit(removeNotification(id), add = TRUE)
+
         readr::write_csv(gppt_data(), file)
-      }
-    )
-
-    output$download_plot <- downloadHandler(
-      filename = function() {
-        # Use the selected dataset as the suggested file name
-        paste0("gppt-", org(), "-", qn(), ".png")
-      },
-      content = function(file) {
-        # Write the dataset to the `file` that will be downloaded
-
-        ggplot2::ggsave(file, formatted_plot(), width = 20, height = 10, dpi = 320)
       }
     )
   })

@@ -30,13 +30,16 @@ Imports:
     sass,
     scales,
     scwplot,
+    sever,
     shiny (>= 1.7.1),
+    shinycssloaders,
     shinyjs,
     shinyWidgets,
     snakecase,
     stats,
     stringr,
-    tidyr
+    tidyr,
+    waiter
 Suggests: 
     knitr,
     pkgload,

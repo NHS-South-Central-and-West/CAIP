@@ -8,6 +8,10 @@ app_server <- function(input, output, session) {
   # List the first level callModules here
   r <- reactiveValues()
 
+
+  w <- waiter::Waiter$new()
+
+  # load data
   gppt <- CAIP::gppt
   fft <- CAIP::fft
 
@@ -18,4 +22,14 @@ app_server <- function(input, output, session) {
   mod_about_server("about")
 
   mod_downloads_server("downloads", mod_filters, mod_gppt)
+
+  # set disconnector
+  sever::sever(
+    html = sever::sever_default(
+      title = "You've Been Disconnected!",
+      subtitle = "Your session ended because you were idle for too long.",
+      button = "Reconnect", button_class = "default"
+    ),
+    bg_color = "white", color = "#2E2F30"
+  )
 }
