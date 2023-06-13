@@ -27,13 +27,15 @@ mod_filters_ui <- function(id) {
         selected = "National"
       ),
       shinyjs::hidden(
-        div(id = ns("guide"),
-            HTML(
-              "Use the dropdown boxes below to filter the data. The main panel
+        div(
+          id = ns("guide"),
+          HTML(
+            "Use the dropdown boxes below to filter the data. The main panel
               will display aggregated patient responses for the GP practices
-              selected by the filters. <br> <br>")
+              selected by the filters. <br> <br>"
           )
-        ),
+        )
+      ),
       shinyjs::hidden(
         selectizeInput(
           inputId = ns("region"),
