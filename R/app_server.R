@@ -12,16 +12,16 @@ app_server <- function(input, output, session) {
   w <- waiter::Waiter$new()
 
   # load data
-  gppt <- CAIP::gppt
+  gpps <- CAIP::gpps
   fft <- CAIP::fft
 
-  mod_filters <- mod_filters_server("filters", gppt)
+  mod_filters <- mod_filters_server("filters", gpps)
 
-  mod_gppt <- mod_gppt_server("gppt", gppt, mod_filters)
+  mod_gpps <- mod_gpps_server("gpps", gpps, mod_filters)
   mod_fft <- mod_fft_server("fft", fft, mod_filters)
   mod_about_server("about")
 
-  mod_downloads_server("downloads", mod_filters, mod_gppt)
+  mod_downloads_server("downloads", mod_filters, mod_gpps)
 
   # set disconnector
   sever::sever(

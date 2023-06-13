@@ -6,7 +6,7 @@
 #'
 #' @noRd
 
-gppt_plot <- function(data, national = FALSE) {
+gpps_plot <- function(data, national = FALSE) {
   # get plot title
   plot_title <- data |> dplyr::distinct(.data$question)
 

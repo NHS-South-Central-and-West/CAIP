@@ -401,7 +401,9 @@ mod_fft_server <- function(id, data, filters_res) {
 
     formatted_plot <- reactive({
       logo <-
-        magick::image_read(here::here("inst", "app", "www", "scw_logo.jpg"))
+        magick::image_read(
+          system.file("app/www/scw_logo.jpg", package = "CAIP")
+        )
 
       fft_plot() +
         ggplot2::labs(
