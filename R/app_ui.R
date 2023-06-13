@@ -11,9 +11,14 @@ app_ui <- function(request) {
       sidebarPanel(
         width = 3,
         fluidRow(
-          h1("PCN Local Capacity & Access Improvement Payment (CAIP) App",
+          h1("PCN Capacity & Access Improvement Payment (CAIP) App",
             class = "h-title",
             align = "center"
+          ),
+          br(),
+          h2("Preparation Phase Data",
+             class = "h-title",
+             align = "center"
           ),
           mod_filters_ui("filters"),
           mod_downloads_ui("downloads")
@@ -38,6 +43,7 @@ app_ui <- function(request) {
       color = "white",
       fadeout = TRUE
     )
+
   )
 }
 
