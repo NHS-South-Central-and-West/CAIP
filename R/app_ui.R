@@ -15,10 +15,10 @@ app_ui <- function(request) {
             class = "h-title",
             align = "center"
           ),
-          br(),
           h2("Preparation Phase Data",
             class = "h-title",
-            align = "center"
+            align = "center",
+            style = "color: #5D5F5F;"
           ),
           mod_filters_ui("filters"),
           mod_downloads_ui("downloads")
