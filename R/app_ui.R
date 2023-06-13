@@ -17,8 +17,8 @@ app_ui <- function(request) {
           ),
           br(),
           h2("Preparation Phase Data",
-             class = "h-title",
-             align = "center"
+            class = "h-title",
+            align = "center"
           ),
           mod_filters_ui("filters"),
           mod_downloads_ui("downloads")
@@ -43,7 +43,6 @@ app_ui <- function(request) {
       color = "white",
       fadeout = TRUE
     )
-
   )
 }
 

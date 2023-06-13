@@ -374,7 +374,6 @@ mod_gppt_server <- function(id, data, filters_res) {
           paste0("gppt-", org(), "-", qn(), ".png")
         },
         content = function(file) {
-
           id <- showNotification(
             "Downloading Plot...",
             duration = NULL,
@@ -383,8 +382,8 @@ mod_gppt_server <- function(id, data, filters_res) {
           on.exit(removeNotification(id), add = TRUE)
 
           ggplot2::ggsave(file, formatted_plot(),
-                          width = 20, height = 10, dpi = 320)
-
+            width = 20, height = 10, dpi = 320
+          )
         }
       )
 
@@ -392,11 +391,9 @@ mod_gppt_server <- function(id, data, filters_res) {
 
     output$download_data <- downloadHandler(
       filename = function() {
-
         paste0("gppt-", org(), "-", qn(), ".csv")
       },
       content = function(file) {
-
         id <- showNotification(
           "Downloading Data...",
           duration = NULL,
@@ -407,6 +404,5 @@ mod_gppt_server <- function(id, data, filters_res) {
         readr::write_csv(gppt_data(), file)
       }
     )
-
   })
 }

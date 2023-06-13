@@ -432,7 +432,6 @@ mod_fft_server <- function(id, data, filters_res) {
         paste0("fft-", org(), "-", yrs(), ".png")
       },
       content = function(file) {
-
         id <- showNotification(
           "Downloading Plot...",
           duration = NULL,
@@ -441,7 +440,8 @@ mod_fft_server <- function(id, data, filters_res) {
         on.exit(removeNotification(id), add = TRUE)
 
         ggplot2::ggsave(file, formatted_plot(),
-                        width = 20, height = 10, dpi = 320)
+          width = 20, height = 10, dpi = 320
+        )
       }
     )
 
@@ -459,6 +459,5 @@ mod_fft_server <- function(id, data, filters_res) {
         readr::write_csv(fft_data(), file)
       }
     )
-
   })
 }
