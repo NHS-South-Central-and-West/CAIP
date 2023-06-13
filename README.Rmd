@@ -21,4 +21,4 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/NHS-South-Central-and-West/CAIP/branch/main/graph/badge.svg)](https://app.codecov.io/gh/NHS-South-Central-and-West/CAIP?branch=main)
 <!-- badges: end -->
 
-PCN Local Capacity and Access Improvement Payment App
+PCN Capacity and Access Improvement Payment App
