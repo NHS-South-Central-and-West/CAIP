@@ -22,7 +22,7 @@ attachment::att_amend_desc()
 ## Create a module infrastructure in R/
 golem::add_module(name = "filters", with_test = TRUE)
 golem::add_module(name = "downloads", with_test = TRUE)
-golem::add_module(name = "gppt", with_test = TRUE)
+golem::add_module(name = "gpps", with_test = TRUE)
 golem::add_module(name = "fft", with_test = TRUE)
 golem::add_module(name = "methodology", with_test = TRUE)
 
@@ -42,7 +42,7 @@ golem::add_sass_file("custom")
 ## Add internal datasets ----
 ## If you have data in your package
 usethis::use_data_raw(name = "ods", open = TRUE)
-usethis::use_data_raw(name = "gppt", open = TRUE)
+usethis::use_data_raw(name = "gpps", open = TRUE)
 usethis::use_data_raw(name = "fft", open = TRUE)
 
 ## Tests ----

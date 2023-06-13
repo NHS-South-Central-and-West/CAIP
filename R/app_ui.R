@@ -26,7 +26,7 @@ app_ui <- function(request) {
       ),
       mainPanel(
         tabsetPanel(
-          tabPanel("GP Patient Survey", mod_gppt_ui("gppt")),
+          tabPanel("GP Patient Survey", mod_gpps_ui("gpps")),
           tabPanel("Friends & Family Test", mod_fft_ui("fft")),
           tabPanel("About", mod_about_ui("about"))
         )

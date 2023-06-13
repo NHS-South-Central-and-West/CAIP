@@ -6,7 +6,7 @@
 #'
 #' @noRd
 #'
-mod_gppt_ui <- function(id) {
+mod_gpps_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -41,7 +41,7 @@ mod_gppt_ui <- function(id) {
       align = "center",
       br(),
       shinycssloaders::withSpinner(
-        plotOutput(ns("gppt_plot"), width = "auto"),
+        plotOutput(ns("gpps_plot"), width = "auto"),
         type = 7,
         color = "#005EB8"
       ),
@@ -64,7 +64,7 @@ mod_gppt_ui <- function(id) {
       align = "center",
       br(),
       shinycssloaders::withSpinner(
-        DT::DTOutput(ns("gppt_table"), width = "auto"),
+        DT::DTOutput(ns("gpps_table"), width = "auto"),
         type = 7,
         color = "#005EB8"
       )
@@ -78,7 +78,7 @@ mod_gppt_ui <- function(id) {
 #' @param filters_res Parameters passed from filters module
 #'
 #' @noRd
-mod_gppt_server <- function(id, data, filters_res) {
+mod_gpps_server <- function(id, data, filters_res) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -89,14 +89,14 @@ mod_gppt_server <- function(id, data, filters_res) {
       server = TRUE
     )
 
-    gppt_data <- reactive({
+    gpps_data <- reactive({
       if (filters_res$level() == "National") {
-        get_gppt_data(level = "National", qn = input$question)
+        get_gpps_data(level = "National", qn = input$question)
       } else if (filters_res$level() == "Regional") {
         if (filters_res$region() == "") {
-          get_gppt_data(level = "National", qn = input$question)
+          get_gpps_data(level = "National", qn = input$question)
         } else {
-          get_gppt_data(
+          get_gpps_data(
             level = "Regional", qn = input$question,
             org = filters_res$region()
           )
@@ -104,14 +104,14 @@ mod_gppt_server <- function(id, data, filters_res) {
       } else if (filters_res$level() == "ICB") {
         if ((filters_res$icb() == "") &
           (filters_res$region() == "")) {
-          get_gppt_data(level = "National", qn = input$question)
+          get_gpps_data(level = "National", qn = input$question)
         } else if (filters_res$icb() == "") {
-          get_gppt_data(
+          get_gpps_data(
             level = "Regional", qn = input$question,
             org = filters_res$region()
           )
         } else {
-          get_gppt_data(
+          get_gpps_data(
             level = "ICB", qn = input$question,
             org = filters_res$icb()
           )
@@ -120,20 +120,20 @@ mod_gppt_server <- function(id, data, filters_res) {
         if ((filters_res$pcn() == "") &
           (filters_res$icb() == "") &
           (filters_res$region() == "")) {
-          get_gppt_data(level = "National", qn = input$question)
+          get_gpps_data(level = "National", qn = input$question)
         } else if ((filters_res$pcn() == "") &
           (filters_res$icb() == "")) {
-          get_gppt_data(
+          get_gpps_data(
             level = "Regional", qn = input$question,
             org = filters_res$region()
           )
         } else if (filters_res$pcn() == "") {
-          get_gppt_data(
+          get_gpps_data(
             level = "ICB", qn = input$question,
             org = filters_res$icb()
           )
         } else {
-          get_gppt_data(
+          get_gpps_data(
             level = "PCN", qn = input$question,
             org = filters_res$pcn()
           )
@@ -143,27 +143,27 @@ mod_gppt_server <- function(id, data, filters_res) {
           (filters_res$pcn() == "") &
           (filters_res$icb() == "") &
           (filters_res$region() == "")) {
-          get_gppt_data(level = "National", qn = input$question)
+          get_gpps_data(level = "National", qn = input$question)
         } else if ((filters_res$practice() == "") &
           (filters_res$pcn() == "") &
           (filters_res$icb() == "")) {
-          get_gppt_data(
+          get_gpps_data(
             level = "Regional", qn = input$question,
             org = filters_res$region()
           )
         } else if ((filters_res$practice() == "") &
           (filters_res$pcn() == "")) {
-          get_gppt_data(
+          get_gpps_data(
             level = "ICB", qn = input$question,
             org = filters_res$icb()
           )
         } else if (filters_res$practice() == "") {
-          get_gppt_data(
+          get_gpps_data(
             level = "PCN", qn = input$question,
             org = filters_res$pcn()
           )
         } else {
-          get_gppt_data(
+          get_gpps_data(
             level = "GP Practice", qn = input$question,
             org = filters_res$practice()
           )
@@ -191,8 +191,8 @@ mod_gppt_server <- function(id, data, filters_res) {
       }
     })
 
-    gppt_plot <- reactive({
-      plot <- gppt_data() |>
+    gpps_plot <- reactive({
+      plot <- gpps_data() |>
         ggplot2::ggplot(ggplot2::aes(
           x = factor(.data$year), y = .data$value,
           fill = stats::reorder(.data$answer, .data$response_scale)
@@ -222,14 +222,14 @@ mod_gppt_server <- function(id, data, filters_res) {
       return(plot)
     })
 
-    output$gppt_plot <- renderPlot({
-      gppt_plot()
+    output$gpps_plot <- renderPlot({
+      gpps_plot()
     })
 
 
-    output$gppt_table <- DT::renderDT({
+    output$gpps_table <- DT::renderDT({
       DT::datatable(
-        gppt_data() |>
+        gpps_data() |>
           dplyr::mutate(
             total = sum(.data$value),
             value = scales::percent(.data$value / .data$total),
@@ -346,7 +346,7 @@ mod_gppt_server <- function(id, data, filters_res) {
       logo <-
         magick::image_read(here::here("inst", "app", "www", "scw_logo.jpg"))
 
-      gppt_plot() +
+      gpps_plot() +
         ggplot2::labs(
           title = plot_title(),
           subtitle = plot_subtitle(),
@@ -371,7 +371,7 @@ mod_gppt_server <- function(id, data, filters_res) {
     output$download_plot <-
       downloadHandler(
         filename = function() {
-          paste0("gppt-", org(), "-", qn(), ".png")
+          paste0("gpps-", org(), "-", qn(), ".png")
         },
         content = function(file) {
           id <- showNotification(
@@ -391,7 +391,7 @@ mod_gppt_server <- function(id, data, filters_res) {
 
     output$download_data <- downloadHandler(
       filename = function() {
-        paste0("gppt-", org(), "-", qn(), ".csv")
+        paste0("gpps-", org(), "-", qn(), ".csv")
       },
       content = function(file) {
         id <- showNotification(
@@ -401,7 +401,7 @@ mod_gppt_server <- function(id, data, filters_res) {
         )
         on.exit(removeNotification(id), add = TRUE)
 
-        readr::write_csv(gppt_data(), file)
+        readr::write_csv(gpps_data(), file)
       }
     )
   })

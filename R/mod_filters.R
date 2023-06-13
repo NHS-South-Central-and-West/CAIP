@@ -14,7 +14,7 @@ mod_filters_ui <- function(id) {
     column(12,
       align = "left",
       div("National, Regional, ICB, PCN, and GP Practice level aggregated
-          responses to the GP Patient Survey (GPPT) and Friends & Family Test
+          responses to the GP Patient Survey (GPPS) and Friends & Family Test
           (FFT)."),
       br(),
       div("To visualise the organisation you are interested in, select the
@@ -85,7 +85,7 @@ mod_filters_ui <- function(id) {
 #' Sidebar Filters Server Function
 #'
 #' @param id Module's ID
-#' @param data Input GPPT data
+#' @param data Input GPPS data
 #' @param input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd

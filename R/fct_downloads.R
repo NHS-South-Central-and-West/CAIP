@@ -1,4 +1,4 @@
-#' Create filename for downloading GPPT & FFT data and plots
+#' Create filename for downloading GPPS & FFT data and plots
 #'
 #' @description A fct function
 #'

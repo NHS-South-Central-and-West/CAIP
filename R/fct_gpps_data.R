@@ -1,4 +1,4 @@
-#' Get GPPT data aggregated at a national level
+#' Get GPPS data aggregated at a national level
 #'
 #' @description A fct function
 #'
@@ -6,8 +6,8 @@
 #'
 #' @noRd
 
-get_gppt_national_data <- function(qn) {
-  CAIP::gppt |>
+get_gpps_national_data <- function(qn) {
+  CAIP::gpps |>
     dplyr::filter(
       question == qn,
       !is.na(.data$response_scale)
@@ -21,7 +21,7 @@ get_gppt_national_data <- function(qn) {
     )
 }
 
-#' Get GPPT data aggregated at a regional level
+#' Get GPPS data aggregated at a regional level
 #'
 #' @description A fct function
 #'
@@ -29,8 +29,8 @@ get_gppt_national_data <- function(qn) {
 #'
 #' @noRd
 
-get_gppt_region_data <- function(qn, org) {
-  CAIP::gppt |>
+get_gpps_region_data <- function(qn, org) {
+  CAIP::gpps |>
     dplyr::filter(
       question == qn,
       conditional(org != "", region == org),
@@ -46,7 +46,7 @@ get_gppt_region_data <- function(qn, org) {
     )
 }
 
-#' Get GPPT data aggregated at an ICB level
+#' Get GPPS data aggregated at an ICB level
 #'
 #' @description A fct function
 #'
@@ -54,8 +54,8 @@ get_gppt_region_data <- function(qn, org) {
 #'
 #' @noRd
 
-get_gppt_icb_data <- function(qn, org) {
-  CAIP::gppt |>
+get_gpps_icb_data <- function(qn, org) {
+  CAIP::gpps |>
     dplyr::filter(
       question == qn,
       conditional(org != "", icb == org),
@@ -72,7 +72,7 @@ get_gppt_icb_data <- function(qn, org) {
 }
 
 
-#' Get GPPT data aggregated at a PCN level
+#' Get GPPS data aggregated at a PCN level
 #'
 #' @description A fct function
 #'
@@ -80,8 +80,8 @@ get_gppt_icb_data <- function(qn, org) {
 #'
 #' @noRd
 
-get_gppt_pcn_data <- function(qn, org) {
-  CAIP::gppt |>
+get_gpps_pcn_data <- function(qn, org) {
+  CAIP::gpps |>
     dplyr::filter(
       question == qn,
       conditional(org != "", pcn == org),
@@ -98,7 +98,7 @@ get_gppt_pcn_data <- function(qn, org) {
 }
 
 
-#' Get GPPT data aggregated at a GP Practice level
+#' Get GPPS data aggregated at a GP Practice level
 #'
 #' @description A fct function
 #'
@@ -106,8 +106,8 @@ get_gppt_pcn_data <- function(qn, org) {
 #'
 #' @noRd
 
-get_gppt_practice_data <- function(qn, org) {
-  CAIP::gppt |>
+get_gpps_practice_data <- function(qn, org) {
+  CAIP::gpps |>
     dplyr::filter(
       question == qn,
       conditional(org != "", practice == org),
@@ -123,7 +123,7 @@ get_gppt_practice_data <- function(qn, org) {
     )
 }
 
-#' Get GPPT data aggregated at a regional, ICB, PCN, or GP Practice level
+#' Get GPPS data aggregated at a regional, ICB, PCN, or GP Practice level
 #'
 #' @description A fct function
 #'
@@ -131,13 +131,13 @@ get_gppt_practice_data <- function(qn, org) {
 #'
 #' @noRd
 
-get_gppt_data <- function(level, qn, org = NULL) {
+get_gpps_data <- function(level, qn, org = NULL) {
   switch(level,
-    "National" = get_gppt_national_data(qn),
-    "Regional" = get_gppt_region_data(qn, org),
-    "ICB" = get_gppt_icb_data(qn, org),
-    "PCN" = get_gppt_pcn_data(qn, org),
-    "GP Practice" = get_gppt_practice_data(qn, org),
-    stop("Unknown GPPT Level")
+    "National" = get_gpps_national_data(qn),
+    "Regional" = get_gpps_region_data(qn, org),
+    "ICB" = get_gpps_icb_data(qn, org),
+    "PCN" = get_gpps_pcn_data(qn, org),
+    "GP Practice" = get_gpps_practice_data(qn, org),
+    stop("Unknown GPPS Level")
   )
 }
