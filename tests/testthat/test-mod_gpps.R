@@ -18,11 +18,11 @@ testServer(
     session$setInputs(
       question =
         "Q01 - Ease of getting through to someone at GP practice on the phone"
-      )
+    )
     expect_true(
       input$question ==
         "Q01 - Ease of getting through to someone at GP practice on the phone"
-      )
+    )
     expect_false(
       input$question ==
         "Ease of getting through to someone at GP practice on the phone"
