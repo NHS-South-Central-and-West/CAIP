@@ -36,7 +36,7 @@ reset_monthday <- function(date) {
   as.Date(date)
 }
 
-#' Return stylized font awesome icons
+#' Stylized font awesome icons
 #'
 #' @description A utility function for outputting font awesome icons that
 #' follow a consistent style.
@@ -49,4 +49,69 @@ reset_monthday <- function(date) {
 #' @noRd
 fa_icon <- function(name, fill = "#231F20", fill_opacity = 0.8) {
   fontawesome::fa(name = name, fill = fill, fill_opacity = fill_opacity)
+}
+
+#' Create an url
+#'
+#' @param url the URL
+#' @param text the text to display
+#'
+#' @return an a tag
+#' @noRd
+#'
+#' @examples
+#' enurl("https://www.thinkr.fr", "ThinkR")
+#' @importFrom shiny tags
+enurl <- function(url, text) {
+  tags$a(href = url, text)
+}
+
+#' Columns wrappers
+#'
+#' These are convenient wrappers around
+#' `column(12, ...)`, `column(6, ...)`, `column(4, ...)`...
+#'
+#' @noRd
+#'
+#' @importFrom shiny column
+col_12 <- function(...) {
+  column(12, ...)
+}
+
+#' @importFrom shiny column
+col_10 <- function(...) {
+  column(10, ...)
+}
+
+#' @importFrom shiny column
+col_8 <- function(...) {
+  column(8, ...)
+}
+
+#' @importFrom shiny column
+col_6 <- function(...) {
+  column(6, ...)
+}
+
+
+#' @importFrom shiny column
+col_4 <- function(...) {
+  column(4, ...)
+}
+
+
+#' @importFrom shiny column
+col_3 <- function(...) {
+  column(3, ...)
+}
+
+
+#' @importFrom shiny column
+col_2 <- function(...) {
+  column(2, ...)
+}
+
+#' @importFrom shiny column
+col_1 <- function(...) {
+  column(1, ...)
 }
