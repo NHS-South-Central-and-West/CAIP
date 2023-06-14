@@ -13,9 +13,8 @@ mod_filters_ui <- function(id) {
     hr(),
     column(12,
       align = "left",
-      div("National, Regional, ICB, PCN, and GP Practice level aggregated
-          responses to the GP Patient Survey (GPPS) and Friends & Family Test
-          (FFT)."),
+      div("GP Patient Survey (GPPS) and Friends & Family Test (FFT) responses,
+          aggregated by NHS organisation"),
       br(),
       div("To visualise the organisation you are interested in, select the
         relevant level in the dropdown box below."),
@@ -64,9 +63,9 @@ mod_filters_ui <- function(id) {
           choices = NULL
         )
       ),
-      # p("If you would like to compare an organisation (Region, ICB, PCN,
-      #        GP Practice) with similar organisations of the same aggregate
-      #        level, click the switch below:"),
+      # div("If you would like to compare an organisation (Region, ICB, PCN,
+      #     GP Practice) with similar organisations of the same aggregate
+      #     level, click the switch below:"),
       # ),
       # column(
       #   width = 12,

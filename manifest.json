@@ -4871,7 +4871,7 @@
       "checksum": "ba63a3aea2a1d0d92c1c2f2760463e8a"
     },
     ".Rprofile": {
-      "checksum": "56a174c334a51630ffc97e967fea9417"
+      "checksum": "c8ce07aa8a9e7d1d8a4c5692f58bcfc1"
     },
     "app.R": {
       "checksum": "57a5e4d5e53e1fa19289783240029906"
@@ -4889,7 +4889,7 @@
       "checksum": "8f1a251ef10196d5b316d9a89e6c56fa"
     },
     "data-raw/gpps.R": {
-      "checksum": "e1b1ddac46a6879d3baf6ee9c83537e5"
+      "checksum": "066d23d451fac328c1faa717ab019585"
     },
     "data-raw/ods.R": {
       "checksum": "cb09e67533bb16f6dc0f0acb4a77d236"
@@ -4907,13 +4907,13 @@
       "checksum": "094c098e196776f5913198df932bb3cf"
     },
     "DESCRIPTION": {
-      "checksum": "78e74ce90cef6337a1736145cce2f233"
+      "checksum": "2bd50db2ac39e17beb3d82157e11efa1"
     },
     "dev/01_start.R": {
       "checksum": "ee6b53b21f38afac226d2c0bec62bf5c"
     },
     "dev/02_dev.R": {
-      "checksum": "fbb72c8068abe484a9d3fe4e89cc764f"
+      "checksum": "5730ef4415f5a1e51651c0f0b46f9458"
     },
     "dev/03_deploy.R": {
       "checksum": "40e1efffc5ec8b6a8864351ab08e145b"
@@ -4921,17 +4921,20 @@
     "dev/config_attachment.yaml": {
       "checksum": "e094ce560e58296f4c55066f92696729"
     },
+    "dev/pins_dev.R": {
+      "checksum": "bd6efefe1def5748c675094592424dcc"
+    },
     "dev/plot_dev.R": {
       "checksum": "e3ccf7c2d6b9ed8e0f99189b6d1d0d37"
     },
     "dev/run_dev.R": {
-      "checksum": "985c47e710d9fefffbf25e6d33cce9e0"
+      "checksum": "1669e8f830a54b37bff96c6d485862bf"
     },
     "inst/app/www/about.html": {
       "checksum": "6f9a6f0a5bf31a7f7535a3b85cf44db7"
     },
     "inst/app/www/about.Rmd": {
-      "checksum": "3b8972daf675afd4994467aff880715b"
+      "checksum": "fe426c8ebc70c1334bf2d7da7b201b31"
     },
     "inst/app/www/custom.sass": {
       "checksum": "bc949ea893a9384070c31f083ccefd26"
@@ -4982,7 +4985,7 @@
       "checksum": "502a5f8dd6ba90060101596366cb7d58"
     },
     "man/gpps.Rd": {
-      "checksum": "c48bf8561110f5585a28d1037045b92e"
+      "checksum": "b401c80276d46a52d83da7a98bc929f3"
     },
     "man/ods.Rd": {
       "checksum": "76feee6297376ee2582819451ac43b58"
@@ -5003,28 +5006,28 @@
       "checksum": "9dd7bbcec29f1c68c5ea4753e27c4097"
     },
     "R/app_server.R": {
-      "checksum": "14dd28cdc1693723d4a3efa02a380e93"
+      "checksum": "aff5fadbe97d2ac885d8309537a6fcaf"
     },
     "R/app_ui.R": {
-      "checksum": "d3b24784490d780516653bd9ae2af707"
+      "checksum": "c047d78dd508912286943684a0d4a320"
     },
     "R/data.R": {
-      "checksum": "f2566c52f81ed8f9ed46454337d83db2"
+      "checksum": "23a2b89b1e94f52628a97c9dc57d57cf"
     },
     "R/fct_date_range.R": {
       "checksum": "6e25dbad200f22d46a901f352b239459"
     },
     "R/fct_downloads.R": {
-      "checksum": "0630f7dbbd614256fc0ef49afd01a7eb"
+      "checksum": "ba6fa9272d9a987299c4db7a9d540f03"
     },
     "R/fct_fft_data.R": {
       "checksum": "d5666f73f4d8e17a93c27888c9045843"
     },
     "R/fct_gpps_data.R": {
-      "checksum": "bc9e674ee7a16613bcda6994331eb408"
+      "checksum": "1b8e0d2c9420f643ca340f9a5749c17d"
     },
     "R/fct_plots.R": {
-      "checksum": "e40c8ac1755d659e0e3de0ffaa56eea1"
+      "checksum": "6abef10301641e5848ae7c6b96f0e74c"
     },
     "R/globals.R": {
       "checksum": "cc532a78dd840df6b1d349767fc81371"
@@ -5039,13 +5042,13 @@
       "checksum": "4489590bbf30b2894115cc5d678f24a5"
     },
     "R/mod_downloads.R": {
-      "checksum": "e09590fe251a26946e465b61e397fe19"
+      "checksum": "7d24335d596fee410101d3ce0b803811"
     },
     "R/mod_fft.R": {
       "checksum": "1c572e7f27efb9d17a321ef24c091fd8"
     },
     "R/mod_filters.R": {
-      "checksum": "53cac43e4dcf6ae8278502576ac7fb3c"
+      "checksum": "d5ac243d169cb726e0705b78b0355f59"
     },
     "R/mod_gpps.R": {
       "checksum": "88a0905f85de8829f5f55309603d2fb7"
@@ -5060,7 +5063,7 @@
       "checksum": "df4afab8392ecd453ee409e1a15832f0"
     },
     "README.Rmd": {
-      "checksum": "c70b5f104fc0d6ed0e0bd48d1fc34685"
+      "checksum": "c1b5edd024aedd96740a96f490120123"
     },
     "tests/README.md": {
       "checksum": "00dade677739f2d93beabd6938598e6f"
@@ -5105,10 +5108,10 @@
       "checksum": "a67e3f15f815874f60e59af324d86bf7"
     },
     "tests/testthat/test-mod_filters.R": {
-      "checksum": "c50f56f99adba832ecb801ea31cdb7e6"
+      "checksum": "ed4b4c194b817a6f5bc7876065a244ee"
     },
     "tests/testthat/test-mod_gpps.R": {
-      "checksum": "e74f1f499a068cd587fe920a2fdf8c2a"
+      "checksum": "a636a89bcd717f492b182c3ccaa7e761"
     },
     "tests/testthat/test-utils.R": {
       "checksum": "2c52ad69546bcfdbd03cab9e9d0ef859"
