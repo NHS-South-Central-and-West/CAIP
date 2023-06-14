@@ -13,17 +13,31 @@ testServer(
     expect_true(
       grepl("test", ns("test"))
     )
-    # Here are some examples of tests you can
-    # run on your module
+
     # - Testing the setting of inputs
-    # session$setInputs(x = 1)
-    # expect_true(input$x == 1)
+    session$setInputs(
+      question =
+        "Q01 - Ease of getting through to someone at GP practice on the phone"
+      )
+    expect_true(
+      input$question ==
+        "Q01 - Ease of getting through to someone at GP practice on the phone"
+      )
+    expect_false(
+      input$question ==
+        "Ease of getting through to someone at GP practice on the phone"
+    )
+    expect_false(
+      input$question ==
+        "Q16 - Satisfaction with appointment offered"
+    )
+
     # - If ever your input updates a reactiveValues
     # - Note that this reactiveValues must be passed
     # - to the testServer function via args = list()
     # expect_true(r$x == 1)
     # - Testing output
-    # expect_true(inherits(output$tbl$html, "html"))
+    # expect_true(inherits(output$gpps_plot$html, "html"))
   }
 )
 
