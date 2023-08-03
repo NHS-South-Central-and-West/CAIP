@@ -27,6 +27,7 @@ gpps_raw <-
 gpps <-
   gpps_raw |>
   # dplyr::distinct(source_question_number, .keep_all = TRUE) |>
+  dplyr::filter(dplyr::if_all(dplyr::ends_with("_code"), ~ . != "NULL")) |>
   dplyr::mutate(
     question_description = stringr::str_replace_all(
       question_description, "ï¿½", "'"
