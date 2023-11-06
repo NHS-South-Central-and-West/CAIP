@@ -17,10 +17,6 @@ ods_raw <-
     region_name = X8
   )
 
-ods |>
-  mutate() |>
-  select(icb_name)
-
 ods <-
   ods_raw |>
   # remove null columns
