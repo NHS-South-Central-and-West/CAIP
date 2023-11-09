@@ -3,7 +3,7 @@
 # import raw data from file
 gpps_raw <-
   readr::read_csv(
-    "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//gppt.csv",
+    "O://T&C//BI Consultancy//A - Projects//UoM - SCW - PC CAP//Raw Data//gppt v2.csv",
     col_names = FALSE, skip = 1,
     # specify encoding for fixing how apostrophes are processed
     locale = readr::locale(encoding = "ISO-8859-1")
